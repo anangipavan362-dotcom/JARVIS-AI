@@ -28,8 +28,11 @@ from app.routes.admin import router as admin_router
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     # Initialize database tables
-    Base.metadata.create_all(bind=engine)
-    print(f"[{settings.APP_NAME}] Quantum Database Schemas Initialized.")
+    try:
+        Base.metadata.create_all(bind=engine)
+        print(f"[{settings.APP_NAME}] Quantum Database Schemas Initialized.")
+    except Exception as e:
+        print(f"[{settings.APP_NAME}] Database init notice: {e}")
     print(f"[{settings.APP_NAME}] Operational Mode: {'DEMO MODE' if settings.is_demo_mode else 'LIVE AI CORE'}")
     yield
     print(f"[{settings.APP_NAME}] Systems shutting down gracefully.")
