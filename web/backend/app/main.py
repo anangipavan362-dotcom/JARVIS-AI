@@ -117,6 +117,8 @@ app.include_router(admin_router)
 
 
 @app.get("/")
+@app.get("/health")
+@app.get("/api/health")
 def root():
     return {
         "system": settings.APP_NAME,
