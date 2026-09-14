@@ -40,7 +40,11 @@ export class ApiClient {
       try {
         const errorData = await response.json();
         errDetail = errorData.detail || errorData.message || errDetail;
-      } catch {}
+      } catch {
+        if (response.status === 404 || response.status === 405) {
+          errDetail = 'Backend server unreachable. Please verify your backend deployment and VITE_API_URL setting.';
+        }
+      }
       throw new Error(errDetail);
     }
 
