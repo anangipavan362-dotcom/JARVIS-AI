@@ -1,5 +1,5 @@
 import os
-from typing import List
+from typing import List, Any, Union
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -20,7 +20,7 @@ class Settings(BaseSettings):
     GEMINI_API_KEY: str = ""
     GEMINI_MODEL: str = "gemini-2.5-flash"
     MAX_TOKENS: int = 2048
-    AI_TEMPERATURE: float = 0.7
+    AI_TEMPERATURE: Any = 0.7
     
     # OAuth
     GOOGLE_CLIENT_ID: str = ""

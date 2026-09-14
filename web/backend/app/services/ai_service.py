@@ -18,7 +18,10 @@ class AIService:
     def __init__(self):
         self.api_key = settings.GEMINI_API_KEY
         self.model = settings.GEMINI_MODEL
-        self.temperature = settings.AI_TEMPERATURE
+        try:
+            self.temperature = float(settings.AI_TEMPERATURE)
+        except Exception:
+            self.temperature = 0.7
 
     def _generate_demo_response(self, user_message: str, history: List[Dict[str, str]], memories: List[Dict[str, str]]) -> str:
         """

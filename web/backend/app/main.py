@@ -1,3 +1,15 @@
+import os
+import sys
+
+# Ensure parent directories are on sys.path for direct Vercel imports
+_file_dir = os.path.dirname(os.path.abspath(__file__))
+_parent_dir = os.path.dirname(_file_dir)
+_grandparent_dir = os.path.dirname(_parent_dir)
+
+for _p in [_parent_dir, _grandparent_dir, _file_dir]:
+    if _p and os.path.exists(_p) and _p not in sys.path:
+        sys.path.insert(0, _p)
+
 import time
 from contextlib import asynccontextmanager
 from fastapi import FastAPI, Request, status
