@@ -1,0 +1,103 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    font-family: 'Rajdhani', 'Segoe UI', sans-serif;
+  }
+  
+  h1, h2, h3, .font-hud {
+    font-family: 'Orbitron', monospace;
+  }
+
+  code, pre, .font-mono {
+    font-family: 'Share Tech Mono', 'Consolas', monospace;
+  }
+}
+
+/* Futuristic Scanline Effect */
+.scanlines {
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%, 
+    rgba(0, 0, 0, 0.25) 50%
+  ), linear-gradient(
+    90deg,
+    rgba(255, 0, 0, 0.03),
+    rgba(0, 255, 0, 0.01),
+    rgba(0, 0, 255, 0.03)
+  );
+  background-size: 100% 3px, 6px 100%;
+  pointer-events: none;
+}
+
+/* Futuristic custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(3, 7, 18, 0.9);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 229, 255, 0.3);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 229, 255, 0.7);
+  box-shadow: 0 0 10px rgba(0, 229, 255, 0.8);
+}
+
+/* Glassmorphic Cyber Panels */
+.cyber-panel {
+  background: rgba(5, 15, 30, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 229, 255, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(0, 10, 25, 0.37), inset 0 0 12px rgba(0, 229, 255, 0.08);
+}
+
+.cyber-panel-glow {
+  box-shadow: 0 0 20px rgba(0, 229, 255, 0.25), inset 0 0 15px rgba(0, 229, 255, 0.12);
+}
+
+.cyber-panel-alert {
+  border-color: rgba(255, 48, 48, 0.4);
+  box-shadow: 0 0 20px rgba(255, 48, 48, 0.25), inset 0 0 15px rgba(255, 48, 48, 0.1);
+}
+
+/* Holographic Grid Pattern */
+.holo-grid {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(0, 229, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 229, 255, 0.06) 1px, transparent 1px);
+}
+
+/* Technical Corner Accents */
+.tech-corner-tl {
+  position: relative;
+}
+.tech-corner-tl::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  width: 8px;
+  height: 8px;
+  border-top: 2px solid #00E5FF;
+  border-left: 2px solid #00E5FF;
+}
+.tech-corner-br::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  right: -1px;
+  width: 8px;
+  height: 8px;
+  border-bottom: 2px solid #00E5FF;
+  border-right: 2px solid #00E5FF;
+}
