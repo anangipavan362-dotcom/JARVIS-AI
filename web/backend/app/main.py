@@ -14,7 +14,8 @@ import time
 from contextlib import asynccontextmanager
 from fastapi import FastAPI, Request, status
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, FileResponse
+from fastapi.staticfiles import StaticFiles
 
 from app.config import settings
 from app.database import engine, Base
@@ -116,10 +117,28 @@ app.include_router(system_router)
 app.include_router(admin_router)
 
 
+# Locate frontend build directory if present
+_dist_candidates = [
+    os.path.join(_parent_dir, "web", "frontend", "dist"),
+    os.path.join(_file_dir, "..", "web", "frontend", "dist"),
+    os.path.join(os.getcwd(), "web", "frontend", "dist"),
+    os.path.join(_file_dir, "dist"),
+]
+dist_dir = next((d for d in _dist_candidates if os.path.isdir(d)), None)
+
+if dist_dir:
+    assets_dir = os.path.join(dist_dir, "assets")
+    if os.path.isdir(assets_dir):
+        app.mount("/assets", StaticFiles(directory=assets_dir), name="static-assets")
+
+
 @app.get("/")
-@app.get("/health")
-@app.get("/api/health")
-def root():
+def root(request: Request):
+    accept = request.headers.get("accept", "")
+    if "text/html" in accept and dist_dir:
+        index_file = os.path.join(dist_dir, "index.html")
+        if os.path.isfile(index_file):
+            return FileResponse(index_file)
     return {
         "system": settings.APP_NAME,
         "status": "ONLINE",
@@ -127,3 +146,29 @@ def root():
         "version": settings.VERSION,
         "documentation": "/docs"
     }
+
+
+@app.get("/health")
+@app.get("/api/health")
+def health():
+    return {
+        "system": settings.APP_NAME,
+        "status": "ONLINE",
+        "mode": "DEMO" if settings.is_demo_mode else "LIVE",
+        "version": settings.VERSION,
+        "documentation": "/docs"
+    }
+
+
+if dist_dir:
+    @app.get("/{full_path:path}")
+    async def serve_spa(request: Request, full_path: str = ""):
+        if full_path.startswith("api") or full_path in ("docs", "redoc", "openapi.json"):
+            return JSONResponse(status_code=404, content={"detail": "Not Found"})
+        target = os.path.join(dist_dir, full_path)
+        if full_path and os.path.isfile(target):
+            return FileResponse(target)
+        index_file = os.path.join(dist_dir, "index.html")
+        if os.path.isfile(index_file):
+            return FileResponse(index_file)
+        return JSONResponse(status_code=404, content={"detail": "Not Found"})

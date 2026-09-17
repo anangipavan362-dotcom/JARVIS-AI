@@ -55,6 +55,8 @@ pnpm-debug.log*
 lerna-debug.log*
 .pnpm-debug.log*
 dist/
+!web/frontend/dist/
+!web/frontend/dist/**
 dist-ssr/
 *.local
 
