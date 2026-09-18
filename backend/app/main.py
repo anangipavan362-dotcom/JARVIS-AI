@@ -119,6 +119,7 @@ app.include_router(admin_router)
 
 # Locate frontend build directory if present
 _dist_candidates = [
+    os.path.join(_grandparent_dir, "web", "frontend", "dist"),
     os.path.join(_parent_dir, "web", "frontend", "dist"),
     os.path.join(_file_dir, "..", "web", "frontend", "dist"),
     os.path.join(os.getcwd(), "web", "frontend", "dist"),

@@ -290,6 +290,67 @@ export const SettingsPage: React.FC = () => {
                   <option value="low">Subtle Minimal</option>
                 </select>
               </div>
+
+              <div>
+                <label className="block text-gray-400 mb-1">3D HOLOGRAPHIC RENDERING:</label>
+                <select
+                  defaultValue={localStorage.getItem('jarvis_3d_enabled') || 'enabled'}
+                  onChange={(e) => {
+                    localStorage.setItem('jarvis_3d_enabled', e.target.value);
+                    sound.playClick();
+                  }}
+                  className="w-full px-3 py-2 bg-black/60 border border-cyan-500/30 rounded text-cyan-200 focus:outline-none"
+                >
+                  <option value="enabled">Enabled (WebGL 3D Core)</option>
+                  <option value="disabled">Disabled (Lightweight 2D Mode)</option>
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-gray-400 mb-1">PERFORMANCE MODE:</label>
+                <select
+                  defaultValue={localStorage.getItem('jarvis_perf_mode') || 'high'}
+                  onChange={(e) => {
+                    localStorage.setItem('jarvis_perf_mode', e.target.value);
+                    sound.playClick();
+                  }}
+                  className="w-full px-3 py-2 bg-black/60 border border-cyan-500/30 rounded text-cyan-200 focus:outline-none"
+                >
+                  <option value="high">High Fidelity (Full Particle Matrix)</option>
+                  <option value="battery">Battery Saver (Optimized FPS)</option>
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-gray-400 mb-1">ANIMATION INTENSITY:</label>
+                <select
+                  defaultValue={localStorage.getItem('jarvis_anim_intensity') || 'high'}
+                  onChange={(e) => {
+                    localStorage.setItem('jarvis_anim_intensity', e.target.value);
+                    sound.playClick();
+                  }}
+                  className="w-full px-3 py-2 bg-black/60 border border-cyan-500/30 rounded text-cyan-200 focus:outline-none"
+                >
+                  <option value="high">Dynamic Kinetic Orbitals</option>
+                  <option value="balanced">Balanced Motion</option>
+                  <option value="minimal">Minimal Ambient</option>
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-gray-400 mb-1">INTERFACE SOUND EFFECTS:</label>
+                <select
+                  defaultValue={localStorage.getItem('jarvis_sound_enabled') || 'true'}
+                  onChange={(e) => {
+                    localStorage.setItem('jarvis_sound_enabled', e.target.value);
+                    sound.playClick();
+                  }}
+                  className="w-full px-3 py-2 bg-black/60 border border-cyan-500/30 rounded text-cyan-200 focus:outline-none"
+                >
+                  <option value="true">Active (Tactile Audio Feedback)</option>
+                  <option value="false">Muted (Silent Protocol)</option>
+                </select>
+              </div>
             </div>
           </div>
         )}

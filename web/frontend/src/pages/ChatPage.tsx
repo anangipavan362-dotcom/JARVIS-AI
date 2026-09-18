@@ -13,7 +13,9 @@ import {
   Mic,
   MicOff,
   Sparkles,
-  StopCircle
+  StopCircle,
+  Volume2,
+  VolumeX
 } from 'lucide-react';
 import { ApiClient } from '../services/api';
 import { Conversation, Message, ConversationSummary } from '../types';
@@ -31,6 +33,7 @@ export const ChatPage: React.FC = () => {
   const [isListening, setIsListening] = useState(false);
   const [editingTitleId, setEditingTitleId] = useState<number | null>(null);
   const [editTitleText, setEditTitleText] = useState('');
+  const [speakingText, setSpeakingText] = useState<string | null>(null);
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const recognitionRef = useRef<any>(null);
@@ -201,6 +204,22 @@ export const ChatPage: React.FC = () => {
     navigator.clipboard.writeText(text);
     setCopiedId(id);
     setTimeout(() => setCopiedId(null), 2000);
+  };
+
+  const handleSpeak = (text: string) => {
+    if (typeof window === 'undefined' || !('speechSynthesis' in window)) return;
+    if (speakingText === text) {
+      window.speechSynthesis.cancel();
+      setSpeakingText(null);
+      return;
+    }
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.rate = 1.0;
+    utterance.onstart = () => setSpeakingText(text);
+    utterance.onend = () => setSpeakingText(null);
+    utterance.onerror = () => setSpeakingText(null);
+    window.speechSynthesis.speak(utterance);
   };
 
   const handleExport = (format: 'txt' | 'json' | 'md') => {
@@ -395,10 +414,27 @@ export const ChatPage: React.FC = () => {
                     <div className="whitespace-pre-wrap">{m.content}</div>
 
                     {isAssistant && (
-                      <div className="mt-2 pt-1 flex items-center justify-end gap-2 border-t border-cyan-500/10 opacity-60 group-hover:opacity-100 transition-opacity">
+                      <div className="mt-2 pt-1 flex items-center justify-end gap-3 border-t border-cyan-500/10 opacity-70 group-hover:opacity-100 transition-opacity">
+                        <button
+                          onClick={() => handleSpeak(m.content)}
+                          className="text-[10px] text-cyan-400 hover:text-white flex items-center gap-1 transition-colors"
+                          title="Vocal Playback"
+                        >
+                          {speakingText === m.content ? (
+                            <>
+                              <VolumeX className="w-3 h-3 text-amber-400 animate-pulse" />
+                              <span className="text-amber-400">STOP</span>
+                            </>
+                          ) : (
+                            <>
+                              <Volume2 className="w-3 h-3" />
+                              <span>SPEAK</span>
+                            </>
+                          )}
+                        </button>
                         <button
                           onClick={() => handleCopy(m.id, m.content)}
-                          className="text-[10px] text-cyan-400 hover:text-white flex items-center gap-1"
+                          className="text-[10px] text-cyan-400 hover:text-white flex items-center gap-1 transition-colors"
                         >
                           {copiedId === m.id ? (
                             <>
