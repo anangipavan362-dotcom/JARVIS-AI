@@ -29,6 +29,9 @@ class UserOut(UserBase):
     id: int
     avatar_url: Optional[str] = None
     role: str
+    status: str = "VERIFIED"
+    phone: Optional[str] = None
+    verified_at: Optional[datetime.datetime] = None
     is_active: bool
     created_at: datetime.datetime
     last_login: Optional[datetime.datetime] = None
@@ -38,6 +41,23 @@ class UserProfileUpdate(BaseModel):
     full_name: Optional[str] = None
     avatar_url: Optional[str] = None
     email: Optional[EmailStr] = None
+    phone: Optional[str] = None
+
+
+class OTPVerifyRequest(BaseModel):
+    email: EmailStr
+    code: str = Field(..., min_length=6, max_length=6)
+
+
+class OTPResendRequest(BaseModel):
+    email: EmailStr
+
+
+class OTPResponse(BaseModel):
+    status: str
+    message: str
+    email: Optional[str] = None
+    expires_in_seconds: Optional[int] = None
 
 
 class PasswordChange(BaseModel):
@@ -297,3 +317,79 @@ class DashboardData(BaseModel):
     unread_notifications_count: int
     system_health_score: int
     user: UserOut
+
+
+# ============================================================
+# ADMIN AUDIT & CONTROL SCHEMAS
+# ============================================================
+
+class AdminUserDetail(BaseModel):
+    user: UserOut
+    conversations_count: int
+    messages_count: int
+    tasks_count: int
+    memories_count: int
+    active_sessions_count: int
+    recent_activities: List[ActivityLogOut]
+    recent_security_events: List[Dict[str, Any]]
+
+
+class AdminAnalytics(BaseModel):
+    total_users: int
+    verified_users: int
+    pending_users: int
+    suspended_users: int
+    active_sessions: int
+    total_conversations: int
+    total_messages: int
+    total_tasks: int
+    completed_tasks: int
+    security_incidents_count: int
+    registration_timeline: List[Dict[str, Any]]
+    ai_activity_timeline: List[Dict[str, Any]]
+
+
+class AuditLogAdminOut(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
+    id: int
+    actor_id: Optional[int] = None
+    actor_username: Optional[str] = None
+    action: str
+    target_type: Optional[str] = None
+    target_id: Optional[str] = None
+    details: Optional[str] = None
+    ip_address: Optional[str] = None
+    status: str
+    timestamp: datetime.datetime
+
+
+class SecurityEventOut(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
+    id: int
+    event_type: str
+    severity: str
+    user_id: Optional[int] = None
+    identifier: Optional[str] = None
+    ip_address: Optional[str] = None
+    user_agent: Optional[str] = None
+    details: Optional[str] = None
+    timestamp: datetime.datetime
+
+
+class SystemSettingOut(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
+    id: int
+    key: str
+    value: str
+    category: str
+    description: Optional[str] = None
+    updated_at: datetime.datetime
+
+
+class SystemSettingUpdate(BaseModel):
+    key: str
+    value: str
+

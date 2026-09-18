@@ -69,6 +69,14 @@ export class ApiClient {
     return this.request<any>('/auth/register', { method: 'POST', body: JSON.stringify(data) });
   }
 
+  public static async verifyOtp(email: string, code: string) {
+    return this.request<any>('/auth/verify-otp', { method: 'POST', body: JSON.stringify({ email, code }) });
+  }
+
+  public static async resendOtp(email: string) {
+    return this.request<any>('/auth/resend-otp', { method: 'POST', body: JSON.stringify({ email }) });
+  }
+
   public static async login(data: any) {
     return this.request<any>('/auth/login', { method: 'POST', body: JSON.stringify(data) });
   }
@@ -256,5 +264,29 @@ export class ApiClient {
 
   public static async deleteAdminUser(id: number) {
     return this.request<any>(`/admin/users/${id}`, { method: 'DELETE' });
+  }
+
+  public static async getAdminUserDetail(id: number) {
+    return this.request<any>(`/admin/users/${id}`);
+  }
+
+  public static async getAdminAnalytics() {
+    return this.request<any>('/admin/analytics');
+  }
+
+  public static async getAdminAuditLogs(limit: number = 50) {
+    return this.request<any[]>(`/admin/audit-logs?limit=${limit}`);
+  }
+
+  public static async getAdminSecurityEvents(limit: number = 50) {
+    return this.request<any[]>(`/admin/security/events?limit=${limit}`);
+  }
+
+  public static async getAdminSettings() {
+    return this.request<any[]>('/admin/settings');
+  }
+
+  public static async updateAdminSetting(key: string, value: string) {
+    return this.request<any>('/admin/settings', { method: 'PUT', body: JSON.stringify({ key, value }) });
   }
 }

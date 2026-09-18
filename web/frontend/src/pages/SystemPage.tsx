@@ -23,6 +23,8 @@ import {
 } from 'recharts';
 import { ApiClient } from '../services/api';
 import { SystemTelemetry } from '../types';
+import { HolographicCard } from '../components/hud/HolographicCard';
+import { Globe } from '../components/3d/Globe';
 import { sound } from '../utils/sound';
 
 export const SystemPage: React.FC = () => {
@@ -81,32 +83,33 @@ export const SystemPage: React.FC = () => {
       {/* Primary Subsystem Matrix */}
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
         {[
-          { name: 'AI CORE', status: telemetry?.subsystems?.ai_core || 'ACTIVE', icon: Cpu, ok: true },
-          { name: 'DATABASE', status: telemetry?.subsystems?.database || 'CONNECTED', icon: Database, ok: true },
-          { name: 'API GATEWAY', status: telemetry?.subsystems?.api_gateway || 'ONLINE', icon: Server, ok: true },
-          { name: 'NETWORK', status: telemetry?.subsystems?.network || 'ONLINE', icon: Wifi, ok: true },
-          { name: 'VOICE SYNTH', status: telemetry?.subsystems?.voice_synthesis || 'READY', icon: Mic, ok: true },
-          { name: 'SERVER NODE', status: telemetry?.subsystems?.server || 'ONLINE', icon: Activity, ok: true },
+          { name: 'AI CORE', status: telemetry?.subsystems?.ai_core || 'ACTIVE', icon: Cpu, glow: 'cyan' as const },
+          { name: 'DATABASE', status: telemetry?.subsystems?.database || 'CONNECTED', icon: Database, glow: 'green' as const },
+          { name: 'API GATEWAY', status: telemetry?.subsystems?.api_gateway || 'ONLINE', icon: Server, glow: 'cyan' as const },
+          { name: 'NETWORK', status: telemetry?.subsystems?.network || 'ONLINE', icon: Wifi, glow: 'blue' as const },
+          { name: 'VOICE SYNTH', status: telemetry?.subsystems?.voice_synthesis || 'READY', icon: Mic, glow: 'purple' as const },
+          { name: 'SERVER NODE', status: telemetry?.subsystems?.server || 'ONLINE', icon: Activity, glow: 'green' as const },
         ].map((sub, idx) => {
           const Icon = sub.icon;
           return (
-            <div
+            <HolographicCard
               key={idx}
-              className="cyber-panel p-3 rounded-lg text-center flex flex-col items-center justify-center space-y-1 tech-corner-tl"
+              glowColor={sub.glow}
+              className="p-3 text-center flex flex-col items-center justify-center space-y-1"
             >
               <Icon className="w-5 h-5 text-cyan-400 mb-1" />
               <span className="text-[10px] font-mono text-gray-400 uppercase">{sub.name}</span>
               <span className="text-xs font-hud font-bold text-cyan-200 uppercase">
                 ● {sub.status}
               </span>
-            </div>
+            </HolographicCard>
           );
         })}
       </div>
 
       {/* Vital Gauges Row */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="cyber-panel p-4 rounded-lg tech-corner-tl">
+        <HolographicCard glowColor="cyan" className="p-4">
           <span className="text-[10px] font-mono text-cyan-400/70 block uppercase">
             UPTIME SYSTEM DURATION
           </span>
@@ -116,9 +119,9 @@ export const SystemPage: React.FC = () => {
           <span className="text-[10px] font-mono text-green-400 mt-1 block">
             HOST: {telemetry?.platform || 'Windows / Web Node'}
           </span>
-        </div>
+        </HolographicCard>
 
-        <div className="cyber-panel p-4 rounded-lg tech-corner-tl">
+        <HolographicCard glowColor="blue" className="p-4">
           <span className="text-[10px] font-mono text-cyan-400/70 block uppercase">
             SERVER MEMORY RESIDENCE (RSS)
           </span>
@@ -128,9 +131,9 @@ export const SystemPage: React.FC = () => {
           <span className="text-[10px] font-mono text-gray-400 mt-1 block">
             Garbage collector cycles normal
           </span>
-        </div>
+        </HolographicCard>
 
-        <div className="cyber-panel p-4 rounded-lg tech-corner-tl">
+        <HolographicCard glowColor="green" className="p-4">
           <span className="text-[10px] font-mono text-cyan-400/70 block uppercase">
             DATABASE QUERY LATENCY
           </span>
@@ -140,8 +143,43 @@ export const SystemPage: React.FC = () => {
           <span className="text-[10px] font-mono text-gray-400 mt-1 block">
             SQL connection pool optimized
           </span>
-        </div>
+        </HolographicCard>
       </div>
+
+      {/* 3D Global Telemetry Mesh */}
+      <HolographicCard glowColor="cyan" className="p-4">
+        <div className="flex flex-col md:flex-row items-center gap-4">
+          <div className="w-full md:w-48 h-40 shrink-0">
+            <Globe />
+          </div>
+          <div className="flex-1 space-y-2 text-xs font-mono">
+            <div className="text-xs font-hud font-bold text-cyan-300 uppercase tracking-wider border-b border-cyan-500/20 pb-1">
+              PLANETARY TELEMETRY & NETWORK TOPOLOGY
+            </div>
+            <p className="text-gray-400 text-[11px] leading-relaxed">
+              Global relay connections active across 6 terrestrial nodes. Quantum tunneling layer active via Cloudflare Argo backbone with zero recorded packet loss.
+            </p>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-1 text-[10px]">
+              <div className="p-1.5 rounded bg-black/40 border border-cyan-500/20">
+                <span className="text-gray-500 block">REGION</span>
+                <span className="text-cyan-300 font-bold">APAC / BOM03</span>
+              </div>
+              <div className="p-1.5 rounded bg-black/40 border border-cyan-500/20">
+                <span className="text-gray-500 block">PROTOCOL</span>
+                <span className="text-green-400 font-bold">QUIC / HTTP3</span>
+              </div>
+              <div className="p-1.5 rounded bg-black/40 border border-cyan-500/20">
+                <span className="text-gray-500 block">SECURITY</span>
+                <span className="text-purple-400 font-bold">AES-256-GCM</span>
+              </div>
+              <div className="p-1.5 rounded bg-black/40 border border-cyan-500/20">
+                <span className="text-gray-500 block">MESH SYNC</span>
+                <span className="text-cyan-300 font-bold">100% NOMINAL</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </HolographicCard>
 
       {/* Charts Row: Requests & Latency */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">

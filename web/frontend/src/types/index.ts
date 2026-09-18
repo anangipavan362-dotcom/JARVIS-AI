@@ -3,17 +3,31 @@ export interface User {
   username: string;
   email: string;
   full_name: string;
+  phone?: string;
   avatar_url?: string;
   role: 'USER' | 'ADMIN';
+  status: 'PENDING_VERIFICATION' | 'VERIFIED' | 'SUSPENDED' | 'DISABLED';
   is_active: boolean;
   created_at: string;
   last_login?: string;
+  verified_at?: string;
 }
 
 export interface AuthResponse {
   access_token: string;
   token_type: string;
   user: User;
+  status?: string;
+  email?: string;
+}
+
+export interface OTPResponse {
+  status: string;
+  message: string;
+  email?: string;
+  expires_in_seconds?: number;
+  access_token?: string;
+  user?: User;
 }
 
 export interface UserSettings {
@@ -178,4 +192,76 @@ export interface SystemTelemetry {
     details?: string;
     timestamp: string;
   }[];
+}
+
+export interface AdminUserDetail {
+  user: User;
+  conversations_count: number;
+  messages_count: number;
+  tasks_count: number;
+  memories_count: number;
+  active_sessions_count: number;
+  recent_activities: {
+    id: number;
+    action: string;
+    details?: string;
+    timestamp: string;
+  }[];
+  recent_security_events: {
+    id: number;
+    event_type: string;
+    severity: string;
+    ip_address?: string;
+    details?: string;
+    timestamp: string;
+  }[];
+}
+
+export interface AdminAnalytics {
+  total_users: number;
+  verified_users: number;
+  pending_users: number;
+  suspended_users: number;
+  active_sessions: number;
+  total_conversations: number;
+  total_messages: number;
+  total_tasks: number;
+  completed_tasks: number;
+  security_incidents_count: number;
+  registration_timeline: { date: string; registrations: number }[];
+  ai_activity_timeline: { date: string; messages: number }[];
+}
+
+export interface AuditLog {
+  id: number;
+  actor_id?: number;
+  actor_username?: string;
+  action: string;
+  target_type?: string;
+  target_id?: string;
+  details?: string;
+  ip_address?: string;
+  status: string;
+  timestamp: string;
+}
+
+export interface SecurityEvent {
+  id: number;
+  event_type: string;
+  severity: string;
+  user_id?: number;
+  identifier?: string;
+  ip_address?: string;
+  user_agent?: string;
+  details?: string;
+  timestamp: string;
+}
+
+export interface SystemSetting {
+  id: number;
+  key: string;
+  value: string;
+  category: string;
+  description?: string;
+  updated_at: string;
 }

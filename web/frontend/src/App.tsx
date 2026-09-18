@@ -25,6 +25,7 @@ import { SystemPage } from './pages/SystemPage';
 import { ProfilePage } from './pages/ProfilePage';
 import { SettingsPage } from './pages/SettingsPage';
 import { AdminPage } from './pages/AdminPage';
+import { VerifyOtpPage } from './pages/VerifyOtpPage';
 
 // Protected Route Guard Component
 const ProtectedRoute: React.FC<{ children: React.ReactNode; adminOnly?: boolean }> = ({
@@ -45,6 +46,11 @@ const ProtectedRoute: React.FC<{ children: React.ReactNode; adminOnly?: boolean 
     return <Navigate to="/login" replace />;
   }
 
+  // Mandatory OTP check: if pending verification, route to verification
+  if (user && user.status === 'PENDING_VERIFICATION') {
+    return <Navigate to={`/verify-otp?email=${encodeURIComponent(user.email)}`} replace />;
+  }
+
   if (adminOnly && !isAdmin) {
     return <Navigate to="/dashboard" replace />;
   }
@@ -61,6 +67,7 @@ export const App: React.FC = () => {
           <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
+          <Route path="/verify-otp" element={<VerifyOtpPage />} />
           <Route path="/forgot-password" element={<ForgotPasswordPage />} />
           <Route path="/reset-password" element={<ResetPasswordPage />} />
 

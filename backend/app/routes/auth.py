@@ -7,16 +7,19 @@ from app.database import get_db
 from app.models import User, Session as UserSession, PasswordResetToken, UserSettings
 from app.schemas import (
     UserCreate, UserLogin, UserOut, TokenResponse,
-    PasswordResetRequest, PasswordResetConfirm, PasswordChange, SessionOut
+    PasswordResetRequest, PasswordResetConfirm, PasswordChange, SessionOut,
+    OTPVerifyRequest, OTPResendRequest, OTPResponse
 )
 from app.auth.security import hash_password, verify_password, create_access_token, generate_secure_token
 from app.auth.dependencies import get_current_user
 from app.services.activity_service import activity_service
+from app.services.otp_service import otp_service
+from app.services.audit_service import audit_service
 
 router = APIRouter(prefix="/api/auth", tags=["Authentication"])
 
 
-@router.post("/register", response_model=TokenResponse, status_code=status.HTTP_201_CREATED)
+@router.post("/register", status_code=status.HTTP_201_CREATED)
 def register(payload: UserCreate, request: Request, response: Response, db: Session = Depends(get_db)):
     # Check if username or email already exists
     existing = db.query(User).filter(
@@ -29,10 +32,10 @@ def register(payload: UserCreate, request: Request, response: Response, db: Sess
             detail="An account with this username or email address already exists."
         )
 
-    # Registration role is always USER by default
+    # Initial account registration status is strictly PENDING_VERIFICATION
     assigned_role = "USER"
 
-    # Create new user
+    # Create new operative record
     new_user = User(
         full_name=payload.full_name.strip(),
         username=payload.username.strip().lower(),
@@ -40,8 +43,10 @@ def register(payload: UserCreate, request: Request, response: Response, db: Sess
         password_hash=hash_password(payload.password),
         avatar_url=payload.avatar_url or "",
         role=assigned_role,
+        status="PENDING_VERIFICATION",
         is_active=True,
-        last_login=datetime.datetime.utcnow()
+        verification_method="EMAIL",
+        created_at=datetime.datetime.utcnow()
     )
     db.add(new_user)
     db.commit()
@@ -50,6 +55,12 @@ def register(payload: UserCreate, request: Request, response: Response, db: Sess
     # Create default user settings
     default_settings = UserSettings(user_id=new_user.id)
     db.add(default_settings)
+    db.commit()
+
+    # Generate and dispatch cryptographic OTP
+    otp_ok, otp_msg, cooldown = otp_service.create_and_send_otp(
+        db, new_user.email, user_id=new_user.id, otp_type="REGISTRATION"
+    )
 
     # Issue access token & session
     token = create_access_token({"sub": str(new_user.id), "username": new_user.username, "role": new_user.role})
@@ -75,12 +86,147 @@ def register(payload: UserCreate, request: Request, response: Response, db: Sess
         samesite="lax"
     )
 
-    activity_service.log(db, new_user.id, "ACCOUNT_REGISTERED", "New account initialized successfully.")
+    activity_service.log(db, new_user.id, "ACCOUNT_ENROLLED", "Account enrolled in PENDING_VERIFICATION state.")
+    audit_service.log_security_event(
+        db,
+        event_type="USER_REGISTERED_PENDING",
+        severity="LOW",
+        user_id=new_user.id,
+        identifier=new_user.email,
+        ip_address=request.client.host if request.client else "127.0.0.1",
+        user_agent=request.headers.get("user-agent"),
+        details="Dispatched registration OTP verification code."
+    )
+
+    return {
+        "status": "PENDING_VERIFICATION",
+        "message": "Operative enrolled. Tactical clearance OTP dispatched to your registered email.",
+        "email": new_user.email,
+        "expires_in_seconds": 600,
+        "access_token": token,
+        "token_type": "bearer",
+        "user": UserOut.model_validate(new_user)
+    }
+
+
+@router.post("/verify-otp", response_model=TokenResponse)
+def verify_otp(payload: OTPVerifyRequest, request: Request, response: Response, db: Session = Depends(get_db)):
+    norm_email = payload.email.strip().lower()
+    user = db.query(User).filter(User.email == norm_email).first()
+    if not user:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Operative account associated with this email address was not found."
+        )
+
+    # Validate OTP through cryptographically secure service
+    is_valid, msg = otp_service.verify_otp(db, norm_email, payload.code, otp_type="REGISTRATION")
+    if not is_valid:
+        audit_service.log_security_event(
+            db,
+            event_type="OTP_VERIFICATION_FAILED",
+            severity="MEDIUM",
+            user_id=user.id,
+            identifier=norm_email,
+            ip_address=request.client.host if request.client else "127.0.0.1",
+            user_agent=request.headers.get("user-agent"),
+            details=msg
+        )
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=msg)
+
+    # Transition account to VERIFIED state
+    user.status = "VERIFIED"
+    user.is_active = True
+    user.verified_at = datetime.datetime.utcnow()
+    user.failed_login_attempts = 0
+    db.commit()
+    db.refresh(user)
+
+    # Issue full access token & tactical session
+    token = create_access_token({"sub": str(user.id), "username": user.username, "role": user.role})
+
+    session_record = UserSession(
+        user_id=user.id,
+        session_token=token,
+        ip_address=request.client.host if request.client else "127.0.0.1",
+        browser=request.headers.get("user-agent", "Unknown Browser")[:100],
+        operating_system="Windows/Web Client",
+        device_info="Terminal Access Node",
+        is_active=True
+    )
+    db.add(session_record)
+    db.commit()
+
+    response.set_cookie(
+        key="access_token",
+        value=token,
+        httponly=True,
+        max_age=60 * 60 * 24 * 7,
+        samesite="lax"
+    )
+
+    activity_service.log(db, user.id, "OTP_VERIFIED", "Tactical clearance verified. Full privileges granted.")
+    audit_service.log_security_event(
+        db,
+        event_type="OTP_VERIFICATION_SUCCESS",
+        severity="LOW",
+        user_id=user.id,
+        identifier=norm_email,
+        ip_address=request.client.host if request.client else "127.0.0.1",
+        user_agent=request.headers.get("user-agent"),
+        details="User verified identity with 6-digit OTP."
+    )
 
     return TokenResponse(
         access_token=token,
-        user=UserOut.model_validate(new_user)
+        user=UserOut.model_validate(user)
     )
+
+
+@router.post("/resend-otp")
+def resend_otp(payload: OTPResendRequest, request: Request, db: Session = Depends(get_db)):
+    norm_email = payload.email.strip().lower()
+    user = db.query(User).filter(User.email == norm_email).first()
+    if user and user.status == "VERIFIED":
+        return {
+            "status": "ALREADY_VERIFIED",
+            "message": "Account already possesses full verified clearance. Please log in directly."
+        }
+
+    success, msg, cooldown = otp_service.create_and_send_otp(
+        db, norm_email, user_id=user.id if user else None, otp_type="REGISTRATION"
+    )
+
+    if not success:
+        audit_service.log_security_event(
+            db,
+            event_type="OTP_RESEND_BLOCKED",
+            severity="LOW",
+            user_id=user.id if user else None,
+            identifier=norm_email,
+            ip_address=request.client.host if request.client else "127.0.0.1",
+            user_agent=request.headers.get("user-agent"),
+            details=msg
+        )
+        raise HTTPException(status_code=status.HTTP_429_TOO_MANY_REQUESTS, detail=msg)
+
+    audit_service.log_security_event(
+        db,
+        event_type="OTP_RESENT",
+        severity="LOW",
+        user_id=user.id if user else None,
+        identifier=norm_email,
+        ip_address=request.client.host if request.client else "127.0.0.1",
+        user_agent=request.headers.get("user-agent"),
+        details="Dispatched replacement verification OTP."
+    )
+
+    return {
+        "status": "SUCCESS",
+        "message": "Fresh tactical clearance OTP dispatched to your registered address.",
+        "email": norm_email,
+        "cooldown_seconds": cooldown
+    }
 
 
 @router.post("/login", response_model=TokenResponse)
@@ -90,25 +236,62 @@ def login(payload: UserLogin, request: Request, response: Response, db: Session 
         (User.username == ident) | (User.email == ident)
     ).first()
 
-    # Generic security error message to prevent account enumeration
     auth_error = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
         detail="ACCESS DENIED: Invalid credentials. Verification failed."
     )
 
     if not user:
+        audit_service.log_security_event(
+            db,
+            event_type="LOGIN_FAILED_UNKNOWN_USER",
+            severity="LOW",
+            identifier=ident,
+            ip_address=request.client.host if request.client else "127.0.0.1",
+            user_agent=request.headers.get("user-agent"),
+            details="Login attempted for nonexistent user identifier."
+        )
         raise auth_error
 
     if not verify_password(payload.password, user.password_hash):
+        user.failed_login_attempts += 1
+        db.commit()
+        audit_service.log_security_event(
+            db,
+            event_type="LOGIN_FAILED_BAD_PASSWORD",
+            severity="MEDIUM",
+            user_id=user.id,
+            identifier=user.username,
+            ip_address=request.client.host if request.client else "127.0.0.1",
+            user_agent=request.headers.get("user-agent"),
+            details=f"Failed login attempt #{user.failed_login_attempts}."
+        )
         raise auth_error
 
-    if not user.is_active:
+    # Check status authorization
+    if user.status == "SUSPENDED":
+        audit_service.log_security_event(
+            db,
+            event_type="LOGIN_BLOCKED_SUSPENDED",
+            severity="HIGH",
+            user_id=user.id,
+            identifier=user.username,
+            ip_address=request.client.host if request.client else "127.0.0.1",
+            details="Suspended user attempted login."
+        )
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
             detail="ACCESS DENIED: Account has been suspended by system administrator."
         )
 
-    # Update last login
+    if user.status == "DISABLED":
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="ACCESS DENIED: Account has been decommissioned."
+        )
+
+    # Reset failed attempts and update last login
+    user.failed_login_attempts = 0
     user.last_login = datetime.datetime.utcnow()
 
     # Generate token

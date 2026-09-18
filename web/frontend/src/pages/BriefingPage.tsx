@@ -5,6 +5,8 @@ import { ApiClient } from '../services/api';
 import { NeonButton } from '../components/common/NeonButton';
 import { ArcReactor } from '../components/hud/ArcReactor';
 import { WaveformVisualizer } from '../components/hud/WaveformVisualizer';
+import { HolographicCard } from '../components/hud/HolographicCard';
+import { AICore } from '../components/3d/AICore';
 import { sound } from '../utils/sound';
 
 export const BriefingPage: React.FC = () => {
@@ -106,13 +108,13 @@ export const BriefingPage: React.FC = () => {
       </div>
 
       {/* Main Console */}
-      <div className="cyber-panel rounded-lg p-6 sm:p-8 tech-corner-tl tech-corner-br flex flex-col items-center justify-center relative">
-        <div className="my-2">
-          <ArcReactor state={isPlaying ? 'SPEAKING' : 'IDLE'} size={200} subtext={isPlaying ? 'VOCALIZING' : 'SYNCHRONIZED'} />
+      <HolographicCard glowColor="cyan" className="p-6 sm:p-8 flex flex-col items-center justify-center relative">
+        <div className="w-48 h-48 sm:w-56 sm:h-56 my-2 relative">
+          <AICore state={isPlaying ? 'SPEAKING' : 'IDLE'} />
         </div>
 
         <div className="w-full max-w-sm my-3">
-          <WaveformVisualizer active={isPlaying} barCount={22} />
+          <WaveformVisualizer active={isPlaying} barCount={24} />
         </div>
 
         <NeonButton
@@ -132,11 +134,11 @@ export const BriefingPage: React.FC = () => {
           </div>
           {loading ? 'COMPILING MISSION PARAMETERS...' : briefingText}
         </div>
-      </div>
+      </HolographicCard>
 
       {/* Briefing Data Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="cyber-panel p-4 rounded-lg tech-corner-tl">
+        <HolographicCard glowColor="cyan" className="p-4">
           <div className="flex items-center gap-2 text-cyan-300 font-hud font-bold text-xs uppercase mb-2">
             <CloudSun className="w-4 h-4" />
             <span>METEOROLOGY</span>
@@ -144,9 +146,9 @@ export const BriefingPage: React.FC = () => {
           <p className="text-xs font-mono text-gray-300">
             {weatherInfo ? `${weatherInfo.temperature}°C, ${weatherInfo.condition}` : 'Clear conditions'}
           </p>
-        </div>
+        </HolographicCard>
 
-        <div className="cyber-panel p-4 rounded-lg tech-corner-tl">
+        <HolographicCard glowColor="green" className="p-4">
           <div className="flex items-center gap-2 text-cyan-300 font-hud font-bold text-xs uppercase mb-2">
             <CheckSquare className="w-4 h-4" />
             <span>DIRECTIVES</span>
@@ -154,9 +156,9 @@ export const BriefingPage: React.FC = () => {
           <p className="text-xs font-mono text-gray-300">
             {taskCount} pending objective{taskCount === 1 ? '' : 's'} today.
           </p>
-        </div>
+        </HolographicCard>
 
-        <div className="cyber-panel p-4 rounded-lg tech-corner-tl">
+        <HolographicCard glowColor="purple" className="p-4">
           <div className="flex items-center gap-2 text-cyan-300 font-hud font-bold text-xs uppercase mb-2">
             <Newspaper className="w-4 h-4" />
             <span>TOP HEADLINE</span>
@@ -164,7 +166,7 @@ export const BriefingPage: React.FC = () => {
           <p className="text-xs font-mono text-gray-300 line-clamp-2">
             {topHeadlines[0] || 'Global news channels steady.'}
           </p>
-        </div>
+        </HolographicCard>
       </div>
     </div>
   );

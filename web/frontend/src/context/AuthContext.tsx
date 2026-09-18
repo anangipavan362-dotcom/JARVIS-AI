@@ -6,11 +6,14 @@ import { sound } from '../utils/sound';
 interface AuthContextType {
   user: User | null;
   loading: boolean;
-  login: (credentials: any) => Promise<void>;
-  register: (data: any) => Promise<void>;
+  login: (credentials: any) => Promise<any>;
+  register: (data: any) => Promise<any>;
+  verifyOtp: (email: string, code: string) => Promise<any>;
+  resendOtp: (email: string) => Promise<any>;
   logout: () => Promise<void>;
   refreshUser: () => Promise<void>;
   isAuthenticated: boolean;
+  isVerified: boolean;
   isAdmin: boolean;
 }
 
@@ -44,16 +47,42 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const login = async (credentials: any) => {
     const res = await ApiClient.login(credentials);
-    ApiClient.setToken(res.access_token);
-    setUser(res.user);
+    if (res.access_token) {
+      ApiClient.setToken(res.access_token);
+    }
+    if (res.user) {
+      setUser(res.user);
+    }
     sound.playAccessGranted();
+    return res;
   };
 
   const register = async (data: any) => {
     const res = await ApiClient.register(data);
-    ApiClient.setToken(res.access_token);
-    setUser(res.user);
-    sound.playAccessGranted();
+    if (res.access_token && res.status !== 'PENDING_VERIFICATION') {
+      ApiClient.setToken(res.access_token);
+      setUser(res.user);
+      sound.playAccessGranted();
+    } else {
+      sound.playProcessing();
+    }
+    return res;
+  };
+
+  const verifyOtp = async (email: string, code: string) => {
+    const res = await ApiClient.verifyOtp(email, code);
+    if (res.access_token) {
+      ApiClient.setToken(res.access_token);
+      setUser(res.user);
+      sound.playAccessGranted();
+    }
+    return res;
+  };
+
+  const resendOtp = async (email: string) => {
+    const res = await ApiClient.resendOtp(email);
+    sound.playClick();
+    return res;
   };
 
   const logout = async () => {
@@ -71,9 +100,12 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         loading,
         login,
         register,
+        verifyOtp,
+        resendOtp,
         logout,
         refreshUser,
         isAuthenticated: !!user,
+        isVerified: user?.status === 'VERIFIED',
         isAdmin: user?.role === 'ADMIN',
       }}
     >

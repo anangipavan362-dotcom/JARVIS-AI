@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ShieldCheck, Lock, User, AlertTriangle, CheckCircle2 } from 'lucide-react';
+import { Canvas } from '@react-three/fiber';
 import { useAuth } from '../context/AuthContext';
 import { NeonButton } from '../components/common/NeonButton';
 import { ArcReactor } from '../components/hud/ArcReactor';
+import { HolographicCard } from '../components/hud/HolographicCard';
+import { ParticleField } from '../components/3d/ParticleField';
 import { sound } from '../utils/sound';
 
 export const LoginPage: React.FC = () => {
@@ -35,10 +38,17 @@ export const LoginPage: React.FC = () => {
       await new Promise((r) => setTimeout(r, 450));
       setStatusSequence('ESTABLISHING SECURE SESSION...');
       
-      await login({
+      const res = await login({
         username_or_email: identifier,
         password: password,
       });
+
+      if (res?.user?.status === 'PENDING_VERIFICATION') {
+        setStatusSequence('CLEARANCE CODE REQUIRED');
+        await new Promise((r) => setTimeout(r, 400));
+        navigate(`/verify-otp?email=${encodeURIComponent(res.user.email || identifier)}`);
+        return;
+      }
 
       setStatusSequence('ACCESS GRANTED');
       await new Promise((r) => setTimeout(r, 400));
@@ -46,7 +56,7 @@ export const LoginPage: React.FC = () => {
     } catch (err: any) {
       sound.playAlert();
       setStatusSequence(null);
-      setErrorMsg('ACCESS DENIED: INVALID CREDENTIALS');
+      setErrorMsg(err.message || 'ACCESS DENIED: INVALID CREDENTIALS');
     } finally {
       setLoading(false);
     }
@@ -58,8 +68,16 @@ export const LoginPage: React.FC = () => {
   };
 
   return (
-    <div className="relative min-h-screen bg-[#030712] text-[#E8FFFF] flex items-center justify-center p-4 selection:bg-cyan-500 selection:text-black">
-      <div className="w-full max-w-md">
+    <div className="relative min-h-screen bg-[#030712] text-[#E8FFFF] flex items-center justify-center p-4 selection:bg-cyan-500 selection:text-black overflow-hidden">
+      {/* 3D Holographic Particle Background */}
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-40">
+        <Canvas camera={{ position: [0, 0, 5], fov: 60 }}>
+          <ambientLight intensity={0.5} />
+          <ParticleField count={400} speed={0.4} color="#00e5ff" />
+        </Canvas>
+      </div>
+
+      <div className="w-full max-w-md relative z-10">
         {/* Terminal Header */}
         <div className="text-center mb-6">
           <div className="flex justify-center mb-3">
@@ -75,22 +93,22 @@ export const LoginPage: React.FC = () => {
 
         {/* Security Indicators */}
         <div className="grid grid-cols-3 gap-2 mb-4 text-center">
-          <div className="p-2 rounded bg-cyan-950/40 border border-cyan-500/20">
+          <div className="p-2 rounded bg-cyan-950/40 border border-cyan-500/20 backdrop-blur-sm">
             <div className="text-[9px] font-mono text-cyan-400/70">ENCRYPTION</div>
             <div className="text-[10px] font-hud font-bold text-green-400 mt-0.5">● ACTIVE</div>
           </div>
-          <div className="p-2 rounded bg-cyan-950/40 border border-cyan-500/20">
+          <div className="p-2 rounded bg-cyan-950/40 border border-cyan-500/20 backdrop-blur-sm">
             <div className="text-[9px] font-mono text-cyan-400/70">AUTH PROTOCOL</div>
             <div className="text-[10px] font-hud font-bold text-cyan-300 mt-0.5">● SECURE</div>
           </div>
-          <div className="p-2 rounded bg-cyan-950/40 border border-cyan-500/20">
+          <div className="p-2 rounded bg-cyan-950/40 border border-cyan-500/20 backdrop-blur-sm">
             <div className="text-[9px] font-mono text-cyan-400/70">NETWORK NODE</div>
             <div className="text-[10px] font-hud font-bold text-blue-400 mt-0.5">● ONLINE</div>
           </div>
         </div>
 
-        {/* Form Panel */}
-        <div className="cyber-panel rounded-lg p-6 tech-corner-tl tech-corner-br">
+        {/* Form Panel wrapped in 3D HolographicCard */}
+        <HolographicCard glowColor="cyan" className="p-6">
           {errorMsg && (
             <div className="mb-4 p-3 rounded bg-red-950/40 border border-red-500/50 flex items-center gap-2 text-xs font-mono text-red-400">
               <AlertTriangle className="w-4 h-4 text-red-400 shrink-0" />
@@ -183,7 +201,7 @@ export const LoginPage: React.FC = () => {
               </Link>
             </div>
           </div>
-        </div>
+        </HolographicCard>
       </div>
     </div>
   );

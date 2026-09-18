@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ShieldCheck, Lock, User, Mail, AlertTriangle, CheckCircle2 } from 'lucide-react';
+import { Canvas } from '@react-three/fiber';
 import { useAuth } from '../context/AuthContext';
 import { NeonButton } from '../components/common/NeonButton';
 import { ArcReactor } from '../components/hud/ArcReactor';
+import { HolographicCard } from '../components/hud/HolographicCard';
+import { ParticleField } from '../components/3d/ParticleField';
 import { sound } from '../utils/sound';
 
 export const RegisterPage: React.FC = () => {
@@ -63,11 +66,11 @@ export const RegisterPage: React.FC = () => {
         avatar_url: avatarUrl || undefined,
       });
 
-      setSuccessMsg('ACCOUNT CREATED. PROCEEDING TO COMMAND CENTER...');
+      setSuccessMsg('ACCOUNT ENROLLED. DISPATCHING CLEARANCE OTP...');
       sound.playAccessGranted();
       setTimeout(() => {
-        navigate('/dashboard');
-      }, 900);
+        navigate(`/verify-otp?email=${encodeURIComponent(email)}`);
+      }, 700);
     } catch (err: any) {
       sound.playAlert();
       setErrorMsg(err.message || 'REGISTRATION REJECTED');
@@ -77,8 +80,16 @@ export const RegisterPage: React.FC = () => {
   };
 
   return (
-    <div className="relative min-h-screen bg-[#030712] text-[#E8FFFF] flex items-center justify-center p-4 selection:bg-cyan-500 selection:text-black">
-      <div className="w-full max-w-md my-8">
+    <div className="relative min-h-screen bg-[#030712] text-[#E8FFFF] flex items-center justify-center p-4 selection:bg-cyan-500 selection:text-black overflow-hidden">
+      {/* 3D Holographic Particle Background */}
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-40">
+        <Canvas camera={{ position: [0, 0, 5], fov: 60 }}>
+          <ambientLight intensity={0.5} />
+          <ParticleField count={400} speed={0.4} color="#00e5ff" />
+        </Canvas>
+      </div>
+
+      <div className="w-full max-w-md my-8 relative z-10">
         {/* Header */}
         <div className="text-center mb-6">
           <div className="flex justify-center mb-2">
@@ -93,7 +104,7 @@ export const RegisterPage: React.FC = () => {
         </div>
 
         {/* Panel */}
-        <div className="cyber-panel rounded-lg p-6 tech-corner-tl tech-corner-br">
+        <HolographicCard glowColor="cyan" className="p-6">
           {errorMsg && (
             <div className="mb-4 p-3 rounded bg-red-950/40 border border-red-500/50 flex items-center gap-2 text-xs font-mono text-red-400">
               <AlertTriangle className="w-4 h-4 text-red-400 shrink-0" />
@@ -242,7 +253,7 @@ export const RegisterPage: React.FC = () => {
               AUTHENTICATE
             </Link>
           </div>
-        </div>
+        </HolographicCard>
       </div>
     </div>
   );
