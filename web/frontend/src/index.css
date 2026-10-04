@@ -101,3 +101,67 @@
   border-bottom: 2px solid #00E5FF;
   border-right: 2px solid #00E5FF;
 }
+
+/* Fusion AI Style Glassmorphism */
+.glass-fusion {
+  background: rgba(8, 15, 30, 0.55);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 24px 64px -12px rgba(0, 0, 0, 0.65), inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+}
+
+.glass-fusion-cyan {
+  background: rgba(6, 18, 36, 0.6);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(0, 229, 255, 0.2);
+  box-shadow: 0 24px 64px -12px rgba(0, 0, 0, 0.7), 0 0 20px -5px rgba(0, 229, 255, 0.15), inset 0 1px 0 0 rgba(0, 229, 255, 0.25);
+}
+
+.glass-pill {
+  background: rgba(13, 24, 48, 0.5);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Smooth Floating Animations for 3D Layered Composition */
+@keyframes floatGentle1 {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(0.4deg);
+  }
+}
+
+@keyframes floatGentle2 {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(10px) rotate(-0.5deg);
+  }
+}
+
+@keyframes floatGentle3 {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.animate-float-1 {
+  animation: floatGentle1 6s ease-in-out infinite;
+}
+
+.animate-float-2 {
+  animation: floatGentle2 7.5s ease-in-out infinite;
+}
+
+.animate-float-3 {
+  animation: floatGentle3 5s ease-in-out infinite;
+}
