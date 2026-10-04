@@ -41,7 +41,12 @@ import {
   Send,
   Star,
   Quote,
-  GitBranch
+  GitBranch,
+  Mail,
+  MapPin,
+  Award,
+  Users,
+  Check
 } from 'lucide-react';
 import { Canvas } from '@react-three/fiber';
 import { AICore } from '../components/3d/AICore';
@@ -66,6 +71,21 @@ export const LandingPage: React.FC = () => {
   const [promptExecuted, setPromptExecuted] = useState(true);
   const [featureTab, setFeatureTab] = useState<'workflow' | 'analytics' | 'integration'>('workflow');
   const [bentoActiveAction, setBentoActiveAction] = useState<'radar' | 'arxiv' | 'vectors' | 'security'>('radar');
+  const [contactName, setContactName] = useState('');
+  const [contactEmail, setContactEmail] = useState('');
+  const [contactType, setContactType] = useState('Autonomous Directive');
+  const [contactMessage, setContactMessage] = useState('');
+  const [contactSubmitted, setContactSubmitted] = useState(false);
+
+  const handleContactSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!contactName || !contactEmail) return;
+    sound.playProcessing();
+    setTimeout(() => {
+      setContactSubmitted(true);
+      sound.playAccessGranted();
+    }, 600);
+  };
 
   const handleExecutePrompt = (e?: React.FormEvent) => {
     e?.preventDefault();
@@ -183,22 +203,21 @@ export const LandingPage: React.FC = () => {
             </div>
             <div>
               <span className="font-hud font-black text-sm tracking-wider text-white group-hover:text-cyan-300 transition-colors">
-                JARVIS AI
+                JARVIS
               </span>
               <span className="hidden sm:inline-block ml-2 text-[9px] font-mono text-cyan-400/80 tracking-widest px-1.5 py-0.5 rounded bg-cyan-950/40 border border-cyan-500/20">
-                OS // V2.5
+                AGENCY // V2.5
               </span>
             </div>
           </div>
 
           <div className="hidden lg:flex items-center gap-6 text-xs font-mono tracking-wider text-gray-300">
-            <a href="#hero" className="hover:text-cyan-300 transition-colors">OVERVIEW</a>
-            <a href="#showcase" className="hover:text-cyan-300 transition-colors">INTELLIGENCE</a>
-            <a href="#capabilities" className="hover:text-cyan-300 transition-colors">CAPABILITIES</a>
-            <a href="#security" className="hover:text-cyan-300 transition-colors">SECURITY</a>
-            <a href="#dashboard-preview" className="hover:text-cyan-300 transition-colors">DASHBOARD</a>
+            <a href="#services" className="hover:text-cyan-300 transition-colors">SERVICES</a>
+            <a href="#showcase" className="hover:text-cyan-300 transition-colors">SHOWCASE</a>
+            <a href="#process" className="hover:text-cyan-300 transition-colors">PROCESS</a>
+            <a href="#agents" className="hover:text-cyan-300 transition-colors">AGENTS</a>
             <a href="#pricing" className="hover:text-cyan-300 transition-colors">PRICING</a>
-            <a href="#faq" className="hover:text-cyan-300 transition-colors">FAQ</a>
+            <a href="#contact" className="hover:text-cyan-300 transition-colors">CONTACT</a>
           </div>
 
           <div className="flex items-center gap-2 sm:gap-3">
@@ -211,16 +230,14 @@ export const LandingPage: React.FC = () => {
             >
               SIGN IN
             </button>
-            <button
-              onClick={() => {
-                sound.playClick();
-                navigate('/dashboard');
-              }}
+            <a
+              href="#contact"
+              onClick={() => sound.playClick()}
               className="px-4 py-1.5 rounded-full text-xs font-hud font-black tracking-wider text-black bg-gradient-to-r from-cyan-400 to-cyan-300 hover:from-cyan-300 hover:to-cyan-200 shadow-[0_0_20px_rgba(0,229,255,0.4)] hover:shadow-[0_0_25px_rgba(0,229,255,0.6)] transition-all cursor-pointer flex items-center gap-1.5"
             >
-              <span>LAUNCH</span>
-              <ChevronRight className="w-3.5 h-3.5 stroke-[3]" />
-            </button>
+              <span>LET'S TALK!</span>
+              <ArrowRight className="w-3.5 h-3.5 stroke-[3]" />
+            </a>
             {/* Mobile Hamburger Button */}
             <button
               onClick={() => {
@@ -259,68 +276,55 @@ export const LandingPage: React.FC = () => {
 
             <div className="grid grid-cols-2 gap-2 text-xs font-mono">
               <a
-                href="#hero"
+                href="#services"
                 onClick={() => setMobileMenuOpen(false)}
                 className="p-3 rounded-xl glass-pill hover:bg-cyan-500/10 text-gray-200 hover:text-cyan-300 transition-colors"
               >
-                Home
+                Services (/01)
               </a>
               <a
                 href="#showcase"
                 onClick={() => setMobileMenuOpen(false)}
                 className="p-3 rounded-xl glass-pill hover:bg-cyan-500/10 text-gray-200 hover:text-cyan-300 transition-colors"
               >
-                AI Intelligence
+                Showcase (/02)
               </a>
               <a
-                href="#capabilities"
+                href="#process"
                 onClick={() => setMobileMenuOpen(false)}
                 className="p-3 rounded-xl glass-pill hover:bg-cyan-500/10 text-gray-200 hover:text-cyan-300 transition-colors"
               >
-                Features
+                Process (/03)
               </a>
               <a
-                href="#security"
+                href="#agents"
                 onClick={() => setMobileMenuOpen(false)}
                 className="p-3 rounded-xl glass-pill hover:bg-cyan-500/10 text-gray-200 hover:text-cyan-300 transition-colors"
               >
-                Security & Trust
+                Core Agents (/04)
               </a>
-              <button
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  navigate('/news');
-                }}
-                className="p-3 rounded-xl glass-pill hover:bg-cyan-500/10 text-gray-200 hover:text-cyan-300 transition-colors text-left cursor-pointer"
+              <a
+                href="#pricing"
+                onClick={() => setMobileMenuOpen(false)}
+                className="p-3 rounded-xl glass-pill hover:bg-cyan-500/10 text-gray-200 hover:text-cyan-300 transition-colors"
               >
-                News Wire
-              </button>
-              <button
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  navigate('/sports');
-                }}
-                className="p-3 rounded-xl glass-pill hover:bg-cyan-500/10 text-gray-200 hover:text-cyan-300 transition-colors text-left cursor-pointer"
+                Pricing Plans
+              </a>
+              <a
+                href="#contact"
+                onClick={() => setMobileMenuOpen(false)}
+                className="p-3 rounded-xl glass-pill hover:bg-cyan-500/10 text-gray-200 hover:text-cyan-300 transition-colors"
               >
-                Sports Radar
-              </button>
-              <button
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  navigate('/weather');
-                }}
-                className="p-3 rounded-xl glass-pill hover:bg-cyan-500/10 text-gray-200 hover:text-cyan-300 transition-colors text-left cursor-pointer"
-              >
-                Weather Radar
-              </button>
+                Let's Talk!
+              </a>
               <button
                 onClick={() => {
                   setMobileMenuOpen(false);
                   navigate('/login');
                 }}
-                className="p-3 rounded-xl glass-pill hover:bg-cyan-500/10 text-gray-200 hover:text-cyan-300 transition-colors text-left cursor-pointer"
+                className="p-3 rounded-xl glass-pill hover:bg-cyan-500/10 text-gray-200 hover:text-cyan-300 transition-colors text-left cursor-pointer col-span-2"
               >
-                Login
+                Sign In
               </button>
             </div>
 
@@ -360,22 +364,22 @@ export const LandingPage: React.FC = () => {
           </Canvas>
         </div>
 
-        <div className="relative z-10 max-w-4xl mx-auto px-4 text-center mt-6">
+        <div className="relative z-10 max-w-5xl mx-auto px-4 text-center mt-6">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-pill border border-cyan-500/30 text-cyan-300 text-xs font-mono tracking-widest uppercase mb-6 shadow-[0_0_20px_rgba(0,229,255,0.15)]">
             <span className="w-2 h-2 rounded-full bg-cyan-400 animate-ping" />
-            <span>FUSION ARCHITECTURE // NEXT-GEN AI COMMAND CENTER</span>
+            <span>© WE BUILD AUTONOMOUS INTELLIGENCE WITH INTENTION, CLARITY AND CARE</span>
           </div>
 
           <h1 className="text-5xl sm:text-7xl lg:text-8xl font-hud font-black tracking-tight text-white uppercase drop-shadow-[0_0_40px_rgba(0,229,255,0.3)]">
-            JARVIS <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-300 to-indigo-300">AI</span>
+            Create, <span className="font-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-sky-200 to-indigo-300 lowercase text-6xl sm:text-8xl lg:text-9xl">Impactful</span> Intelligence.
           </h1>
 
-          <p className="mt-4 text-lg sm:text-2xl font-hud tracking-wide text-cyan-200/90 font-medium">
-            "Your Intelligent Digital Command Center"
+          <p className="mt-4 text-base sm:text-xl font-hud tracking-wide text-cyan-200/90 font-medium">
+            "We craft autonomous digital systems that perform exceptionally."
           </p>
 
           <p className="mt-4 max-w-2xl mx-auto text-xs sm:text-sm font-mono text-gray-400 leading-relaxed">
-            Experience an autonomous neural operating system fusing conversational speech, global live sensory feeds, prioritized task directives, and military-grade user data isolation into one cohesive glassmorphic cockpit.
+            Experience an autonomous neural operating system fusing conversational speech, global live sensory feeds, prioritized task directives, and military-grade user data isolation into one cohesive command surface.
           </p>
 
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
@@ -386,7 +390,7 @@ export const LandingPage: React.FC = () => {
               }}
               className="px-8 py-3.5 rounded-full bg-gradient-to-r from-cyan-400 via-cyan-300 to-blue-400 hover:from-cyan-300 hover:to-blue-300 text-black font-hud font-black text-sm tracking-widest uppercase flex items-center gap-2.5 shadow-[0_0_30px_rgba(0,229,255,0.4)] hover:shadow-[0_0_40px_rgba(0,229,255,0.65)] hover:scale-105 transition-all cursor-pointer"
             >
-              <span>Launch JARVIS</span>
+              <span>Launch Cockpit</span>
               <ArrowRight className="w-4 h-4 stroke-[3]" />
             </button>
 
@@ -402,11 +406,11 @@ export const LandingPage: React.FC = () => {
             </button>
 
             <a
-              href="#showcase"
+              href="#services"
               onClick={() => sound.playClick()}
               className="px-6 py-3.5 rounded-full glass-fusion border border-white/10 hover:border-cyan-400/40 text-gray-300 hover:text-white font-hud font-bold text-sm tracking-wider uppercase transition-all flex items-center gap-2 hover:bg-white/[0.05]"
             >
-              <span>Explore Intelligence</span>
+              <span>Explore Services</span>
               <ChevronDown className="w-4 h-4 text-cyan-400" />
             </a>
           </div>
@@ -668,7 +672,27 @@ export const LandingPage: React.FC = () => {
             )}
           </div>
 
-          {/* Social Proof Ticker inspired by Fusion AI */}
+          {/* Agenciy Stats Ribbon */}
+          <div className="mt-12 max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 border-y border-white/10 py-8 px-4 text-center sm:text-left">
+            <div>
+              <div className="text-3xl sm:text-5xl font-hud font-black text-white">100+</div>
+              <div className="text-xs font-mono text-gray-400 mt-1 uppercase tracking-wider">Missions Launched</div>
+            </div>
+            <div>
+              <div className="text-3xl sm:text-5xl font-hud font-black text-cyan-300">5+</div>
+              <div className="text-xs font-mono text-gray-400 mt-1 uppercase tracking-wider">Neural Clusters</div>
+            </div>
+            <div>
+              <div className="text-3xl sm:text-5xl font-hud font-black text-white">25+</div>
+              <div className="text-xs font-mono text-gray-400 mt-1 uppercase tracking-wider">Sensory Schemas</div>
+            </div>
+            <div>
+              <div className="text-3xl sm:text-5xl font-hud font-black text-emerald-400">99.98%</div>
+              <div className="text-xs font-mono text-gray-400 mt-1 uppercase tracking-wider">Zero-Trust Uptime</div>
+            </div>
+          </div>
+
+          {/* Social Proof Ticker */}
           <div className="mt-8 text-center space-y-3">
             <p className="text-[11px] font-mono text-gray-400 uppercase tracking-widest">
               Trusted by 150,000+ operatives, engineers & teams worldwide
@@ -685,12 +709,116 @@ export const LandingPage: React.FC = () => {
         </div>
       </section>
 
-      {/* 2. FUSION AI BENTO GRID ARCHITECTURE */}
+      {/* 2. WHAT WE DO // TACTICAL SERVICES (AGENCY /01 - /04) */}
+      <section id="services" className="py-24 relative border-t border-white/5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+            <div>
+              <span className="text-xs font-mono font-bold text-cyan-400 tracking-widest uppercase px-3 py-1 rounded-full glass-pill border border-cyan-500/20">
+                (01) // WHAT WE DO
+              </span>
+              <h2 className="text-3xl sm:text-5xl font-hud font-bold text-white mt-4 uppercase">
+                Our Core <span className="font-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-sky-200 to-indigo-300 lowercase text-4xl sm:text-6xl">Intelligence</span> Services
+              </h2>
+            </div>
+            <p className="max-w-md text-xs sm:text-sm font-mono text-gray-400 leading-relaxed">
+              We craft autonomous digital systems from concept to live deployment — blending neural reasoning, sensory telemetry, and real-time speech into one cohesive command cockpit.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {[
+              {
+                index: '/01',
+                title: 'Neural Cognition & Reasoning',
+                tag: 'COGNITIVE ENGINE',
+                desc: 'Multi-turn conversational reasoning powered by Google Gemini 2.5 Flash with streaming responses, code execution, and adaptive local heuristic fail-safe.',
+                features: ['Gemini 2.5 Flash Proxy', 'Context Retention', 'Instant Heuristic Fallback'],
+                icon: Bot
+              },
+              {
+                index: '/02',
+                title: 'Sensory Telemetry & Radar',
+                tag: 'ATMOSPHERIC & NEWS WIRE',
+                desc: 'Real-time meteorological forecasts from Open-Meteo radar models, live RSS news feeds across 6 global channels, and Formula 1 / Champions League telemetry.',
+                features: ['Open-Meteo Radar (0 Keys)', '6 Global RSS Categories', 'Sports Scoreline Radar'],
+                icon: CloudSun
+              },
+              {
+                index: '/03',
+                title: 'Acoustic Vocoder & Speech',
+                tag: 'SPEECH SYNTHESIS & STT',
+                desc: 'High-fidelity browser speech-to-text paired with neural speech synthesis and responsive 3D acoustic waveform visualizers for hands-free operations.',
+                features: ['Web Speech Recognition', 'Neural Voice Synthesis', '3D Acoustic Spectrum'],
+                icon: Mic
+              },
+              {
+                index: '/04',
+                title: 'Mission Directives & Deep Memory',
+                tag: 'PERSISTENCE & SECURITY',
+                desc: 'Classify mission directives across LOW, MEDIUM, HIGH, and URGENT with explicit user-controlled key-value memory banks backed by Argon2 cryptographic hashing.',
+                features: ['Priority Directives CRUD', 'Explicit Private Memory', 'Argon2 & SHA-256 OTP'],
+                icon: Database
+              }
+            ].map((srv, idx) => {
+              const Icon = srv.icon;
+              return (
+                <div
+                  key={idx}
+                  className="glass-fusion p-8 rounded-3xl border border-white/10 hover:border-cyan-500/40 transition-all flex flex-col justify-between group"
+                >
+                  <div>
+                    <div className="flex items-center justify-between mb-6">
+                      <span className="font-hud font-black text-2xl text-cyan-500/40 group-hover:text-cyan-300 transition-colors">
+                        {srv.index}
+                      </span>
+                      <div className="w-10 h-10 rounded-2xl bg-cyan-950/60 border border-cyan-400/40 flex items-center justify-center text-cyan-300 group-hover:scale-110 transition-transform">
+                        <Icon className="w-5 h-5" />
+                      </div>
+                    </div>
+                    <span className="text-[10px] font-mono text-cyan-400 tracking-widest uppercase block mb-1">
+                      {srv.tag}
+                    </span>
+                    <h3 className="text-xl sm:text-2xl font-hud font-bold text-white group-hover:text-cyan-300 transition-colors">
+                      {srv.title}
+                    </h3>
+                    <p className="mt-3 text-xs sm:text-sm font-mono text-gray-400 leading-relaxed">
+                      {srv.desc}
+                    </p>
+                  </div>
+
+                  <div className="mt-8 pt-4 border-t border-white/10 flex flex-wrap items-center justify-between gap-2">
+                    <div className="flex flex-wrap gap-2">
+                      {srv.features.map((f, i) => (
+                        <span key={i} className="text-[10px] font-mono px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-gray-300">
+                          {f}
+                        </span>
+                      ))}
+                    </div>
+                    <button
+                      onClick={() => {
+                        sound.playClick();
+                        navigate('/dashboard');
+                      }}
+                      className="text-xs font-hud font-bold text-cyan-300 group-hover:translate-x-1 transition-transform flex items-center gap-1 cursor-pointer"
+                    >
+                      <span>DEPLOY</span>
+                      <ChevronRight className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* 3. FEATURED SHOWCASES & WORKFORCE */}
       <section id="showcase" className="py-24 relative border-t border-white/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <span className="text-xs font-mono font-bold text-cyan-400 tracking-widest uppercase px-3 py-1 rounded-full glass-pill border border-cyan-500/20">
-              BENTO ARCHITECTURE // NEXT-GEN AGENTS
+              (02) // FEATURED SHOWCASES
             </span>
             <h2 className="text-3xl sm:text-5xl font-hud font-bold text-white mt-4 uppercase">
               Build, scale and manage entire AI workforce
@@ -1424,77 +1552,191 @@ export const LandingPage: React.FC = () => {
         </div>
       </section>
 
-      {/* 5. 3-STEP AUTOMATION PIPELINE */}
-      <section className="py-24 relative border-t border-white/5 bg-[#030614]/70">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="text-xs font-mono font-bold text-cyan-400 tracking-widest uppercase px-3 py-1 rounded-full glass-pill border border-cyan-500/20">
-              SIMPLIFIED WORKFLOW
-            </span>
-            <h2 className="text-3xl sm:text-5xl font-hud font-bold text-white mt-4 uppercase">
-              Automate workflows in three simple steps
-            </h2>
-            <p className="mt-3 text-sm font-mono text-gray-400">
-              From conversational prompt to multi-system execution in seconds with zero configuration overhead.
+      {/* 5. THE JOURNEY TO AUTONOMOUS EXECUTION (AGENCY /03 PROCESS) */}
+      <section id="process" className="py-24 relative border-t border-white/5 bg-[#030614]/70">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+            <div>
+              <span className="text-xs font-mono font-bold text-cyan-400 tracking-widest uppercase px-3 py-1 rounded-full glass-pill border border-cyan-500/20">
+                (03) // OUR PROCESS
+              </span>
+              <h2 className="text-3xl sm:text-5xl font-hud font-bold text-white mt-4 uppercase">
+                The Journey to a <span className="font-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-sky-200 to-indigo-300 lowercase text-4xl sm:text-6xl">Flawless</span> Autonomous Directive
+              </h2>
+            </div>
+            <p className="max-w-md text-xs sm:text-sm font-mono text-gray-400 leading-relaxed">
+              We keep execution lean and deterministic — so commands travel from speech prompt to multi-system completion without friction or data leaks.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               {
-                step: '01',
-                title: 'Select a Trigger',
-                desc: 'Initiate tasks via vocal speech recognition, natural-language prompt input, scheduled cron triggers, or inbound API events.',
-                tag: 'VOICE / CHAT / SCHEDULE',
-                color: 'from-cyan-500/20 to-transparent'
+                step: '/01',
+                title: 'Ingest & Parse',
+                desc: 'Captures voice speech, natural-language text prompts, scheduled cron timers, or inbound webhook events.',
+                tag: 'INPUT INGESTION',
+                color: 'from-cyan-500/10 to-transparent'
               },
               {
-                step: '02',
-                title: 'Connect Tools & Data',
-                desc: 'JARVIS seamlessly pulls live telemetry from Open-Meteo radar, 6 RSS categories, arXiv preprints, and isolated neural memory.',
-                tag: 'AUTOMATIC SENSORY INGESTION',
-                color: 'from-purple-500/20 to-transparent'
+                step: '/02',
+                title: 'Synthesize & Route',
+                desc: 'FastAPI gateway sanitization, JWT authorization, and Google Gemini 2.5 Flash cognitive inference pass.',
+                tag: 'NEURAL ROUTING',
+                color: 'from-indigo-500/10 to-transparent'
               },
               {
-                step: '03',
-                title: 'Let AI Execute & Brief',
-                desc: 'Gemini 2.5 synthesizes actionable briefings, executes task directives, and provides vocal confirmation via neural speech synthesis.',
-                tag: 'AUTONOMOUS SYNTHESIS',
-                color: 'from-emerald-500/20 to-transparent'
+                step: '/03',
+                title: 'Concur & Isolate',
+                desc: 'Multi-tenant schema validation, explicit memory persistence, and cryptographic verification via Argon2.',
+                tag: 'RELATIONAL ISOLATION',
+                color: 'from-purple-500/10 to-transparent'
+              },
+              {
+                step: '/04',
+                title: 'Deliver & Brief',
+                desc: 'Real-time sensory HUD update, active task queuing, and neural speech synthesis voice debriefing.',
+                tag: 'AUTONOMOUS BRIEFING',
+                color: 'from-emerald-500/10 to-transparent'
               }
             ].map((st, idx) => (
               <div
                 key={idx}
-                className={`glass-fusion p-6 sm:p-8 rounded-3xl border border-white/10 hover:border-cyan-500/40 transition-all bg-gradient-to-b ${st.color} flex flex-col justify-between`}
+                className={`glass-fusion p-8 rounded-3xl border border-white/10 hover:border-cyan-500/40 transition-all bg-gradient-to-b ${st.color} flex flex-col justify-between group`}
               >
                 <div>
-                  <div className="text-4xl font-hud font-black text-cyan-400/40 mb-4">
+                  <div className="font-hud font-black text-4xl text-cyan-500/30 group-hover:text-cyan-300 transition-colors mb-4">
                     {st.step}
                   </div>
                   <h3 className="text-xl font-hud font-bold text-white mb-2">{st.title}</h3>
                   <p className="text-xs sm:text-sm font-mono text-gray-400 leading-relaxed">{st.desc}</p>
                 </div>
-                <div className="mt-6 pt-4 border-t border-white/10 text-[10px] font-mono text-cyan-300 font-bold uppercase tracking-wider">
+                <div className="mt-8 pt-4 border-t border-white/10 text-[10px] font-mono text-cyan-300 font-bold uppercase tracking-wider">
                   {st.tag}
                 </div>
               </div>
             ))}
           </div>
+
+          {/* Agenciy Awards & Recognition Ribbon */}
+          <div id="awards" className="mt-20 glass-fusion p-6 sm:p-8 rounded-3xl border border-white/10 grid grid-cols-2 md:grid-cols-4 gap-6 items-center text-center">
+            <div className="space-y-1">
+              <span className="text-[10px] font-mono text-gray-400 uppercase tracking-widest block">CLOUD COMPLIANCE</span>
+              <div className="text-sm sm:text-base font-hud font-bold text-white">Google Cloud Run</div>
+              <span className="text-[10px] font-mono text-cyan-300">Verified Architecture</span>
+            </div>
+            <div className="space-y-1">
+              <span className="text-[10px] font-mono text-gray-400 uppercase tracking-widest block">CYBER DEFENSE</span>
+              <div className="text-sm sm:text-base font-hud font-bold text-white">OWASP Zero-Trust</div>
+              <span className="text-[10px] font-mono text-emerald-300">Cryptographic Standard</span>
+            </div>
+            <div className="space-y-1">
+              <span className="text-[10px] font-mono text-gray-400 uppercase tracking-widest block">STREAM PERFORMANCE</span>
+              <div className="text-sm sm:text-base font-hud font-bold text-white">FastAPI Core</div>
+              <span className="text-[10px] font-mono text-purple-300">120 FPS Stream Pipeline</span>
+            </div>
+            <div className="space-y-1">
+              <span className="text-[10px] font-mono text-gray-400 uppercase tracking-widest block">GLOBAL DELIVERY</span>
+              <div className="text-sm sm:text-base font-hud font-bold text-white">Firebase Edge</div>
+              <span className="text-[10px] font-mono text-yellow-300">Worldwide Low Latency</span>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* 6. OPERATIVE SUCCESS STORIES & TESTIMONIALS */}
+      {/* 6. AI CORE LEADERSHIP & SUBSYSTEM AGENTS (AGENCY /04 TEAM) */}
+      <section id="agents" className="py-24 relative border-t border-white/5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+            <div>
+              <span className="text-xs font-mono font-bold text-cyan-400 tracking-widest uppercase px-3 py-1 rounded-full glass-pill border border-cyan-500/20">
+                (04) // CORE AGENTS
+              </span>
+              <h2 className="text-3xl sm:text-5xl font-hud font-bold text-white mt-4 uppercase">
+                Meet the <span className="font-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-sky-200 to-indigo-300 lowercase text-4xl sm:text-6xl">Subsystem</span> Operatives
+              </h2>
+            </div>
+            <p className="max-w-md text-xs sm:text-sm font-mono text-gray-400 leading-relaxed">
+              Autonomous specialized agents working in harmony across the JARVIS command nexus to execute complex directives.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              {
+                name: 'J.A.R.V.I.S. Core',
+                role: 'Chief Intelligence Officer',
+                focus: 'Cognitive reasoning & multi-turn dialogue via Google Gemini 2.5 Flash with fallback heuristics.',
+                badge: 'GEMINI 2.5 AI',
+                icon: Bot
+              },
+              {
+                name: 'Radar Nexus',
+                role: 'Telemetry & Sensor Lead',
+                focus: 'Continuous atmospheric polling via Open-Meteo, 6 RSS categories, and live sports telemetry.',
+                badge: 'SENSORY GRID',
+                icon: CloudSun
+              },
+              {
+                name: 'Acoustic Vocoder',
+                role: 'Voice & Speech Lead',
+                focus: 'Browser-native speech recognition and neural speech synthesis with 3D waveform matrices.',
+                badge: 'WEB SPEECH API',
+                icon: Mic
+              },
+              {
+                name: 'Security Vault',
+                role: 'Cryptographic Defense Lead',
+                focus: 'Zero-trust isolation, Argon2 password hashing, SHA-256 OTP verification, and JWT security.',
+                badge: 'ARGON2 & JWT',
+                icon: Shield
+              }
+            ].map((agent, idx) => {
+              const Icon = agent.icon;
+              return (
+                <div
+                  key={idx}
+                  className="glass-fusion p-6 rounded-3xl border border-white/10 hover:border-cyan-500/40 transition-all flex flex-col justify-between group"
+                >
+                  <div>
+                    <div className="w-14 h-14 rounded-2xl bg-cyan-950/60 border border-cyan-400/40 flex items-center justify-center text-cyan-300 group-hover:scale-110 transition-transform mb-6">
+                      <Icon className="w-7 h-7" />
+                    </div>
+                    <span className="text-[10px] font-mono text-cyan-400 uppercase tracking-widest block mb-1">
+                      {agent.badge}
+                    </span>
+                    <h3 className="text-xl font-hud font-bold text-white group-hover:text-cyan-300 transition-colors">
+                      {agent.name}
+                    </h3>
+                    <div className="text-xs font-mono text-gray-400 mb-3">{agent.role}</div>
+                    <p className="text-xs font-mono text-gray-300 leading-relaxed">{agent.focus}</p>
+                  </div>
+                  <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-[11px] font-mono">
+                    <span className="text-gray-500">OPERATIVE 0{idx + 1}</span>
+                    <span className="text-emerald-400 flex items-center gap-1.5 font-bold">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
+                      ACTIVE
+                    </span>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* 6. OPERATIVE SUCCESS STORIES & ENDORSEMENTS (AGENCY /06) */}
       <section id="testimonials" className="py-24 relative border-t border-white/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <span className="text-xs font-mono font-bold text-cyan-400 tracking-widest uppercase px-3 py-1 rounded-full glass-pill border border-cyan-500/20">
-              OPERATIVE TESTIMONIALS
+              (06) // ENDORSEMENTS
             </span>
             <h2 className="text-3xl sm:text-5xl font-hud font-bold text-white mt-4 uppercase">
-              Trusted by commanders & engineers worldwide
+              Hear from the <span className="font-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-sky-200 to-indigo-300 lowercase text-4xl sm:text-6xl">Operatives</span> We've Empowered
             </h2>
             <p className="mt-3 text-sm font-mono text-gray-400">
-              Read how operatives use JARVIS to consolidate multi-channel intelligence, automate daily routines, and run secure operations.
+              Read how commanders and systems engineers use JARVIS to consolidate multi-channel intelligence, automate daily routines, and run secure operations.
             </p>
           </div>
 
@@ -1838,25 +2080,30 @@ export const LandingPage: React.FC = () => {
         </div>
       </section>
 
-      {/* 7. PRICING & SUBSCRIPTION PLANS */}
+      {/* 7. PRICING & SUBSCRIPTION PLANS (AGENCY /05 PRICING) */}
       <section id="pricing" className="py-24 relative border-t border-white/5">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <span className="text-xs font-mono font-bold text-cyan-400 tracking-widest uppercase px-3 py-1 rounded-full glass-pill border border-cyan-500/20">
-              OPERATIVE CLEARANCE TIERS
+              (05) // PRICING PLANS
             </span>
             <h2 className="text-3xl sm:text-5xl font-hud font-bold text-white mt-4 uppercase">
-              Transparent Access
+              Plans That <span className="font-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-sky-200 to-indigo-300 lowercase text-4xl sm:text-6xl">Scale</span> With Your Operations
             </h2>
             <p className="mt-3 text-sm font-mono text-gray-400">
-              Choose the operational tier matched to your intelligence needs. All tiers feature strict data confinement.
+              Transparent, predictable operational tiers. Choose the intelligence capacity engineered for your mission.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="glass-fusion p-6 sm:p-8 rounded-3xl border border-white/10 flex flex-col justify-between">
+            <div className="glass-fusion p-6 sm:p-8 rounded-3xl border border-white/10 flex flex-col justify-between group hover:border-cyan-500/30 transition-all">
               <div>
-                <span className="text-[10px] font-mono text-gray-400 tracking-widest uppercase block">TIER 01 // CIV</span>
+                <div className="flex items-center justify-between mb-4">
+                  <span className="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center font-hud font-bold text-xs text-gray-300">
+                    1
+                  </span>
+                  <span className="text-[10px] font-mono text-gray-400 tracking-widest uppercase">STARTER</span>
+                </div>
                 <h3 className="text-2xl font-hud font-bold text-white mt-1">Explorer</h3>
                 <div className="mt-4 flex items-baseline gap-1">
                   <span className="text-4xl font-hud font-black text-white">$0</span>
@@ -1898,10 +2145,15 @@ export const LandingPage: React.FC = () => {
 
             <div className="glass-fusion-cyan p-6 sm:p-8 rounded-3xl border border-cyan-400/40 flex flex-col justify-between relative shadow-[0_0_40px_rgba(0,229,255,0.2)]">
               <div className="absolute -top-3.5 right-6 px-3 py-1 rounded-full bg-cyan-500 text-black text-[10px] font-hud font-black tracking-widest uppercase">
-                RECOMMENDED
+                POPULAR
               </div>
               <div>
-                <span className="text-[10px] font-mono text-cyan-300 tracking-widest uppercase block">TIER 02 // TACTICAL</span>
+                <div className="flex items-center justify-between mb-4">
+                  <span className="w-8 h-8 rounded-full bg-cyan-500/20 border border-cyan-400/50 flex items-center justify-center font-hud font-bold text-xs text-cyan-300">
+                    2
+                  </span>
+                  <span className="text-[10px] font-mono text-cyan-300 tracking-widest uppercase">GROWTH</span>
+                </div>
                 <h3 className="text-2xl font-hud font-bold text-white mt-1">Commander Pro</h3>
                 <div className="mt-4 flex items-baseline gap-1">
                   <span className="text-4xl font-hud font-black text-cyan-300">$29</span>
@@ -1945,9 +2197,14 @@ export const LandingPage: React.FC = () => {
               </button>
             </div>
 
-            <div className="glass-fusion p-6 sm:p-8 rounded-3xl border border-white/10 flex flex-col justify-between">
+            <div className="glass-fusion p-6 sm:p-8 rounded-3xl border border-white/10 flex flex-col justify-between group hover:border-purple-500/30 transition-all">
               <div>
-                <span className="text-[10px] font-mono text-purple-400 tracking-widest uppercase block">TIER 03 // DEFENSE</span>
+                <div className="flex items-center justify-between mb-4">
+                  <span className="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center font-hud font-bold text-xs text-gray-300">
+                    3
+                  </span>
+                  <span className="text-[10px] font-mono text-purple-400 tracking-widest uppercase">SCALE</span>
+                </div>
                 <h3 className="text-2xl font-hud font-bold text-white mt-1">Enterprise Nexus</h3>
                 <div className="mt-4 flex items-baseline gap-1">
                   <span className="text-4xl font-hud font-black text-white">$99</span>
@@ -2042,7 +2299,187 @@ export const LandingPage: React.FC = () => {
         </div>
       </section>
 
-      {/* 9. FINAL CALL TO ACTION */}
+      {/* 9. MISSION CONTACT DESK (AGENCY /07 CONTACT) */}
+      <section id="contact" className="py-24 relative border-t border-white/5 bg-[#02050f]/80">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+            {/* Left Info Column */}
+            <div className="lg:col-span-5 space-y-8">
+              <div>
+                <span className="text-xs font-mono font-bold text-cyan-400 tracking-widest uppercase px-3 py-1 rounded-full glass-pill border border-cyan-500/20">
+                  (07) // MISSION DESK
+                </span>
+                <h2 className="text-3xl sm:text-5xl font-hud font-bold text-white mt-4 uppercase">
+                  Let's Build Something <span className="font-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-sky-200 to-indigo-300 lowercase text-4xl sm:text-6xl">Extraordinary</span> Together
+                </h2>
+                <p className="mt-4 text-xs sm:text-sm font-mono text-gray-400 leading-relaxed">
+                  Have an operational challenge, custom integration requirement, or seeking an enterprise-grade autonomous AI deployment? Transmit your directive below.
+                </p>
+              </div>
+
+              {/* Coordinates & Info Badges */}
+              <div className="space-y-4 pt-2">
+                <div className="flex items-start gap-4 p-4 rounded-2xl glass-fusion border border-white/10">
+                  <div className="w-10 h-10 rounded-xl bg-cyan-950/80 border border-cyan-400/40 flex items-center justify-center shrink-0">
+                    <MapPin className="w-5 h-5 text-cyan-300" />
+                  </div>
+                  <div>
+                    <span className="text-[10px] font-mono text-gray-400 uppercase tracking-widest block">HEADQUARTERS</span>
+                    <div className="text-sm font-hud font-bold text-white mt-0.5">1234 Market Street, Suite 500</div>
+                    <div className="text-xs font-mono text-gray-400">San Francisco, CA 94103, US</div>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4 p-4 rounded-2xl glass-fusion border border-white/10">
+                  <div className="w-10 h-10 rounded-xl bg-cyan-950/80 border border-cyan-400/40 flex items-center justify-center shrink-0">
+                    <Mail className="w-5 h-5 text-cyan-300" />
+                  </div>
+                  <div>
+                    <span className="text-[10px] font-mono text-gray-400 uppercase tracking-widest block">DIRECT TRANSMISSION</span>
+                    <div className="text-sm font-hud font-bold text-white mt-0.5">operatives@jarvis-os.dev</div>
+                    <div className="text-xs font-mono text-gray-400">PGP Key ID: 0x9AF4B821 // Encrypted</div>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4 p-4 rounded-2xl glass-fusion border border-white/10">
+                  <div className="w-10 h-10 rounded-xl bg-cyan-950/80 border border-cyan-400/40 flex items-center justify-center shrink-0">
+                    <Shield className="w-5 h-5 text-emerald-400" />
+                  </div>
+                  <div>
+                    <span className="text-[10px] font-mono text-gray-400 uppercase tracking-widest block">OPERATIONAL SLA</span>
+                    <div className="text-sm font-hud font-bold text-emerald-300 mt-0.5">&lt; 15 Minute Triage</div>
+                    <div className="text-xs font-mono text-gray-400">24/7/365 Continuous AI Health Monitoring</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Interactive Form Column */}
+            <div className="lg:col-span-7">
+              <div className="glass-fusion p-6 sm:p-10 rounded-3xl border border-white/10 shadow-[0_20px_70px_rgba(0,0,0,0.6)]">
+                {contactSubmitted ? (
+                  <div className="py-12 flex flex-col items-center text-center space-y-4">
+                    <div className="w-16 h-16 rounded-full bg-emerald-500/20 border border-emerald-400/60 flex items-center justify-center text-emerald-300 animate-pulse">
+                      <Check className="w-8 h-8 stroke-[3]" />
+                    </div>
+                    <div className="text-2xl font-hud font-bold text-white uppercase">
+                      Transmission Confirmed
+                    </div>
+                    <p className="text-xs sm:text-sm font-mono text-gray-300 max-w-md">
+                      Thank you, Operative. Your mission dispatch has been routed to our tactical operations desk. A briefing response will arrive at <span className="text-cyan-300 font-bold">{contactEmail}</span> shortly.
+                    </p>
+                    <button
+                      onClick={() => setContactSubmitted(false)}
+                      className="mt-6 px-6 py-2.5 rounded-full glass-pill border border-cyan-500/30 text-xs font-mono text-cyan-300 hover:text-white transition-all cursor-pointer"
+                    >
+                      Transmit Another Directive
+                    </button>
+                  </div>
+                ) : (
+                  <form onSubmit={handleContactSubmit} className="space-y-6">
+                    <div className="flex items-center justify-between pb-4 border-b border-white/10">
+                      <span className="text-xs font-hud font-bold text-cyan-300 uppercase tracking-wider flex items-center gap-2">
+                        <Terminal className="w-4 h-4 text-cyan-400" />
+                        SECURE MISSION TRANSMISSION PORTAL
+                      </span>
+                      <span className="text-[10px] font-mono text-emerald-400 flex items-center gap-1.5 font-bold">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
+                        READY
+                      </span>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-[11px] font-mono text-gray-400 uppercase tracking-wider mb-2">
+                          Operative / Company Name *
+                        </label>
+                        <input
+                          type="text"
+                          required
+                          value={contactName}
+                          onChange={(e) => setContactName(e.target.value)}
+                          placeholder="e.g. Commander Sarah Vance"
+                          className="w-full px-4 py-3 rounded-xl bg-black/50 border border-white/10 focus:border-cyan-400 text-xs sm:text-sm font-mono text-white placeholder-gray-600 focus:outline-none transition-colors"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-[11px] font-mono text-gray-400 uppercase tracking-wider mb-2">
+                          Communication Frequency (Email) *
+                        </label>
+                        <input
+                          type="email"
+                          required
+                          value={contactEmail}
+                          onChange={(e) => setContactEmail(e.target.value)}
+                          placeholder="e.g. vance@orbital.io"
+                          className="w-full px-4 py-3 rounded-xl bg-black/50 border border-white/10 focus:border-cyan-400 text-xs sm:text-sm font-mono text-white placeholder-gray-600 focus:outline-none transition-colors"
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-[11px] font-mono text-gray-400 uppercase tracking-wider mb-2">
+                        Directive Classification / Mission Domain
+                      </label>
+                      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                        {[
+                          'Autonomous Directive',
+                          'Enterprise Nexus',
+                          'Security Audit',
+                          'Custom Integration'
+                        ].map((type) => {
+                          const active = contactType === type;
+                          return (
+                            <button
+                              key={type}
+                              type="button"
+                              onClick={() => {
+                                sound.playClick();
+                                setContactType(type);
+                              }}
+                              className={`p-2.5 rounded-xl text-[11px] font-mono transition-all text-center border cursor-pointer ${
+                                active
+                                  ? 'bg-cyan-500/20 text-cyan-300 border-cyan-400/60 font-bold shadow-[0_0_12px_rgba(0,229,255,0.2)]'
+                                  : 'bg-black/30 border-white/5 text-gray-400 hover:text-white hover:border-white/20'
+                              }`}
+                            >
+                              {type}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-[11px] font-mono text-gray-400 uppercase tracking-wider mb-2">
+                        Directive Payload / Operational Scope *
+                      </label>
+                      <textarea
+                        required
+                        rows={4}
+                        value={contactMessage}
+                        onChange={(e) => setContactMessage(e.target.value)}
+                        placeholder="Detail your operational requirements, preferred latency targets, or custom integration needs..."
+                        className="w-full px-4 py-3 rounded-xl bg-black/50 border border-white/10 focus:border-cyan-400 text-xs sm:text-sm font-mono text-white placeholder-gray-600 focus:outline-none transition-colors resize-none"
+                      />
+                    </div>
+
+                    <button
+                      type="submit"
+                      className="w-full py-4 rounded-xl bg-gradient-to-r from-cyan-400 via-cyan-300 to-blue-400 hover:from-cyan-300 hover:to-blue-300 text-black font-hud font-black text-xs sm:text-sm tracking-widest uppercase flex items-center justify-center gap-2 shadow-[0_0_25px_rgba(0,229,255,0.4)] hover:shadow-[0_0_35px_rgba(0,229,255,0.6)] transition-all cursor-pointer"
+                    >
+                      <Send className="w-4 h-4" />
+                      <span>Transmit Directive to Mission Control</span>
+                    </button>
+                  </form>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 10. FINAL CALL TO ACTION */}
       <section className="py-28 relative border-t border-white/5 flex flex-col items-center justify-center overflow-hidden">
         <div className="absolute w-[500px] h-[500px] rounded-full bg-[radial-gradient(circle,rgba(0,229,255,0.15)_0%,rgba(100,50,255,0.06)_50%,transparent_70%)] pointer-events-none blur-3xl" />
 
@@ -2052,7 +2489,7 @@ export const LandingPage: React.FC = () => {
           </div>
 
           <h2 className="text-4xl sm:text-6xl font-hud font-black text-white uppercase drop-shadow-[0_0_30px_rgba(0,229,255,0.3)]">
-            "Your digital intelligence is ready."
+            Your Autonomous <span className="font-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-sky-200 to-indigo-300 lowercase text-5xl sm:text-7xl">Intelligence</span> is Ready.
           </h2>
 
           <p className="mt-4 max-w-xl mx-auto text-xs sm:text-sm font-mono text-gray-400">
@@ -2074,7 +2511,7 @@ export const LandingPage: React.FC = () => {
         </div>
       </section>
 
-      {/* 10. ENTERPRISE FOOTER */}
+      {/* 11. ENTERPRISE FOOTER */}
       <footer className="py-14 border-t border-white/10 bg-[#01030a] text-xs font-mono text-gray-400">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12">
@@ -2089,17 +2526,20 @@ export const LandingPage: React.FC = () => {
                 Autonomous personal AI operating system inspired by advanced holographic interfaces. Engineered with high-assurance security, live telemetry, and speech synthesis.
               </p>
               <div className="mt-4 text-[11px] text-gray-500">
+                1234 Market Street, Suite 500, San Francisco, CA 94103, US
+              </div>
+              <div className="mt-1 text-[11px] text-gray-500">
                 © {new Date().getFullYear()} J.A.R.V.I.S. Operating System. All rights reserved.
               </div>
             </div>
 
             <div>
-              <span className="font-hud font-bold text-white uppercase tracking-wider block mb-3 text-xs">Product</span>
+              <span className="font-hud font-bold text-white uppercase tracking-wider block mb-3 text-xs">Architecture</span>
               <ul className="space-y-2">
-                <li><a href="#hero" className="hover:text-cyan-300 transition-colors">Overview</a></li>
-                <li><a href="#capabilities" className="hover:text-cyan-300 transition-colors">Capabilities</a></li>
-                <li><a href="#showcase" className="hover:text-cyan-300 transition-colors">Live Intelligence</a></li>
-                <li><a href="#dashboard-preview" className="hover:text-cyan-300 transition-colors">Dashboard Cockpit</a></li>
+                <li><a href="#services" className="hover:text-cyan-300 transition-colors">Services (/01)</a></li>
+                <li><a href="#showcase" className="hover:text-cyan-300 transition-colors">Showcases (/02)</a></li>
+                <li><a href="#process" className="hover:text-cyan-300 transition-colors">Process Pipeline (/03)</a></li>
+                <li><a href="#agents" className="hover:text-cyan-300 transition-colors">Core Agents (/04)</a></li>
               </ul>
             </div>
 
@@ -2114,12 +2554,12 @@ export const LandingPage: React.FC = () => {
             </div>
 
             <div>
-              <span className="font-hud font-bold text-white uppercase tracking-wider block mb-3 text-xs">Resources</span>
+              <span className="font-hud font-bold text-white uppercase tracking-wider block mb-3 text-xs">Engage & Deploy</span>
               <ul className="space-y-2">
+                <li><a href="#pricing" className="hover:text-cyan-300 transition-colors">Pricing Plans (/05)</a></li>
+                <li><a href="#testimonials" className="hover:text-cyan-300 transition-colors">Endorsements (/06)</a></li>
+                <li><a href="#contact" className="hover:text-cyan-300 transition-colors">Mission Desk (/07)</a></li>
                 <li><a href="https://github.com/anangipavan362-dotcom/JARVIS-AI" target="_blank" rel="noopener noreferrer" className="hover:text-cyan-300 transition-colors flex items-center gap-1">GitHub Repo <ExternalLink className="w-3 h-3" /></a></li>
-                <li><a href="/docs" target="_blank" rel="noopener noreferrer" className="hover:text-cyan-300 transition-colors flex items-center gap-1">API Docs (Swagger) <ExternalLink className="w-3 h-3" /></a></li>
-                <li><a href="#faq" className="hover:text-cyan-300 transition-colors">Documentation & FAQ</a></li>
-                <li><a href="#pricing" className="hover:text-cyan-300 transition-colors">Pricing Plans</a></li>
               </ul>
             </div>
           </div>

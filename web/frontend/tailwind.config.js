@@ -25,6 +25,8 @@ export default {
       fontFamily: {
         mono: ['Consolas', 'Menlo', 'Monaco', 'Courier New', 'monospace'],
         hud: ['Orbitron', 'Consolas', 'system-ui', 'sans-serif'],
+        serif: ['"Playfair Display"', 'Georgia', 'serif'],
+        sans: ['Inter', 'system-ui', 'sans-serif'],
       },
       boxShadow: {
         'hud-cyan': '0 0 15px rgba(0, 229, 255, 0.3), inset 0 0 15px rgba(0, 229, 255, 0.1)',
