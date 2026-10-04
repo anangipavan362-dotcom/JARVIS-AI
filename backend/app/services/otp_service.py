@@ -25,17 +25,53 @@ class OTPService:
 
     def send_notification(self, email: str, code: str, otp_type: str = "REGISTRATION") -> bool:
         """
-        Dispatches verification message via email provider abstraction.
-        Falls back to secure console dispatch if external SMTP is not configured.
+        Dispatches verification message via email provider.
+        If SMTP is configured in .env, sends real email.
+        Otherwise falls back to high-visibility terminal dispatch for demo mode.
         """
         subject = f"[{settings.APP_NAME}] Tactical Clearance Code: {code}"
-        body = (
-            f"J.A.R.V.I.S. SECURE CLEARANCE VERIFICATION\n\n"
-            f"Your one-time verification code is: {code}\n\n"
-            f"This code will expire in {self.default_expiration_minutes} minutes.\n"
-            f"If you did not request this verification code, please ignore this transmission."
-        )
+        
+        if settings.is_smtp_configured:
+            try:
+                import smtplib
+                from email.mime.text import MIMEText
+                from email.mime.multipart import MIMEMultipart
 
+                msg = MIMEMultipart("alternative")
+                msg["Subject"] = subject
+                msg["From"] = settings.SMTP_FROM_EMAIL or settings.SMTP_USER
+                msg["To"] = email
+
+                text_content = (
+                    f"J.A.R.V.I.S. SECURE CLEARANCE VERIFICATION\n\n"
+                    f"Your one-time verification code is: {code}\n\n"
+                    f"This code will expire in {self.default_expiration_minutes} minutes.\n"
+                    f"Single-use cryptographic clearance token."
+                )
+                html_content = f"""
+                <div style="background-color: #030712; color: #06b6d4; font-family: 'Courier New', Courier, monospace; padding: 32px; border: 1px solid #06b6d4; border-radius: 8px; max-width: 500px; margin: 0 auto;">
+                    <h2 style="color: #38bdf8; margin-top: 0; letter-spacing: 2px;">⚡ J.A.R.V.I.S. CLEARANCE</h2>
+                    <p style="color: #94a3b8; font-size: 14px;">Operative identity verification request detected. Enter the following tactical clearance code to proceed:</p>
+                    <div style="font-size: 36px; font-weight: bold; letter-spacing: 10px; color: #22d3ee; margin: 24px 0; padding: 16px; background: rgba(6, 182, 212, 0.1); border: 1px dashed #06b6d4; text-align: center; border-radius: 6px;">
+                        {code}
+                    </div>
+                    <p style="color: #64748b; font-size: 12px; margin-bottom: 0;">Expires in {self.default_expiration_minutes} minutes. If you did not request this transmission, please ignore.</p>
+                </div>
+                """
+                msg.attach(MIMEText(text_content, "plain"))
+                msg.attach(MIMEText(html_content, "html"))
+
+                with smtplib.SMTP(settings.SMTP_HOST, settings.SMTP_PORT, timeout=10) as server:
+                    if settings.SMTP_TLS:
+                        server.starttls()
+                    server.login(settings.SMTP_USER, settings.SMTP_PASSWORD)
+                    server.send_message(msg)
+
+                print(f"[JARVIS SMTP DISPATCH] Successfully sent email to {email}")
+            except Exception as e:
+                print(f"[JARVIS SMTP ERROR] Failed to send email via SMTP: {e}")
+
+        # Always print to server console for development and auditing
         print(f"\n=======================================================")
         print(f"[JARVIS SECURITY DISPATCH] {otp_type} OTP for {email}: {code}")
         print(f"=======================================================\n")
@@ -48,11 +84,11 @@ class OTPService:
         email: str,
         user_id: Optional[int] = None,
         otp_type: str = "REGISTRATION"
-    ) -> Tuple[bool, str, Optional[int]]:
+    ) -> Tuple[bool, str, Optional[int], Optional[str]]:
         """
         Creates a new hashed OTP record and dispatches it.
         Enforces cooldown and maximum resend constraints.
-        Returns (success: bool, message: str, cooldown_remaining: Optional[int]).
+        Returns (success: bool, message: str, cooldown_remaining: Optional[int], code: Optional[str]).
         """
         norm_email = email.strip().lower()
         now = datetime.datetime.utcnow()
@@ -68,10 +104,10 @@ class OTPService:
             elapsed = (now - existing.last_sent_at).total_seconds()
             if elapsed < self.default_cooldown_seconds:
                 wait_time = int(self.default_cooldown_seconds - elapsed)
-                return False, f"Resend cooldown in effect. Please wait {wait_time}s before requesting a new code.", wait_time
+                return False, f"Resend cooldown in effect. Please wait {wait_time}s before requesting a new code.", wait_time, None
 
             if existing.resend_count >= self.default_max_resends:
-                return False, "Maximum verification resend quota reached. Please wait for previous code to expire.", 0
+                return False, "Maximum verification resend quota reached. Please wait for previous code to expire.", 0, None
 
             existing.is_used = True
 
@@ -104,7 +140,7 @@ class OTPService:
 
         self.send_notification(norm_email, code, otp_type)
 
-        return True, "Verification code dispatched successfully.", self.default_cooldown_seconds
+        return True, "Verification code dispatched successfully.", self.default_cooldown_seconds, code
 
     def verify_otp(
         self,

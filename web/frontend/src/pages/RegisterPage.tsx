@@ -58,7 +58,7 @@ export const RegisterPage: React.FC = () => {
     setLoading(true);
 
     try {
-      await register({
+      const regRes = await register({
         full_name: fullName,
         username,
         email,
@@ -69,7 +69,9 @@ export const RegisterPage: React.FC = () => {
       setSuccessMsg('ACCOUNT ENROLLED. DISPATCHING CLEARANCE OTP...');
       sound.playAccessGranted();
       setTimeout(() => {
-        navigate(`/verify-otp?email=${encodeURIComponent(email)}`);
+        navigate(`/verify-otp?email=${encodeURIComponent(email)}`, {
+          state: { demoCode: regRes?.demo_code }
+        });
       }, 700);
     } catch (err: any) {
       sound.playAlert();

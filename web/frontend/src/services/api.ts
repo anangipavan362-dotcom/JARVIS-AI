@@ -1,4 +1,7 @@
-const API_BASE = (((import.meta as any).env?.VITE_API_URL as string) || '/api').replace(/\/$/, '');
+const rawApiUrl = (((import.meta as any).env?.VITE_API_URL as string) || '').replace(/\/+$/, '');
+const API_BASE = rawApiUrl
+  ? (rawApiUrl.endsWith('/api') ? rawApiUrl : `${rawApiUrl}/api`)
+  : '/api';
 
 export class ApiClient {
   private static getToken(): string | null {

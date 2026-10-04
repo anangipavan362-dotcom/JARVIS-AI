@@ -58,7 +58,7 @@ def register(payload: UserCreate, request: Request, response: Response, db: Sess
     db.commit()
 
     # Generate and dispatch cryptographic OTP
-    otp_ok, otp_msg, cooldown = otp_service.create_and_send_otp(
+    otp_ok, otp_msg, cooldown, raw_code = otp_service.create_and_send_otp(
         db, new_user.email, user_id=new_user.id, otp_type="REGISTRATION"
     )
 
@@ -98,7 +98,7 @@ def register(payload: UserCreate, request: Request, response: Response, db: Sess
         details="Dispatched registration OTP verification code."
     )
 
-    return {
+    resp_data = {
         "status": "PENDING_VERIFICATION",
         "message": "Operative enrolled. Tactical clearance OTP dispatched to your registered email.",
         "email": new_user.email,
@@ -107,6 +107,10 @@ def register(payload: UserCreate, request: Request, response: Response, db: Sess
         "token_type": "bearer",
         "user": UserOut.model_validate(new_user)
     }
+    if not settings.is_smtp_configured:
+        resp_data["demo_code"] = raw_code
+
+    return resp_data
 
 
 @router.post("/verify-otp", response_model=TokenResponse)
@@ -193,7 +197,7 @@ def resend_otp(payload: OTPResendRequest, request: Request, db: Session = Depend
             "message": "Account already possesses full verified clearance. Please log in directly."
         }
 
-    success, msg, cooldown = otp_service.create_and_send_otp(
+    success, msg, cooldown, raw_code = otp_service.create_and_send_otp(
         db, norm_email, user_id=user.id if user else None, otp_type="REGISTRATION"
     )
 
@@ -221,12 +225,16 @@ def resend_otp(payload: OTPResendRequest, request: Request, db: Session = Depend
         details="Dispatched replacement verification OTP."
     )
 
-    return {
+    res = {
         "status": "SUCCESS",
         "message": "Fresh tactical clearance OTP dispatched to your registered address.",
         "email": norm_email,
         "cooldown_seconds": cooldown
     }
+    if not settings.is_smtp_configured:
+        res["demo_code"] = raw_code
+
+    return res
 
 
 @router.post("/login", response_model=TokenResponse)

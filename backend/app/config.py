@@ -29,6 +29,14 @@ class Settings(BaseSettings):
     # CORS
     CORS_ORIGINS: str = "http://localhost:5173,http://127.0.0.1:5173,http://localhost:3000,http://localhost:8000"
 
+    # SMTP / Email
+    SMTP_HOST: str = ""
+    SMTP_PORT: int = 587
+    SMTP_USER: str = ""
+    SMTP_PASSWORD: str = ""
+    SMTP_FROM_EMAIL: str = ""
+    SMTP_TLS: bool = True
+
     model_config = SettingsConfigDict(
         env_file=".env",
         env_file_encoding="utf-8",
@@ -42,6 +50,10 @@ class Settings(BaseSettings):
     @property
     def is_demo_mode(self) -> bool:
         return not bool(self.GEMINI_API_KEY and self.GEMINI_API_KEY.strip())
+
+    @property
+    def is_smtp_configured(self) -> bool:
+        return bool(self.SMTP_HOST and self.SMTP_USER and self.SMTP_PASSWORD)
 
 
 settings = Settings()

@@ -359,22 +359,34 @@ export const AdminPage: React.FC = () => {
                           </button>
                         </td>
                         <td className="py-3 px-4">
-                          <span
-                            className={`inline-flex items-center gap-1 text-[10px] uppercase font-bold px-2 py-0.5 rounded ${
-                              u.status === 'VERIFIED'
-                                ? 'text-green-400 bg-green-950/40 border border-green-500/30'
-                                : u.status === 'PENDING_VERIFICATION'
-                                ? 'text-amber-400 bg-amber-950/40 border border-amber-500/30'
-                                : 'text-red-400 bg-red-950/40 border border-red-500/30'
-                            }`}
-                          >
-                            {u.status === 'VERIFIED' ? (
-                              <CheckCircle className="w-3 h-3" />
-                            ) : (
-                              <XCircle className="w-3 h-3" />
+                          <div className="flex items-center gap-2">
+                            <span
+                              className={`inline-flex items-center gap-1 text-[10px] uppercase font-bold px-2 py-0.5 rounded ${
+                                u.status === 'VERIFIED'
+                                  ? 'text-green-400 bg-green-950/40 border border-green-500/30'
+                                  : u.status === 'PENDING_VERIFICATION'
+                                  ? 'text-amber-400 bg-amber-950/40 border border-amber-500/30'
+                                  : 'text-red-400 bg-red-950/40 border border-red-500/30'
+                              }`}
+                            >
+                              {u.status === 'VERIFIED' ? (
+                                <CheckCircle className="w-3 h-3" />
+                              ) : (
+                                <XCircle className="w-3 h-3" />
+                              )}
+                              {u.status || (u.is_active ? 'VERIFIED' : 'SUSPENDED')}
+                            </span>
+                            {u.status === 'PENDING_VERIFICATION' && (
+                              <button
+                                onClick={() => handleToggleStatus(u, 'VERIFIED')}
+                                title="Admin Override: Instantly Approve Operative"
+                                className="px-2 py-0.5 rounded text-[9px] font-hud uppercase bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 hover:bg-emerald-500/30 inline-flex items-center gap-1 transition-colors"
+                              >
+                                <CheckCircle className="w-3 h-3" />
+                                <span>APPROVE</span>
+                              </button>
                             )}
-                            {u.status || (u.is_active ? 'VERIFIED' : 'SUSPENDED')}
-                          </span>
+                          </div>
                         </td>
                         <td className="py-3 px-4 text-gray-400 text-[11px]">
                           {new Date(u.created_at).toLocaleDateString()}

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useNavigate, useSearchParams, Link } from 'react-router-dom';
-import { ShieldAlert, CheckCircle2, RefreshCw, KeyRound, ArrowLeft } from 'lucide-react';
+import { useNavigate, useSearchParams, useLocation, Link } from 'react-router-dom';
+import { ShieldAlert, CheckCircle2, RefreshCw, KeyRound, ArrowLeft, Radio } from 'lucide-react';
 import { Canvas } from '@react-three/fiber';
 import { useAuth } from '../context/AuthContext';
 import { NeonButton } from '../components/common/NeonButton';
@@ -11,12 +11,16 @@ import { sound } from '../utils/sound';
 
 export const VerifyOtpPage: React.FC = () => {
   const [searchParams] = useSearchParams();
+  const location = useLocation();
   const navigate = useNavigate();
   const { verifyOtp, resendOtp } = useAuth();
 
   const initialEmail = searchParams.get('email') || '';
   const [email, setEmail] = useState(initialEmail);
   const [digits, setDigits] = useState(['', '', '', '', '', '']);
+  const [demoCode, setDemoCode] = useState<string>(
+    location.state?.demoCode || searchParams.get('demo_code') || ''
+  );
   const [loading, setLoading] = useState(false);
   const [resending, setResending] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
