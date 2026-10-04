@@ -16,7 +16,8 @@ import {
   Shield,
   User,
   LogOut,
-  ChevronRight
+  ChevronRight,
+  X
 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { sound } from '../../utils/sound';
@@ -59,27 +60,38 @@ export const Sidebar: React.FC<SidebarProps> = ({ onCloseMobile }) => {
   };
 
   return (
-    <aside className="w-64 h-screen bg-black/80 backdrop-blur-xl border-r border-cyan-500/30 flex flex-col justify-between select-none z-30">
+    <aside className="w-64 h-screen bg-black/90 backdrop-blur-xl border-r border-cyan-500/30 flex flex-col justify-between select-none z-30">
       {/* Top Branding Section */}
       <div>
-        <div className="p-5 border-b border-cyan-500/20 flex items-center gap-3">
-          {/* Animated Mini Core Indicator */}
-          <div className="relative w-9 h-9 rounded-full border border-cyan-400/60 bg-cyan-950/60 flex items-center justify-center">
-            <div className="w-4 h-4 rounded-full bg-cyan-400 animate-pulse shadow-[0_0_10px_#00E5FF]" />
-            <div className="absolute inset-0 rounded-full border border-cyan-400 border-t-transparent animate-spin-slow" />
+        <div className="p-4 sm:p-5 border-b border-cyan-500/20 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            {/* Animated Mini Core Indicator */}
+            <div className="relative w-9 h-9 rounded-full border border-cyan-400/60 bg-cyan-950/60 flex items-center justify-center">
+              <div className="w-4 h-4 rounded-full bg-cyan-400 animate-pulse shadow-[0_0_10px_#00E5FF]" />
+              <div className="absolute inset-0 rounded-full border border-cyan-400 border-t-transparent animate-spin-slow" />
+            </div>
+            <div>
+              <h1 className="text-xl font-hud font-black tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
+                J.A.R.V.I.S.
+              </h1>
+              <p className="text-[9px] font-mono text-cyan-300/70 tracking-widest uppercase">
+                AI COMMAND SYSTEM
+              </p>
+            </div>
           </div>
-          <div>
-            <h1 className="text-xl font-hud font-black tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
-              J.A.R.V.I.S.
-            </h1>
-            <p className="text-[9px] font-mono text-cyan-300/70 tracking-widest uppercase">
-              AI COMMAND SYSTEM
-            </p>
-          </div>
+
+          {onCloseMobile && (
+            <button
+              onClick={onCloseMobile}
+              className="lg:hidden p-1.5 rounded border border-cyan-500/30 text-cyan-400 hover:text-white"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          )}
         </div>
 
         {/* Navigation Items */}
-        <nav className="p-3 space-y-1 overflow-y-auto max-h-[calc(100vh-230px)]">
+        <nav className="p-3 space-y-1.5 overflow-y-auto max-h-[calc(100vh-230px)]">
           {navItems.map((item) => {
             const Icon = item.icon;
             return (
@@ -88,7 +100,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ onCloseMobile }) => {
                 to={item.path}
                 onClick={handleNavClick}
                 className={({ isActive }) =>
-                  `flex items-center justify-between px-3 py-2 rounded text-xs font-hud tracking-wider transition-all duration-200 border ${
+                  `flex items-center justify-between px-3 py-2.5 sm:py-2 min-h-[44px] sm:min-h-0 rounded text-xs font-hud tracking-wider transition-all duration-200 border ${
                     isActive
                       ? 'bg-cyan-950/60 text-cyan-200 border-cyan-400/80 shadow-[0_0_15px_rgba(0,229,255,0.25)] tech-corner-tl'
                       : 'text-gray-400 border-transparent hover:text-cyan-300 hover:bg-cyan-950/30 hover:border-cyan-500/30'

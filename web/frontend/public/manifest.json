@@ -1,0 +1,28 @@
+{
+  "name": "JARVIS AI \u2014 Personal AI Operating System",
+  "short_name": "JARVIS AI",
+  "description": "Your Intelligent Digital Command Center",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#02040a",
+  "theme_color": "#02040a",
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": [
+    "productivity",
+    "utilities"
+  ]
+}

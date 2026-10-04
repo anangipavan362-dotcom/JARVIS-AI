@@ -136,12 +136,12 @@ export const RegisterPage: React.FC = () => {
                   value={fullName}
                   onChange={(e) => setFullName(e.target.value)}
                   placeholder="Tony Stark"
-                  className="w-full pl-9 pr-3 py-1.5 bg-black/60 border border-cyan-500/30 rounded text-xs font-mono text-cyan-100 focus:border-cyan-400 focus:outline-none"
+                  className="w-full pl-9 pr-3 py-2.5 sm:py-1.5 min-h-[44px] sm:min-h-0 bg-black/60 border border-cyan-500/30 rounded text-base sm:text-xs font-mono text-cyan-100 focus:border-cyan-400 focus:outline-none"
                 />
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div>
                 <label className="block text-[11px] font-hud tracking-wider text-cyan-300 uppercase mb-1">
                   USERNAME
@@ -152,7 +152,7 @@ export const RegisterPage: React.FC = () => {
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
                   placeholder="ironman"
-                  className="w-full px-3 py-1.5 bg-black/60 border border-cyan-500/30 rounded text-xs font-mono text-cyan-100 focus:border-cyan-400 focus:outline-none"
+                  className="w-full px-3 py-2.5 sm:py-1.5 min-h-[44px] sm:min-h-0 bg-black/60 border border-cyan-500/30 rounded text-base sm:text-xs font-mono text-cyan-100 focus:border-cyan-400 focus:outline-none"
                 />
               </div>
               <div>
@@ -166,7 +166,7 @@ export const RegisterPage: React.FC = () => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="tony@stark.corp"
-                    className="w-full px-3 py-1.5 bg-black/60 border border-cyan-500/30 rounded text-xs font-mono text-cyan-100 focus:border-cyan-400 focus:outline-none"
+                    className="w-full px-3 py-2.5 sm:py-1.5 min-h-[44px] sm:min-h-0 bg-black/60 border border-cyan-500/30 rounded text-base sm:text-xs font-mono text-cyan-100 focus:border-cyan-400 focus:outline-none"
                   />
                 </div>
               </div>
@@ -186,7 +186,7 @@ export const RegisterPage: React.FC = () => {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Minimum 8 characters"
-                  className="w-full pl-9 pr-3 py-1.5 bg-black/60 border border-cyan-500/30 rounded text-xs font-mono text-cyan-100 focus:border-cyan-400 focus:outline-none"
+                  className="w-full pl-9 pr-3 py-2.5 sm:py-1.5 min-h-[44px] sm:min-h-0 bg-black/60 border border-cyan-500/30 rounded text-base sm:text-xs font-mono text-cyan-100 focus:border-cyan-400 focus:outline-none"
                 />
               </div>
 
@@ -233,7 +233,7 @@ export const RegisterPage: React.FC = () => {
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 placeholder="Re-enter password"
-                className="w-full px-3 py-1.5 bg-black/60 border border-cyan-500/30 rounded text-xs font-mono text-cyan-100 focus:border-cyan-400 focus:outline-none"
+                className="w-full px-3 py-2.5 sm:py-1.5 min-h-[44px] sm:min-h-0 bg-black/60 border border-cyan-500/30 rounded text-base sm:text-xs font-mono text-cyan-100 focus:border-cyan-400 focus:outline-none"
               />
             </div>
 
@@ -242,7 +242,7 @@ export const RegisterPage: React.FC = () => {
               variant="cyan"
               size="md"
               loading={loading}
-              className="w-full mt-3"
+              className="w-full mt-3 min-h-[46px]"
               icon={<ShieldCheck className="w-4 h-4" />}
             >
               ENROLL OPERATIVE

@@ -35,7 +35,9 @@ import {
   Bell,
   Code2,
   Sliders,
-  Share2
+  Share2,
+  Menu,
+  X
 } from 'lucide-react';
 import { Canvas } from '@react-three/fiber';
 import { AICore } from '../components/3d/AICore';
@@ -53,6 +55,7 @@ export const LandingPage: React.FC = () => {
   const [dashboardPreviewTab, setDashboardPreviewTab] = useState<'chat' | 'telemetry' | 'tasks' | 'security'>('chat');
   const [isAudioPlaying, setIsAudioPlaying] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const booted = sessionStorage.getItem('jarvis_booted');
@@ -182,7 +185,7 @@ export const LandingPage: React.FC = () => {
                 sound.playClick();
                 navigate('/login');
               }}
-              className="px-3.5 py-1.5 rounded-full text-xs font-hud font-bold tracking-wider text-gray-300 hover:text-white border border-white/10 hover:border-cyan-400/50 hover:bg-white/[0.04] transition-all cursor-pointer"
+              className="hidden sm:inline-block px-3.5 py-1.5 rounded-full text-xs font-hud font-bold tracking-wider text-gray-300 hover:text-white border border-white/10 hover:border-cyan-400/50 hover:bg-white/[0.04] transition-all cursor-pointer"
             >
               SIGN IN
             </button>
@@ -196,9 +199,125 @@ export const LandingPage: React.FC = () => {
               <span>LAUNCH</span>
               <ChevronRight className="w-3.5 h-3.5 stroke-[3]" />
             </button>
+            {/* Mobile Hamburger Button */}
+            <button
+              onClick={() => {
+                sound.playClick();
+                setMobileMenuOpen(!mobileMenuOpen);
+              }}
+              aria-label="Toggle Navigation Drawer"
+              className="lg:hidden p-2 rounded-full border border-white/10 hover:border-cyan-400/40 text-gray-300 hover:text-white transition-colors cursor-pointer"
+            >
+              {mobileMenuOpen ? <X className="w-5 h-5 text-cyan-300" /> : <Menu className="w-5 h-5 text-cyan-300" />}
+            </button>
           </div>
         </nav>
       </div>
+
+      {/* Mobile Glassmorphism Navigation Drawer */}
+      {mobileMenuOpen && (
+        <div className="fixed inset-0 z-50 lg:hidden">
+          <div
+            className="fixed inset-0 bg-black/80 backdrop-blur-md transition-opacity"
+            onClick={() => setMobileMenuOpen(false)}
+          />
+          <div className="fixed top-20 inset-x-4 max-w-lg mx-auto glass-fusion-cyan p-6 rounded-3xl border border-cyan-500/30 shadow-[0_20px_60px_rgba(0,0,0,0.8)] z-50 animate-fade-in space-y-4">
+            <div className="flex items-center justify-between pb-3 border-b border-white/10">
+              <span className="font-hud font-bold text-xs text-cyan-300 uppercase tracking-widest flex items-center gap-2">
+                <Zap className="w-4 h-4 text-cyan-400" />
+                COMMAND NAVIGATION
+              </span>
+              <button
+                onClick={() => setMobileMenuOpen(false)}
+                className="p-1 rounded-full text-gray-400 hover:text-white cursor-pointer"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+
+            <div className="grid grid-cols-2 gap-2 text-xs font-mono">
+              <a
+                href="#hero"
+                onClick={() => setMobileMenuOpen(false)}
+                className="p-3 rounded-xl glass-pill hover:bg-cyan-500/10 text-gray-200 hover:text-cyan-300 transition-colors"
+              >
+                Home
+              </a>
+              <a
+                href="#showcase"
+                onClick={() => setMobileMenuOpen(false)}
+                className="p-3 rounded-xl glass-pill hover:bg-cyan-500/10 text-gray-200 hover:text-cyan-300 transition-colors"
+              >
+                AI Intelligence
+              </a>
+              <a
+                href="#capabilities"
+                onClick={() => setMobileMenuOpen(false)}
+                className="p-3 rounded-xl glass-pill hover:bg-cyan-500/10 text-gray-200 hover:text-cyan-300 transition-colors"
+              >
+                Features
+              </a>
+              <a
+                href="#security"
+                onClick={() => setMobileMenuOpen(false)}
+                className="p-3 rounded-xl glass-pill hover:bg-cyan-500/10 text-gray-200 hover:text-cyan-300 transition-colors"
+              >
+                Security & Trust
+              </a>
+              <button
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  navigate('/news');
+                }}
+                className="p-3 rounded-xl glass-pill hover:bg-cyan-500/10 text-gray-200 hover:text-cyan-300 transition-colors text-left cursor-pointer"
+              >
+                News Wire
+              </button>
+              <button
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  navigate('/sports');
+                }}
+                className="p-3 rounded-xl glass-pill hover:bg-cyan-500/10 text-gray-200 hover:text-cyan-300 transition-colors text-left cursor-pointer"
+              >
+                Sports Radar
+              </button>
+              <button
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  navigate('/weather');
+                }}
+                className="p-3 rounded-xl glass-pill hover:bg-cyan-500/10 text-gray-200 hover:text-cyan-300 transition-colors text-left cursor-pointer"
+              >
+                Weather Radar
+              </button>
+              <button
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  navigate('/login');
+                }}
+                className="p-3 rounded-xl glass-pill hover:bg-cyan-500/10 text-gray-200 hover:text-cyan-300 transition-colors text-left cursor-pointer"
+              >
+                Login
+              </button>
+            </div>
+
+            <div className="pt-2">
+              <button
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  sound.playClick();
+                  navigate('/dashboard');
+                }}
+                className="w-full py-3.5 rounded-full bg-gradient-to-r from-cyan-400 to-cyan-300 text-black font-hud font-black text-xs tracking-widest uppercase flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(0,229,255,0.4)] cursor-pointer"
+              >
+                <span>LAUNCH JARVIS</span>
+                <ChevronRight className="w-4 h-4" />
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* 1. CINEMATIC HERO SECTION (FUSION AI + 3D LAYERED COMPOSITION) */}
       <section id="hero" className="relative min-h-screen pt-28 pb-16 flex flex-col justify-center items-center overflow-hidden">
@@ -249,10 +368,21 @@ export const LandingPage: React.FC = () => {
               <ArrowRight className="w-4 h-4 stroke-[3]" />
             </button>
 
+            <button
+              onClick={() => {
+                sound.playClick();
+                handlePlayVoicePreview();
+              }}
+              className="px-7 py-3.5 rounded-full glass-fusion border border-emerald-400/40 hover:border-emerald-300 text-emerald-300 hover:text-white font-hud font-bold text-sm tracking-wider uppercase transition-all flex items-center gap-2 hover:bg-emerald-950/40 shadow-[0_0_20px_rgba(0,255,136,0.15)] cursor-pointer"
+            >
+              <Mic className="w-4 h-4 text-emerald-400" />
+              <span>Talk to JARVIS</span>
+            </button>
+
             <a
               href="#showcase"
               onClick={() => sound.playClick()}
-              className="px-7 py-3.5 rounded-full glass-fusion border border-white/10 hover:border-cyan-400/40 text-gray-200 hover:text-white font-hud font-bold text-sm tracking-wider uppercase transition-all flex items-center gap-2 hover:bg-white/[0.05]"
+              className="px-6 py-3.5 rounded-full glass-fusion border border-white/10 hover:border-cyan-400/40 text-gray-300 hover:text-white font-hud font-bold text-sm tracking-wider uppercase transition-all flex items-center gap-2 hover:bg-white/[0.05]"
             >
               <span>Explore Intelligence</span>
               <ChevronDown className="w-4 h-4 text-cyan-400" />

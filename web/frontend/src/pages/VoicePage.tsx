@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   Mic,
   MicOff,
@@ -253,24 +253,36 @@ export const VoicePage: React.FC = () => {
           <p className="text-xs font-mono text-gray-300 min-h-[70px] leading-relaxed">
             {lastResponse ? `"${lastResponse}"` : 'Awaiting tactical synthesis...'}
           </p>
+          {lastResponse && (
+            <div className="mt-3 pt-2 border-t border-cyan-500/20 flex justify-end">
+              <button
+                onClick={() => speakText(lastResponse)}
+                className="px-3.5 py-1.5 min-h-[38px] rounded bg-cyan-950/80 border border-cyan-400 text-xs font-hud text-cyan-300 hover:text-white flex items-center gap-1.5 transition-all shadow-[0_0_12px_rgba(0,229,255,0.3)]"
+              >
+                <Volume2 className="w-4 h-4" />
+                <span>TAP TO HEAR JARVIS</span>
+              </button>
+            </div>
+          )}
         </HolographicCard>
       </div>
 
       {/* Fallback Keyboard Terminal Input */}
       <HolographicCard title="TACTICAL FALLBACK INPUT" badge="MANUAL">
-        <form onSubmit={handleManualSubmit} className="flex gap-2">
+        <form onSubmit={handleManualSubmit} className="flex flex-col sm:flex-row gap-2">
           <input
             type="text"
             value={fallbackText}
             onChange={(e) => setFallbackText(e.target.value)}
             placeholder="Type vocal simulation command (e.g. 'Status report', 'What is the weather?')..."
-            className="flex-1 bg-black/60 border border-cyan-500/30 rounded px-3 py-2 text-xs font-mono text-cyan-200 placeholder:text-gray-600 focus:outline-none focus:border-cyan-400"
+            className="flex-1 bg-black/60 border border-cyan-500/30 rounded px-3.5 py-3 sm:py-2 min-h-[46px] sm:min-h-0 text-base sm:text-xs font-mono text-cyan-200 placeholder:text-gray-600 focus:outline-none focus:border-cyan-400"
           />
           <button
             type="submit"
-            className="px-4 py-2 rounded bg-cyan-950/80 border border-cyan-400 text-xs font-hud text-cyan-300 hover:text-white"
+            className="px-5 py-3 sm:py-2 min-h-[46px] sm:min-h-0 rounded bg-cyan-950/80 border border-cyan-400 text-xs font-hud text-cyan-300 hover:text-white flex items-center justify-center gap-1.5"
           >
-            TRANSMIT
+            <Sparkles className="w-3.5 h-3.5" />
+            <span>TRANSMIT</span>
           </button>
         </form>
       </HolographicCard>

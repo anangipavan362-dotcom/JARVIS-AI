@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   Bot,
@@ -78,13 +78,13 @@ export const DashboardPage: React.FC = () => {
 
       {/* 2. Main 3D Holographic Command Center Matrix */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
-        {/* Left Side: Tactical Command Panel (3 Cols on Desktop) */}
-        <div className="lg:col-span-3">
+        {/* Left Side: Tactical Command Panel (order-2 on mobile, col-span-3 on Desktop) */}
+        <div className="lg:col-span-3 order-2 lg:order-1">
           <CommandPanel />
         </div>
 
-        {/* Center: Hero 3D AI Core (6 Cols on Desktop) */}
-        <div className="lg:col-span-6 flex flex-col items-center justify-center">
+        {/* Center: Hero 3D AI Core (order-1 on mobile, col-span-6 on Desktop) */}
+        <div className="lg:col-span-6 flex flex-col items-center justify-center order-1 lg:order-2">
           <HolographicCard
             glowColor="cyan"
             title="NEURAL AI CORE"
@@ -92,7 +92,7 @@ export const DashboardPage: React.FC = () => {
             className="w-full flex flex-col items-center justify-center relative overflow-hidden"
           >
             {/* 3D WebGL Interactive Core */}
-            <div className="w-full h-[370px] sm:h-[420px] flex items-center justify-center">
+            <div className="w-full h-[320px] sm:h-[420px] flex items-center justify-center">
               <AICore
                 state={coreState}
                 size="100%"
@@ -104,7 +104,7 @@ export const DashboardPage: React.FC = () => {
 
             {/* Core Action Overlay */}
             <div className="w-full flex flex-col sm:flex-row items-center justify-between gap-3 pt-3 border-t border-cyan-500/20 mt-2">
-              <div className="text-left">
+              <div className="text-left w-full sm:w-auto">
                 <div className="text-xs font-hud font-bold text-cyan-200 uppercase tracking-wider">
                   TACTICAL STATE: <span className="text-cyan-400">{coreState}</span>
                 </div>
@@ -113,13 +113,13 @@ export const DashboardPage: React.FC = () => {
                 </div>
               </div>
 
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2.5 w-full sm:w-auto justify-end">
                 <button
                   onClick={() => {
                     sound.playClick();
                     navigate('/chat');
                   }}
-                  className="px-3 py-1.5 rounded bg-cyan-950/80 border border-cyan-400 hover:border-cyan-300 text-xs font-hud text-cyan-300 hover:text-white flex items-center gap-1.5 transition-all shadow-[0_0_12px_rgba(0,229,255,0.25)]"
+                  className="flex-1 sm:flex-initial px-4 py-2.5 sm:py-1.5 min-h-[44px] sm:min-h-0 rounded bg-cyan-950/80 border border-cyan-400 hover:border-cyan-300 text-xs font-hud text-cyan-300 hover:text-white flex items-center justify-center gap-1.5 transition-all shadow-[0_0_12px_rgba(0,229,255,0.25)]"
                 >
                   <Bot className="w-3.5 h-3.5" />
                   <span>OPEN CHAT</span>
@@ -130,7 +130,7 @@ export const DashboardPage: React.FC = () => {
                     sound.playClick();
                     navigate('/voice');
                   }}
-                  className="px-3 py-1.5 rounded bg-cyan-950/80 border border-emerald-400 hover:border-emerald-300 text-xs font-hud text-emerald-300 hover:text-white flex items-center gap-1.5 transition-all shadow-[0_0_12px_rgba(0,255,136,0.25)]"
+                  className="flex-1 sm:flex-initial px-4 py-2.5 sm:py-1.5 min-h-[44px] sm:min-h-0 rounded bg-cyan-950/80 border border-emerald-400 hover:border-emerald-300 text-xs font-hud text-emerald-300 hover:text-white flex items-center justify-center gap-1.5 transition-all shadow-[0_0_12px_rgba(0,255,136,0.25)]"
                 >
                   <Mic className="w-3.5 h-3.5" />
                   <span>VOICE HUD</span>
@@ -140,8 +140,8 @@ export const DashboardPage: React.FC = () => {
           </HolographicCard>
         </div>
 
-        {/* Right Side: Live Intelligence & 3D Globe (3 Cols on Desktop) */}
-        <div className="lg:col-span-3">
+        {/* Right Side: Live Intelligence & 3D Globe (order-3 on mobile, col-span-3 on Desktop) */}
+        <div className="lg:col-span-3 order-3 lg:order-3">
           <IntelligencePanel isDemo={data?.is_demo} />
         </div>
       </div>

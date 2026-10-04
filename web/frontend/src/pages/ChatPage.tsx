@@ -15,7 +15,10 @@ import {
   Sparkles,
   StopCircle,
   Volume2,
-  VolumeX
+  VolumeX,
+  Menu,
+  X,
+  MessageSquare
 } from 'lucide-react';
 import { ApiClient } from '../services/api';
 import { Conversation, Message, ConversationSummary } from '../types';
@@ -34,6 +37,7 @@ export const ChatPage: React.FC = () => {
   const [editingTitleId, setEditingTitleId] = useState<number | null>(null);
   const [editTitleText, setEditTitleText] = useState('');
   const [speakingText, setSpeakingText] = useState<string | null>(null);
+  const [showMobileDrawer, setShowMobileDrawer] = useState(false);
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const recognitionRef = useRef<any>(null);
@@ -323,48 +327,138 @@ export const ChatPage: React.FC = () => {
         </div>
       </div>
 
+      {/* Mobile Drawer: Conversation History Overlay */}
+      {showMobileDrawer && (
+        <div className="fixed inset-0 z-50 md:hidden flex">
+          <div
+            className="fixed inset-0 bg-black/80 backdrop-blur-sm"
+            onClick={() => setShowMobileDrawer(false)}
+          />
+          <div className="relative z-10 w-4/5 max-w-xs h-full bg-[#050E1A] border-r border-cyan-500/30 p-4 flex flex-col shadow-2xl">
+            <div className="flex items-center justify-between pb-3 mb-3 border-b border-cyan-500/20">
+              <span className="font-hud text-xs font-bold text-cyan-300 uppercase tracking-wider">
+                MISSION THREADS
+              </span>
+              <button
+                onClick={() => setShowMobileDrawer(false)}
+                className="p-1.5 rounded text-cyan-400 hover:text-white border border-cyan-500/30"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+
+            <button
+              onClick={() => {
+                handleNewConversation();
+                setShowMobileDrawer(false);
+              }}
+              className="w-full flex items-center justify-center gap-2 px-3 py-2.5 rounded bg-cyan-950/80 border border-cyan-400 text-xs font-hud font-bold text-cyan-300 hover:text-white mb-3 min-h-[44px]"
+            >
+              <Plus className="w-4 h-4" />
+              <span>NEW CONSULTATION</span>
+            </button>
+
+            <div className="flex-1 overflow-y-auto space-y-2 pr-1">
+              {conversations.length === 0 ? (
+                <p className="text-xs font-mono text-gray-500 py-6 text-center">
+                  No mission history.
+                </p>
+              ) : (
+                conversations.map((c) => (
+                  <div
+                    key={c.id}
+                    onClick={() => {
+                      sound.playClick();
+                      setActiveConvoId(c.id);
+                      setShowMobileDrawer(false);
+                    }}
+                    className={`group flex items-center justify-between p-3 rounded border cursor-pointer text-xs font-mono transition-all min-h-[44px] ${
+                      activeConvoId === c.id
+                        ? 'bg-cyan-950/80 border-cyan-400 text-white shadow-[0_0_10px_rgba(0,229,255,0.2)]'
+                        : 'bg-black/40 border-cyan-500/20 text-gray-300 hover:border-cyan-500/50 hover:bg-cyan-950/20'
+                    }`}
+                  >
+                    <div className="flex-1 min-w-0 mr-2">
+                      <p className="truncate font-bold text-cyan-200">{c.title}</p>
+                      <span className="text-[9px] text-cyan-500/60 block">
+                        {new Date(c.updated_at).toLocaleDateString()}
+                      </span>
+                    </div>
+
+                    <button
+                      onClick={(e) => handleDeleteConversation(c.id, e)}
+                      className="p-1.5 hover:text-red-400 text-gray-400"
+                    >
+                      <Trash2 className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
+                ))
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Right Area: Active Chat Interface */}
       <div className="flex-1 flex flex-col cyber-panel rounded-lg tech-corner-tl tech-corner-br overflow-hidden">
         {/* Chat Header */}
-        <div className="p-3.5 border-b border-cyan-500/20 bg-black/40 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-full border border-cyan-400/50 bg-cyan-950/60 flex items-center justify-center">
+        <div className="p-3 sm:p-3.5 border-b border-cyan-500/20 bg-black/40 flex items-center justify-between gap-2">
+          <div className="flex items-center gap-2.5 min-w-0">
+            {/* Mobile Drawer Toggle */}
+            <button
+              onClick={() => setShowMobileDrawer(true)}
+              className="md:hidden p-2 rounded border border-cyan-500/30 bg-black/40 text-cyan-300 hover:text-white shrink-0"
+              title="Open Conversation History"
+            >
+              <MessageSquare className="w-4 h-4" />
+            </button>
+            <div className="w-8 h-8 rounded-full border border-cyan-400/50 bg-cyan-950/60 flex items-center justify-center shrink-0">
               <Bot className="w-4 h-4 text-cyan-300" />
             </div>
-            <div>
-              <h2 className="text-sm font-hud font-bold text-cyan-200 uppercase tracking-wider">
+            <div className="min-w-0">
+              <h2 className="text-xs sm:text-sm font-hud font-bold text-cyan-200 uppercase tracking-wider truncate">
                 {currentConvo?.title || 'JARVIS AI CORE'}
               </h2>
-              <p className="text-[10px] font-mono text-cyan-400/60">
+              <p className="text-[9px] sm:text-[10px] font-mono text-cyan-400/60 truncate">
                 ACTIVE CONVERSATION THREAD • FULL CONTEXT RETENTION
               </p>
             </div>
           </div>
 
-          {/* Export Actions */}
-          {currentConvo && currentConvo.messages.length > 0 && (
-            <div className="flex items-center gap-1.5">
-              <span className="text-[10px] font-mono text-gray-400 mr-1">EXPORT:</span>
-              <button
-                onClick={() => handleExport('md')}
-                className="px-2 py-0.5 rounded border border-cyan-500/30 text-[10px] font-mono hover:bg-cyan-950 text-cyan-300"
-              >
-                MD
-              </button>
-              <button
-                onClick={() => handleExport('json')}
-                className="px-2 py-0.5 rounded border border-cyan-500/30 text-[10px] font-mono hover:bg-cyan-950 text-cyan-300"
-              >
-                JSON
-              </button>
-              <button
-                onClick={() => handleExport('txt')}
-                className="px-2 py-0.5 rounded border border-cyan-500/30 text-[10px] font-mono hover:bg-cyan-950 text-cyan-300"
-              >
-                TXT
-              </button>
-            </div>
-          )}
+          {/* Export Actions & Mobile New Chat */}
+          <div className="flex items-center gap-1.5 shrink-0">
+            <button
+              onClick={handleNewConversation}
+              className="md:hidden p-2 rounded border border-cyan-400 bg-cyan-950/80 text-cyan-300 hover:text-white"
+              title="New Consultation"
+            >
+              <Plus className="w-4 h-4" />
+            </button>
+
+            {currentConvo && currentConvo.messages.length > 0 && (
+              <div className="hidden sm:flex items-center gap-1.5">
+                <span className="text-[10px] font-mono text-gray-400 mr-1">EXPORT:</span>
+                <button
+                  onClick={() => handleExport('md')}
+                  className="px-2 py-0.5 rounded border border-cyan-500/30 text-[10px] font-mono hover:bg-cyan-950 text-cyan-300"
+                >
+                  MD
+                </button>
+                <button
+                  onClick={() => handleExport('json')}
+                  className="px-2 py-0.5 rounded border border-cyan-500/30 text-[10px] font-mono hover:bg-cyan-950 text-cyan-300"
+                >
+                  JSON
+                </button>
+                <button
+                  onClick={() => handleExport('txt')}
+                  className="px-2 py-0.5 rounded border border-cyan-500/30 text-[10px] font-mono hover:bg-cyan-950 text-cyan-300"
+                >
+                  TXT
+                </button>
+              </div>
+            )}
+          </div>
         </div>
 
         {/* Message Thread */}
@@ -414,36 +508,36 @@ export const ChatPage: React.FC = () => {
                     <div className="whitespace-pre-wrap">{m.content}</div>
 
                     {isAssistant && (
-                      <div className="mt-2 pt-1 flex items-center justify-end gap-3 border-t border-cyan-500/10 opacity-70 group-hover:opacity-100 transition-opacity">
+                      <div className="mt-2 pt-1.5 flex items-center justify-end gap-2 border-t border-cyan-500/10 opacity-90 sm:opacity-70 sm:group-hover:opacity-100 transition-opacity">
                         <button
                           onClick={() => handleSpeak(m.content)}
-                          className="text-[10px] text-cyan-400 hover:text-white flex items-center gap-1 transition-colors"
-                          title="Vocal Playback"
+                          className="text-[10px] sm:text-[11px] px-2.5 py-1 rounded bg-cyan-950/60 border border-cyan-500/30 text-cyan-300 hover:text-white flex items-center gap-1.5 min-h-[34px] transition-colors"
+                          title="Vocal Playback (Tap to hear JARVIS)"
                         >
                           {speakingText === m.content ? (
                             <>
-                              <VolumeX className="w-3 h-3 text-amber-400 animate-pulse" />
+                              <VolumeX className="w-3.5 h-3.5 text-amber-400 animate-pulse" />
                               <span className="text-amber-400">STOP</span>
                             </>
                           ) : (
                             <>
-                              <Volume2 className="w-3 h-3" />
-                              <span>SPEAK</span>
+                              <Volume2 className="w-3.5 h-3.5" />
+                              <span>TAP TO HEAR</span>
                             </>
                           )}
                         </button>
                         <button
                           onClick={() => handleCopy(m.id, m.content)}
-                          className="text-[10px] text-cyan-400 hover:text-white flex items-center gap-1 transition-colors"
+                          className="text-[10px] sm:text-[11px] px-2.5 py-1 rounded bg-cyan-950/40 border border-cyan-500/20 text-cyan-300 hover:text-white flex items-center gap-1.5 min-h-[34px] transition-colors"
                         >
                           {copiedId === m.id ? (
                             <>
-                              <Check className="w-3 h-3 text-green-400" />
+                              <Check className="w-3.5 h-3.5 text-green-400" />
                               <span className="text-green-400">COPIED</span>
                             </>
                           ) : (
                             <>
-                              <Copy className="w-3 h-3" />
+                              <Copy className="w-3.5 h-3.5" />
                               <span>COPY</span>
                             </>
                           )}
@@ -480,19 +574,19 @@ export const ChatPage: React.FC = () => {
         </div>
 
         {/* Chat Input Bar */}
-        <div className="p-3 border-t border-cyan-500/20 bg-black/60">
+        <div className="p-2.5 sm:p-3 border-t border-cyan-500/20 bg-black/70 backdrop-blur-md">
           <form onSubmit={handleSendMessage} className="flex items-center gap-2">
             <button
               type="button"
               onClick={toggleSpeechRecognition}
-              className={`p-2 rounded border transition-all ${
+              className={`p-2.5 sm:p-2 min-w-[46px] min-h-[46px] sm:min-w-0 sm:min-h-0 rounded border flex items-center justify-center transition-all ${
                 isListening
-                  ? 'border-green-400 bg-green-950/60 text-green-300 animate-pulse shadow-[0_0_15px_#00FF66]'
-                  : 'border-cyan-500/30 bg-black/40 text-cyan-400 hover:border-cyan-400'
+                  ? 'border-green-400 bg-green-950/80 text-green-300 animate-pulse shadow-[0_0_15px_#00FF66]'
+                  : 'border-cyan-500/40 bg-black/60 text-cyan-300 hover:border-cyan-400'
               }`}
               title={isListening ? 'Stop Listening' : 'Voice Input'}
             >
-              {isListening ? <Mic className="w-4 h-4" /> : <MicOff className="w-4 h-4" />}
+              {isListening ? <Mic className="w-5 h-5" /> : <MicOff className="w-5 h-5 text-cyan-400/70" />}
             </button>
 
             <input
@@ -500,16 +594,16 @@ export const ChatPage: React.FC = () => {
               placeholder={isListening ? 'Listening to voice command...' : 'Inquire with J.A.R.V.I.S. AI Core...'}
               value={inputMessage}
               onChange={(e) => setInputMessage(e.target.value)}
-              className="flex-1 px-3 py-2 bg-black/70 border border-cyan-500/30 rounded text-xs font-mono text-cyan-100 placeholder-cyan-500/30 focus:outline-none focus:border-cyan-400 focus:shadow-[0_0_15px_rgba(0,229,255,0.2)]"
+              className="flex-1 px-3.5 py-2.5 sm:py-2 min-h-[46px] sm:min-h-0 bg-black/70 border border-cyan-500/30 rounded text-base sm:text-xs font-mono text-cyan-100 placeholder-cyan-500/30 focus:outline-none focus:border-cyan-400 focus:shadow-[0_0_15px_rgba(0,229,255,0.2)]"
             />
 
             <button
               type="submit"
               disabled={isGenerating || !inputMessage.trim()}
-              className="px-4 py-2 rounded bg-cyan-950/80 border border-cyan-400 text-xs font-hud font-bold text-cyan-300 hover:text-white hover:bg-cyan-900 disabled:opacity-40 disabled:cursor-not-allowed transition-all flex items-center gap-1.5"
+              className="px-4 py-2.5 sm:py-2 min-h-[46px] sm:min-h-0 rounded bg-cyan-950/80 border border-cyan-400 text-xs font-hud font-bold text-cyan-300 hover:text-white hover:bg-cyan-900 disabled:opacity-40 disabled:cursor-not-allowed transition-all flex items-center justify-center gap-1.5 shadow-[0_0_12px_rgba(0,229,255,0.2)]"
             >
-              <Send className="w-3.5 h-3.5" />
-              <span>SEND</span>
+              <Send className="w-4 h-4" />
+              <span className="hidden sm:inline">SEND</span>
             </button>
           </form>
         </div>

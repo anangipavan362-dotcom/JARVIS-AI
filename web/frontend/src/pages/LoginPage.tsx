@@ -138,7 +138,7 @@ export const LoginPage: React.FC = () => {
                   value={identifier}
                   onChange={(e) => setIdentifier(e.target.value)}
                   placeholder="operative@stark.corp or username"
-                  className="w-full pl-9 pr-3 py-2 bg-black/60 border border-cyan-500/30 rounded text-xs font-mono text-cyan-100 placeholder-cyan-500/30 focus:outline-none focus:border-cyan-400 focus:shadow-[0_0_15px_rgba(0,229,255,0.3)] transition-all"
+                  className="w-full pl-9 pr-3 py-3 sm:py-2 min-h-[46px] sm:min-h-0 bg-black/60 border border-cyan-500/30 rounded text-base sm:text-xs font-mono text-cyan-100 placeholder-cyan-500/30 focus:outline-none focus:border-cyan-400 focus:shadow-[0_0_15px_rgba(0,229,255,0.3)] transition-all"
                 />
               </div>
             </div>
@@ -165,7 +165,7 @@ export const LoginPage: React.FC = () => {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••••••"
-                  className="w-full pl-9 pr-3 py-2 bg-black/60 border border-cyan-500/30 rounded text-xs font-mono text-cyan-100 placeholder-cyan-500/30 focus:outline-none focus:border-cyan-400 focus:shadow-[0_0_15px_rgba(0,229,255,0.3)] transition-all"
+                  className="w-full pl-9 pr-3 py-3 sm:py-2 min-h-[46px] sm:min-h-0 bg-black/60 border border-cyan-500/30 rounded text-base sm:text-xs font-mono text-cyan-100 placeholder-cyan-500/30 focus:outline-none focus:border-cyan-400 focus:shadow-[0_0_15px_rgba(0,229,255,0.3)] transition-all"
                 />
               </div>
             </div>
@@ -175,7 +175,7 @@ export const LoginPage: React.FC = () => {
               variant="cyan"
               size="md"
               loading={loading}
-              className="w-full mt-2"
+              className="w-full mt-2 min-h-[46px]"
               icon={<ShieldCheck className="w-4 h-4" />}
             >
               AUTHENTICATE
@@ -189,7 +189,7 @@ export const LoginPage: React.FC = () => {
                 sound.playClick();
                 handleDemoLogin();
               }}
-              className="w-full py-1.5 px-3 rounded bg-cyan-950/20 border border-cyan-500/30 text-[11px] font-mono text-cyan-300/80 hover:text-white hover:border-cyan-400 transition-all"
+              className="w-full py-2.5 px-3 min-h-[44px] rounded bg-cyan-950/20 border border-cyan-500/30 text-xs font-mono text-cyan-300 hover:text-white hover:border-cyan-400 transition-all"
             >
               AUTO-FILL DEMO CREDENTIALS
             </button>
