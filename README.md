@@ -93,7 +93,7 @@ JARVIS-AI/
 
 ## Environment Configuration
 
-Create a `.env` file in the root or `web/backend/` using `.env.example` as a reference:
+Create a `.env` file in `backend/` using `backend/.env.example` as a reference:
 
 ```env
 # Google Gemini API Key (https://aistudio.google.com/)
@@ -120,7 +120,7 @@ GEMINI_MODEL=gemini-2.5-flash
 ### 1. Backend Service
 
 ```bash
-cd web/backend
+cd backend
 
 # Create & activate virtual environment
 python -m venv .venv
@@ -160,7 +160,7 @@ The frontend will run at `http://localhost:5173`.
 The backend includes test coverage for authentication, admin privilege checks, feature endpoints, and strict user isolation:
 
 ```bash
-cd web/backend
+cd backend
 python -m pytest tests/ -v
 ```
 

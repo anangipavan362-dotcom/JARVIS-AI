@@ -3,7 +3,7 @@ version: '3.8'
 services:
   backend:
     build:
-      context: ./web/backend
+      context: ./backend
       dockerfile: Dockerfile
     container_name: jarvis-backend
     restart: unless-stopped
