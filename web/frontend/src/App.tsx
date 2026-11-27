@@ -61,7 +61,7 @@ const ProtectedRoute: React.FC<{ children: React.ReactNode; adminOnly?: boolean 
 export const App: React.FC = () => {
   return (
     <AuthProvider>
-      <BrowserRouter>
+      <BrowserRouter basename={((import.meta as any).env?.BASE_URL as string) || '/'}>
         <Routes>
           {/* Public Authentication & Landing Routes */}
           <Route path="/" element={<LandingPage />} />
