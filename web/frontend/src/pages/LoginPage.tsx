@@ -62,22 +62,22 @@ export const LoginPage: React.FC = () => {
     }
   };
 
-  const handleDemoLogin = async () => {
-    setIdentifier('pavan');
-    setPassword('Pavan@123');
+  const handleGuestLogin = async () => {
+    setIdentifier('guest_operative');
+    setPassword('Guest@2026');
     try {
       setLoading(true);
       setErrorMsg('');
-      setStatusSequence('VERIFYING ADMIN IDENTITY...');
+      setStatusSequence('INITIALIZING VISITOR CLEARANCE...');
       await new Promise((r) => setTimeout(r, 300));
-      await login({ username_or_email: 'pavan', password: 'Pavan@123' });
-      setStatusSequence('ACCESS GRANTED // WELCOME PAVAN');
+      await login({ username_or_email: 'guest_operative', password: 'Guest@2026' });
+      setStatusSequence('GUEST CLEARANCE GRANTED // WELCOME OPERATIVE');
       await new Promise((r) => setTimeout(r, 400));
       navigate('/dashboard');
     } catch (err: any) {
       sound.playAlert();
       setStatusSequence(null);
-      setErrorMsg(err.message || 'Auto-login failed');
+      setErrorMsg(err.message || 'Guest authorization failed');
     } finally {
       setLoading(false);
     }
@@ -203,14 +203,18 @@ export const LoginPage: React.FC = () => {
             <button
               onClick={() => {
                 sound.playClick();
-                handleDemoLogin();
+                handleGuestLogin();
               }}
-              className="w-full py-2.5 px-3 min-h-[44px] rounded bg-cyan-950/20 border border-cyan-500/30 text-xs font-mono text-cyan-300 hover:text-white hover:border-cyan-400 transition-all"
+              className="w-full py-2.5 px-3 min-h-[44px] rounded bg-cyan-950/20 border border-cyan-500/30 text-xs font-mono text-cyan-300 hover:text-white hover:border-cyan-400 transition-all flex items-center justify-center gap-2"
             >
-              ⚡ 1-CLICK INSTANT ADMIN LOGIN (PAVAN)
+              🚀 1-CLICK GUEST ACCESS (VISITORS & FRIENDS)
             </button>
 
-            <div className="flex items-center justify-center gap-2 text-xs font-mono text-gray-400">
+            <div className="text-[10px] font-mono text-cyan-400/60 uppercase tracking-widest">
+              🔒 ADMIN ACCESS RESERVED FOR PAVAN (USE CREDENTIALS ABOVE)
+            </div>
+
+            <div className="flex items-center justify-center gap-2 text-xs font-mono text-gray-400 pt-1">
               <span>NEED CLEARANCE?</span>
               <Link to="/register" className="text-cyan-300 font-hud font-bold hover:underline">
                 CREATE ACCOUNT

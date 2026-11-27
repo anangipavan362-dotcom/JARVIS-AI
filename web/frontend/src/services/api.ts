@@ -18,15 +18,54 @@ export class ApiClient {
 
   private static getFallbackResponse<T>(endpoint: string, options: RequestInit): T {
     if (endpoint.includes('/auth/login')) {
+      let isPavanAdmin = false;
+      let isInvalidPassword = false;
+      try {
+        if (options.body) {
+          const body = JSON.parse(options.body as string);
+          const ident = (body.username_or_email || '').trim().toLowerCase();
+          if (ident === 'pavan' || ident === 'anangipavan362@gmail.com') {
+            if (body.password === 'Pavan@123') {
+              isPavanAdmin = true;
+            } else {
+              isInvalidPassword = true;
+            }
+          }
+        }
+      } catch {}
+
+      if (isInvalidPassword) {
+        throw new Error('ACCESS DENIED: Invalid administrator credentials.');
+      }
+
+      if (isPavanAdmin) {
+        return {
+          access_token: 'quantum_admin_token_pavan_' + Date.now(),
+          token_type: 'bearer',
+          user: {
+            id: 3,
+            username: 'pavan',
+            email: 'anangipavan362@gmail.com',
+            full_name: 'Pavan (System Administrator)',
+            role: 'ADMIN',
+            status: 'VERIFIED',
+            is_active: true,
+            created_at: new Date().toISOString(),
+            last_login: new Date().toISOString()
+          }
+        } as unknown as T;
+      }
+
+      // Guest / Visitor Operative Clearance
       return {
-        access_token: 'quantum_access_token_pavan_' + Date.now(),
+        access_token: 'quantum_guest_token_' + Date.now(),
         token_type: 'bearer',
         user: {
-          id: 3,
-          username: 'pavan',
-          email: 'anangipavan362@gmail.com',
-          full_name: 'Pavan',
-          role: 'ADMIN',
+          id: 99,
+          username: 'guest_visitor',
+          email: 'visitor@jarvis-nexus.ai',
+          full_name: 'Guest Operative',
+          role: 'USER',
           status: 'VERIFIED',
           is_active: true,
           created_at: new Date().toISOString(),
@@ -36,12 +75,25 @@ export class ApiClient {
     }
 
     if (endpoint.includes('/auth/me')) {
+      const token = this.getToken() || '';
+      const isAdminToken = token.includes('admin') || token.includes('pavan');
+      if (isAdminToken) {
+        return {
+          id: 3,
+          username: 'pavan',
+          email: 'anangipavan362@gmail.com',
+          full_name: 'Pavan (System Administrator)',
+          role: 'ADMIN',
+          status: 'VERIFIED',
+          is_active: true
+        } as unknown as T;
+      }
       return {
-        id: 3,
-        username: 'pavan',
-        email: 'anangipavan362@gmail.com',
-        full_name: 'Pavan',
-        role: 'ADMIN',
+        id: 99,
+        username: 'guest_visitor',
+        email: 'visitor@jarvis-nexus.ai',
+        full_name: 'Guest Operative',
+        role: 'USER',
         status: 'VERIFIED',
         is_active: true
       } as unknown as T;
