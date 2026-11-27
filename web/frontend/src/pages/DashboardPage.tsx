@@ -89,6 +89,7 @@ export const DashboardPage: React.FC = () => {
             glowColor="cyan"
             title="NEURAL AI CORE"
             badge={data?.is_demo ? 'DEMO MODE' : 'LIVE CORE'}
+            index="(02)"
             className="w-full flex flex-col items-center justify-center relative overflow-hidden"
           >
             {/* 3D WebGL Interactive Core */}
@@ -103,12 +104,13 @@ export const DashboardPage: React.FC = () => {
             </div>
 
             {/* Core Action Overlay */}
-            <div className="w-full flex flex-col sm:flex-row items-center justify-between gap-3 pt-3 border-t border-cyan-500/20 mt-2">
+            <div className="w-full flex flex-col sm:flex-row items-center justify-between gap-3 pt-3 border-t border-white/10 mt-2">
               <div className="text-left w-full sm:w-auto">
-                <div className="text-xs font-hud font-bold text-cyan-200 uppercase tracking-wider">
-                  TACTICAL STATE: <span className="text-cyan-400">{coreState}</span>
+                <div className="text-xs font-hud font-bold text-white uppercase tracking-wider flex items-center gap-1.5">
+                  <span>TACTICAL STATE:</span>
+                  <span className="font-mono text-cyan-400 font-bold px-2 py-0.5 rounded-full bg-cyan-950/60 border border-cyan-500/30 text-[10px]">{coreState}</span>
                 </div>
-                <div className="text-[10px] font-mono text-gray-400">
+                <div className="text-[10px] font-mono text-gray-400 mt-0.5">
                   Interactive WebGL Physics & 3D Holographic Rings
                 </div>
               </div>
@@ -119,9 +121,9 @@ export const DashboardPage: React.FC = () => {
                     sound.playClick();
                     navigate('/chat');
                   }}
-                  className="flex-1 sm:flex-initial px-4 py-2.5 sm:py-1.5 min-h-[44px] sm:min-h-0 rounded bg-cyan-950/80 border border-cyan-400 hover:border-cyan-300 text-xs font-hud text-cyan-300 hover:text-white flex items-center justify-center gap-1.5 transition-all shadow-[0_0_12px_rgba(0,229,255,0.25)]"
+                  className="flex-1 sm:flex-initial px-4 py-2 sm:py-1.5 min-h-[44px] sm:min-h-0 rounded-full bg-gradient-to-r from-cyan-400 to-cyan-300 text-black text-xs font-hud font-black tracking-wider uppercase flex items-center justify-center gap-1.5 transition-all shadow-[0_0_15px_rgba(0,229,255,0.4)] hover:shadow-[0_0_20px_rgba(0,229,255,0.6)] cursor-pointer"
                 >
-                  <Bot className="w-3.5 h-3.5" />
+                  <Bot className="w-3.5 h-3.5 stroke-[2.5]" />
                   <span>OPEN CHAT</span>
                 </button>
 
@@ -130,7 +132,7 @@ export const DashboardPage: React.FC = () => {
                     sound.playClick();
                     navigate('/voice');
                   }}
-                  className="flex-1 sm:flex-initial px-4 py-2.5 sm:py-1.5 min-h-[44px] sm:min-h-0 rounded bg-cyan-950/80 border border-emerald-400 hover:border-emerald-300 text-xs font-hud text-emerald-300 hover:text-white flex items-center justify-center gap-1.5 transition-all shadow-[0_0_12px_rgba(0,255,136,0.25)]"
+                  className="flex-1 sm:flex-initial px-4 py-2 sm:py-1.5 min-h-[44px] sm:min-h-0 rounded-full glass-fusion border border-emerald-400/50 hover:border-emerald-300 text-xs font-hud font-bold text-emerald-300 hover:text-white flex items-center justify-center gap-1.5 transition-all shadow-[0_0_12px_rgba(0,255,136,0.2)] cursor-pointer"
                 >
                   <Mic className="w-3.5 h-3.5" />
                   <span>VOICE HUD</span>
@@ -153,7 +155,7 @@ export const DashboardPage: React.FC = () => {
         <NewsWidget />
 
         {/* Stored Memories Holographic Card */}
-        <HolographicCard title="STORED MEMORIES" badge="NEURAL" glowColor="purple">
+        <HolographicCard title="STORED MEMORIES" badge="NEURAL" index="(07)" glowColor="purple">
           <div className="space-y-2">
             {!data?.recent_memories || data.recent_memories.length === 0 ? (
               <p className="text-xs font-mono text-gray-500 py-6 text-center">

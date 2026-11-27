@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   Bot,
@@ -24,21 +24,22 @@ export const CommandPanel: React.FC = () => {
   const { isAdmin } = useAuth();
 
   const commands = [
-    { label: 'Ask JARVIS', path: '/chat', icon: Bot, color: 'text-cyan-400', badge: 'AI CORE' },
-    { label: 'Voice Command', path: '/voice', icon: Mic, color: 'text-green-400', badge: 'MIC' },
-    { label: 'Web Intelligence', path: '/search', icon: Search, color: 'text-purple-400', badge: 'SEARCH' },
-    { label: 'Situation Briefing', path: '/briefing', icon: FileText, color: 'text-blue-400', badge: 'DAILY' },
-    { label: 'News Intelligence', path: '/news', icon: Newspaper, color: 'text-cyan-300', badge: 'DISPATCH' },
-    { label: 'Sports Telemetry', path: '/sports', icon: Trophy, color: 'text-amber-400', badge: 'LIVE' },
-    { label: 'Meteorology', path: '/weather', icon: CloudSun, color: 'text-emerald-400', badge: 'RADAR' },
-    { label: 'Mission Tasks', path: '/tasks', icon: CheckSquare, color: 'text-rose-400', badge: 'AGENDA' },
-    { label: 'Memory Banks', path: '/memory', icon: Cpu, color: 'text-violet-400', badge: 'NEURAL' },
-    { label: 'System Telemetry', path: '/system', icon: Activity, color: 'text-sky-400', badge: 'HARDWARE' },
-    { label: 'Configuration', path: '/settings', icon: Settings, color: 'text-gray-300', badge: 'SETTINGS' },
+    { num: '/01', label: 'Ask JARVIS', path: '/chat', icon: Bot, color: 'text-cyan-400', badge: 'AI CORE' },
+    { num: '/02', label: 'Voice Command', path: '/voice', icon: Mic, color: 'text-emerald-400', badge: 'VOCODER' },
+    { num: '/03', label: 'Web Intelligence', path: '/search', icon: Search, color: 'text-indigo-400', badge: 'SEARCH' },
+    { num: '/04', label: 'Situation Briefing', path: '/briefing', icon: FileText, color: 'text-sky-400', badge: 'DAILY' },
+    { num: '/05', label: 'News Intelligence', path: '/news', icon: Newspaper, color: 'text-cyan-300', badge: 'WIRE' },
+    { num: '/06', label: 'Sports Telemetry', path: '/sports', icon: Trophy, color: 'text-amber-400', badge: 'LIVE' },
+    { num: '/07', label: 'Meteorology', path: '/weather', icon: CloudSun, color: 'text-emerald-400', badge: 'RADAR' },
+    { num: '/08', label: 'Mission Directives', path: '/tasks', icon: CheckSquare, color: 'text-rose-400', badge: 'AGENDA' },
+    { num: '/09', label: 'Memory Banks', path: '/memory', icon: Cpu, color: 'text-purple-400', badge: 'NEURAL' },
+    { num: '/10', label: 'System Telemetry', path: '/system', icon: Activity, color: 'text-blue-400', badge: 'HARDWARE' },
+    { num: '/11', label: 'Configuration', path: '/settings', icon: Settings, color: 'text-gray-300', badge: 'CONFIG' },
   ];
 
   if (isAdmin) {
     commands.push({
+      num: '/12',
       label: 'Admin Terminal',
       path: '/admin',
       icon: Shield,
@@ -53,7 +54,7 @@ export const CommandPanel: React.FC = () => {
   };
 
   return (
-    <HolographicCard title="COMMAND CENTER" badge="DIRECTIVES" className="h-full">
+    <HolographicCard title="DIRECTIVES" badge="INDEX" index="(01)" className="h-full">
       <div className="space-y-1.5 max-h-[580px] overflow-y-auto pr-1">
         {commands.map((cmd) => {
           const Icon = cmd.icon;
@@ -61,20 +62,23 @@ export const CommandPanel: React.FC = () => {
             <button
               key={cmd.path}
               onClick={() => handleCommandClick(cmd.path)}
-              className="w-full flex items-center justify-between p-2 rounded bg-black/40 border border-cyan-500/20 hover:border-cyan-400 hover:bg-cyan-950/40 hover:shadow-[0_0_12px_rgba(0,229,255,0.2)] transition-all group text-left"
+              className="w-full flex items-center justify-between p-2.5 rounded-2xl glass-fusion border border-white/5 hover:border-cyan-400/50 hover:bg-white/[0.04] transition-all group text-left cursor-pointer shadow-[0_4px_12px_rgba(0,0,0,0.3)]"
             >
               <div className="flex items-center gap-2.5 truncate">
-                <Icon className={`w-4 h-4 ${cmd.color} shrink-0 group-hover:scale-110 transition-transform`} />
-                <span className="text-xs font-hud font-bold text-cyan-200 group-hover:text-white uppercase tracking-wider truncate">
+                <span className="text-[10px] font-mono text-cyan-400/60 font-bold group-hover:text-cyan-300 shrink-0">
+                  {cmd.num}
+                </span>
+                <Icon className={`w-3.5 h-3.5 ${cmd.color} shrink-0 group-hover:scale-110 transition-transform`} />
+                <span className="text-xs font-hud font-bold text-gray-200 group-hover:text-white uppercase tracking-wider truncate">
                   {cmd.label}
                 </span>
               </div>
 
               <div className="flex items-center gap-1.5 shrink-0">
-                <span className="text-[8px] font-mono text-cyan-400/60 group-hover:text-cyan-300">
+                <span className="text-[9px] font-mono text-gray-500 group-hover:text-cyan-300">
                   {cmd.badge}
                 </span>
-                <ChevronRight className="w-3 h-3 text-cyan-500/40 group-hover:text-cyan-300 group-hover:translate-x-0.5 transition-all" />
+                <ChevronRight className="w-3 h-3 text-white/20 group-hover:text-cyan-300 group-hover:translate-x-0.5 transition-all" />
               </div>
             </button>
           );

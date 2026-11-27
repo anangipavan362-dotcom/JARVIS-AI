@@ -31,31 +31,31 @@ export const IntelligencePanel: React.FC<IntelligencePanelProps> = ({ isDemo = f
   }, []);
 
   return (
-    <HolographicCard title="LIVE INTELLIGENCE" badge="TELEMETRY" className="h-full flex flex-col justify-between">
+    <HolographicCard title="INTELLIGENCE" badge="TELEMETRY" index="(03)" className="h-full flex flex-col justify-between">
       <div className="space-y-4">
         {/* 3D Global Network Visualizer */}
-        <div className="flex flex-col items-center justify-center p-2 rounded bg-black/40 border border-cyan-500/20">
+        <div className="flex flex-col items-center justify-center p-3 rounded-2xl glass-fusion border border-white/5">
           <Globe size={180} status="ONLINE" networkLatency={latency} />
         </div>
 
         {/* Tactical Subsystems Matrix */}
         <div className="grid grid-cols-2 gap-2 text-xs font-mono">
-          <div className="p-2 rounded bg-black/40 border border-cyan-500/20">
-            <div className="flex items-center gap-1 text-[10px] text-cyan-400/70">
+          <div className="p-2.5 rounded-2xl glass-fusion border border-white/5">
+            <div className="flex items-center gap-1.5 text-[10px] text-cyan-400/80 font-bold uppercase">
               <Zap className="w-3 h-3 text-cyan-400" />
               <span>AI ENGINE</span>
             </div>
-            <div className="font-bold text-cyan-200 mt-0.5">
+            <div className="font-bold text-white mt-1 text-xs font-hud">
               {isDemo ? 'DEMO CORE' : 'GEMINI ACTIVE'}
             </div>
           </div>
 
-          <div className="p-2 rounded bg-black/40 border border-cyan-500/20">
-            <div className="flex items-center gap-1 text-[10px] text-green-400/70">
-              <ShieldCheck className="w-3 h-3 text-green-400" />
+          <div className="p-2.5 rounded-2xl glass-fusion border border-white/5">
+            <div className="flex items-center gap-1.5 text-[10px] text-emerald-400/80 font-bold uppercase">
+              <ShieldCheck className="w-3 h-3 text-emerald-400" />
               <span>SECURITY</span>
             </div>
-            <div className="font-bold text-green-400 mt-0.5">
+            <div className="font-bold text-emerald-300 mt-1 text-xs font-hud">
               ENCRYPTED
             </div>
           </div>
@@ -63,9 +63,12 @@ export const IntelligencePanel: React.FC<IntelligencePanelProps> = ({ isDemo = f
 
         {/* Live Activity Telemetry Stream */}
         <div>
-          <div className="flex items-center justify-between text-[11px] font-hud font-bold text-cyan-300 uppercase tracking-wider pb-1.5 border-b border-cyan-500/20 mb-2">
+          <div className="flex items-center justify-between text-[11px] font-hud font-bold text-cyan-300 uppercase tracking-wider pb-2 border-b border-white/10 mb-2">
             <span>AUDIT TRAIL</span>
-            <span className="text-[9px] font-mono text-cyan-500">LIVE FEED</span>
+            <span className="text-[9px] font-mono text-emerald-400 flex items-center gap-1">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
+              LIVE FEED
+            </span>
           </div>
 
           <div className="space-y-1.5 max-h-40 overflow-y-auto pr-1 text-xs font-mono">
@@ -77,12 +80,12 @@ export const IntelligencePanel: React.FC<IntelligencePanelProps> = ({ isDemo = f
               activities.slice(0, 4).map((act, i) => (
                 <div
                   key={act.id || i}
-                  className="p-1.5 rounded bg-black/30 border border-cyan-500/10 text-[11px] flex flex-col"
+                  className="p-2 rounded-xl glass-fusion border border-white/5 text-[11px] flex flex-col"
                 >
                   <span className="text-cyan-300 font-bold tracking-tight">
                     {act.action}
                   </span>
-                  <span className="text-gray-400 text-[10px] truncate">
+                  <span className="text-gray-400 text-[10px] truncate mt-0.5">
                     {act.details}
                   </span>
                 </div>
@@ -93,13 +96,13 @@ export const IntelligencePanel: React.FC<IntelligencePanelProps> = ({ isDemo = f
       </div>
 
       {/* Quick Diagnostics Action */}
-      <div className="mt-4 pt-3 border-t border-cyan-500/20">
+      <div className="mt-4 pt-3 border-t border-white/10">
         <button
           onClick={() => {
             sound.playClick();
             navigate('/system');
           }}
-          className="w-full py-1.5 px-3 rounded bg-cyan-950/60 border border-cyan-500/40 hover:border-cyan-300 text-xs font-hud font-bold text-cyan-300 hover:text-white flex items-center justify-center gap-1.5 transition-all"
+          className="w-full py-2.5 px-3 rounded-xl glass-fusion border border-white/10 hover:border-cyan-400/50 hover:bg-white/[0.04] text-xs font-hud font-bold text-cyan-300 hover:text-white flex items-center justify-center gap-2 transition-all cursor-pointer shadow-[0_4px_12px_rgba(0,0,0,0.3)]"
         >
           <span>FULL SYSTEM DIAGNOSTICS</span>
           <ArrowRight className="w-3.5 h-3.5" />
