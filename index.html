@@ -8,15 +8,28 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="JARVIS AI" />
-    <link rel="manifest" href="./manifest.json" />
-    <link rel="apple-touch-icon" href="./icons/icon-192.png" />
+    <link rel="manifest" href="/JARVIS-AI/manifest.json" />
+    <link rel="apple-touch-icon" href="/JARVIS-AI/icons/icon-192.png" />
     <title>J.A.R.V.I.S. | Personal AI Command Center</title>
+    <!-- Single Page App Redirect Script for GitHub Pages -->
+    <script type="text/javascript">
+      (function(l) {
+        if (l.search[1] === '/' ) {
+          var decoded = l.search.slice(1).split('&').map(function(s) { 
+            return s.replace(/~and~/g, '&')
+          }).join('?');
+          window.history.replaceState(null, null,
+              l.pathname.slice(0, -1) + decoded + l.hash
+          );
+        }
+      }(window.location))
+    </script>
     <!-- Sci-Fi & Editorial Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;600;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Rajdhani:wght@500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
-    <script type="module" crossorigin src="./assets/index-DLHpcEvZ.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-BpWdP8J2.css">
+    <script type="module" crossorigin src="/JARVIS-AI/assets/index-BDSVDdJi.js"></script>
+    <link rel="stylesheet" crossorigin href="/JARVIS-AI/assets/index-BpWdP8J2.css">
   </head>
   <body class="bg-[#02040a] text-[#E8FFFF] selection:bg-cyan-500 selection:text-black antialiased overflow-x-hidden">
     <div id="root"></div>
