@@ -62,9 +62,25 @@ export const LoginPage: React.FC = () => {
     }
   };
 
-  const handleDemoLogin = () => {
-    setIdentifier('operative_alpha');
-    setPassword('DemoOperative123!');
+  const handleDemoLogin = async () => {
+    setIdentifier('pavan');
+    setPassword('Pavan@123');
+    try {
+      setLoading(true);
+      setErrorMsg('');
+      setStatusSequence('VERIFYING ADMIN IDENTITY...');
+      await new Promise((r) => setTimeout(r, 300));
+      await login({ username_or_email: 'pavan', password: 'Pavan@123' });
+      setStatusSequence('ACCESS GRANTED // WELCOME PAVAN');
+      await new Promise((r) => setTimeout(r, 400));
+      navigate('/dashboard');
+    } catch (err: any) {
+      sound.playAlert();
+      setStatusSequence(null);
+      setErrorMsg(err.message || 'Auto-login failed');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -191,7 +207,7 @@ export const LoginPage: React.FC = () => {
               }}
               className="w-full py-2.5 px-3 min-h-[44px] rounded bg-cyan-950/20 border border-cyan-500/30 text-xs font-mono text-cyan-300 hover:text-white hover:border-cyan-400 transition-all"
             >
-              AUTO-FILL DEMO CREDENTIALS
+              ⚡ 1-CLICK INSTANT ADMIN LOGIN (PAVAN)
             </button>
 
             <div className="flex items-center justify-center gap-2 text-xs font-mono text-gray-400">
