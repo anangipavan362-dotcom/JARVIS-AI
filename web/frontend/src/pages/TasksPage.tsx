@@ -144,16 +144,16 @@ export const TasksPage: React.FC = () => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl sm:text-3xl font-hud font-black tracking-widest text-cyan-300 uppercase">
+          <h1 className="text-2xl sm:text-3xl font-hud font-black tracking-widest text-white uppercase">
             MY TASKS & MISSION REMINDERS
           </h1>
-          <p className="text-xs font-mono text-cyan-400/70 tracking-widest uppercase mt-1">
+          <p className="text-xs font-mono text-gray-400 tracking-widest uppercase mt-1">
             TACTICAL OBJECTIVE REGISTRY & AGENDA SCHEDULER
           </p>
         </div>
 
         {/* Filter Pills */}
-        <div className="flex items-center gap-1.5 p-1 rounded bg-black/60 border border-cyan-500/30">
+        <div className="flex items-center gap-1.5 p-1 rounded bg-black/60 border border-white/10">
           {(['ALL', 'PENDING', 'COMPLETED'] as const).map((f) => (
             <button
               key={f}
@@ -163,8 +163,8 @@ export const TasksPage: React.FC = () => {
               }}
               className={`px-3 py-1 rounded text-xs font-hud uppercase tracking-wider transition-all ${
                 filter === f
-                  ? 'bg-cyan-950 border border-cyan-400 text-white shadow-[0_0_10px_rgba(0,229,255,0.3)]'
-                  : 'text-gray-400 hover:text-cyan-300'
+                  ? 'bg-white/5 border border-white/40 text-white shadow-[0_0_10px_rgba(255, 255, 255, 0.3)]'
+                  : 'text-gray-400 hover:text-white'
               }`}
             >
               {f}
@@ -177,16 +177,16 @@ export const TasksPage: React.FC = () => {
       <div className="cyber-panel p-4 rounded-lg tech-corner-tl">
         <form onSubmit={handleNaturalLanguageParse} className="flex gap-2">
           <div className="relative flex-1">
-            <Sparkles className="w-4 h-4 text-cyan-400 absolute left-3 top-3" />
+            <Sparkles className="w-4 h-4 text-gray-200 absolute left-3 top-3" />
             <input
               type="text"
               placeholder="Natural Language Parser (e.g. 'Remind me to study DSA at 7 PM' or 'Deploy microservices')..."
               value={naturalPrompt}
               onChange={(e) => setNaturalPrompt(e.target.value)}
-              className="w-full pl-9 pr-3 py-2 bg-black/60 border border-cyan-500/30 rounded text-xs font-mono text-cyan-100 placeholder-cyan-500/30 focus:outline-none focus:border-cyan-400"
+              className="w-full pl-9 pr-3 py-2 bg-black/60 border border-white/10 rounded text-xs font-mono text-white placeholder-gray-600 focus:outline-none focus:border-white/40"
             />
           </div>
-          <NeonButton type="submit" variant="cyan" size="sm">
+          <NeonButton type="submit" variant="solid" size="sm">
             PARSE & DRAFT
           </NeonButton>
         </form>
@@ -195,13 +195,13 @@ export const TasksPage: React.FC = () => {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Left Column: Add / Edit Form */}
         <div className="cyber-panel rounded-lg p-5 tech-corner-tl tech-corner-br h-fit">
-          <h3 className="text-xs font-hud font-bold text-cyan-300 uppercase tracking-wider mb-4 pb-2 border-b border-cyan-500/20">
+          <h3 className="text-xs font-hud font-bold text-white uppercase tracking-wider mb-4 pb-2 border-b border-white/10">
             {editingTaskId ? 'EDIT MISSION DIRECTIVE' : 'LOG NEW DIRECTIVE'}
           </h3>
 
           <form onSubmit={handleSaveTask} className="space-y-3">
             <div>
-              <label className="block text-[11px] font-hud tracking-wider text-cyan-300 uppercase mb-1">
+              <label className="block text-[11px] font-hud tracking-wider text-white uppercase mb-1">
                 OBJECTIVE TITLE
               </label>
               <input
@@ -210,12 +210,12 @@ export const TasksPage: React.FC = () => {
                 placeholder="Directive summary..."
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                className="w-full px-3 py-1.5 bg-black/60 border border-cyan-500/30 rounded text-xs font-mono text-cyan-100 focus:outline-none focus:border-cyan-400"
+                className="w-full px-3 py-1.5 bg-black/60 border border-white/10 rounded text-xs font-mono text-white focus:outline-none focus:border-white/40"
               />
             </div>
 
             <div>
-              <label className="block text-[11px] font-hud tracking-wider text-cyan-300 uppercase mb-1">
+              <label className="block text-[11px] font-hud tracking-wider text-white uppercase mb-1">
                 DESCRIPTION (OPTIONAL)
               </label>
               <textarea
@@ -223,19 +223,19 @@ export const TasksPage: React.FC = () => {
                 placeholder="Tactical details, parameters, notes..."
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
-                className="w-full px-3 py-1.5 bg-black/60 border border-cyan-500/30 rounded text-xs font-mono text-cyan-100 focus:outline-none focus:border-cyan-400"
+                className="w-full px-3 py-1.5 bg-black/60 border border-white/10 rounded text-xs font-mono text-white focus:outline-none focus:border-white/40"
               />
             </div>
 
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="block text-[11px] font-hud tracking-wider text-cyan-300 uppercase mb-1">
+                <label className="block text-[11px] font-hud tracking-wider text-white uppercase mb-1">
                   PRIORITY
                 </label>
                 <select
                   value={priority}
                   onChange={(e: any) => setPriority(e.target.value)}
-                  className="w-full px-2 py-1.5 bg-black/60 border border-cyan-500/30 rounded text-xs font-mono text-cyan-200 focus:outline-none"
+                  className="w-full px-2 py-1.5 bg-black/60 border border-white/10 rounded text-xs font-mono text-white focus:outline-none"
                 >
                   <option value="LOW">LOW</option>
                   <option value="MEDIUM">MEDIUM</option>
@@ -245,7 +245,7 @@ export const TasksPage: React.FC = () => {
               </div>
 
               <div>
-                <label className="block text-[11px] font-hud tracking-wider text-cyan-300 uppercase mb-1">
+                <label className="block text-[11px] font-hud tracking-wider text-white uppercase mb-1">
                   CATEGORY
                 </label>
                 <input
@@ -253,25 +253,25 @@ export const TasksPage: React.FC = () => {
                   placeholder="Security, Intel..."
                   value={category}
                   onChange={(e) => setCategory(e.target.value)}
-                  className="w-full px-3 py-1.5 bg-black/60 border border-cyan-500/30 rounded text-xs font-mono text-cyan-100 focus:outline-none focus:border-cyan-400"
+                  className="w-full px-3 py-1.5 bg-black/60 border border-white/10 rounded text-xs font-mono text-white focus:outline-none focus:border-white/40"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-[11px] font-hud tracking-wider text-cyan-300 uppercase mb-1">
+              <label className="block text-[11px] font-hud tracking-wider text-white uppercase mb-1">
                 DUE DATE
               </label>
               <input
                 type="date"
                 value={dueDate}
                 onChange={(e) => setDueDate(e.target.value)}
-                className="w-full px-3 py-1.5 bg-black/60 border border-cyan-500/30 rounded text-xs font-mono text-cyan-100 focus:outline-none focus:border-cyan-400"
+                className="w-full px-3 py-1.5 bg-black/60 border border-white/10 rounded text-xs font-mono text-white focus:outline-none focus:border-white/40"
               />
             </div>
 
             <div className="pt-2 flex gap-2">
-              <NeonButton type="submit" variant="cyan" size="md" className="flex-1">
+              <NeonButton type="submit" variant="solid" size="md" className="flex-1">
                 {editingTaskId ? 'UPDATE' : 'ENROLL DIRECTIVE'}
               </NeonButton>
               {editingTaskId && (
@@ -294,7 +294,7 @@ export const TasksPage: React.FC = () => {
         {/* Right Column: Task List */}
         <div className="lg:col-span-2 space-y-3">
           {loading ? (
-            <div className="py-16 text-center font-mono text-xs text-cyan-400 animate-pulse">
+            <div className="py-16 text-center font-mono text-xs text-gray-200 animate-pulse">
               SYNCING TASK MANIFEST...
             </div>
           ) : filteredTasks.length === 0 ? (
@@ -306,25 +306,25 @@ export const TasksPage: React.FC = () => {
               <div
                 key={t.id}
                 className={`cyber-panel p-4 rounded-lg flex items-start justify-between gap-3 group transition-all ${
-                  t.completed ? 'opacity-60 border-cyan-500/10' : 'hover:border-cyan-400'
+                  t.completed ? 'opacity-60 border-white/10' : 'hover:border-white/40'
                 }`}
               >
                 <div className="flex items-start gap-3 min-w-0">
                   <button
                     onClick={() => handleToggle(t)}
-                    className="mt-0.5 text-cyan-400 hover:text-white"
+                    className="mt-0.5 text-gray-200 hover:text-white"
                   >
                     {t.completed ? (
-                      <CheckSquare className="w-5 h-5 text-green-400" />
+                      <CheckSquare className="w-5 h-5 text-white" />
                     ) : (
-                      <Square className="w-5 h-5 text-cyan-500/50" />
+                      <Square className="w-5 h-5 text-gray-500" />
                     )}
                   </button>
 
                   <div className="min-w-0">
                     <h4
                       className={`text-sm font-hud font-bold ${
-                        t.completed ? 'line-through text-gray-500' : 'text-cyan-100'
+                        t.completed ? 'line-through text-gray-500' : 'text-white'
                       }`}
                     >
                       {t.title}
@@ -336,7 +336,7 @@ export const TasksPage: React.FC = () => {
                     )}
 
                     <div className="flex flex-wrap items-center gap-3 mt-2 text-[10px] font-mono text-gray-400">
-                      <span className="flex items-center gap-1 text-cyan-400/80">
+                      <span className="flex items-center gap-1 text-gray-400">
                         <Tag className="w-3 h-3" /> {t.category}
                       </span>
                       {t.due_date && (
@@ -355,7 +355,7 @@ export const TasksPage: React.FC = () => {
                         ? 'border-red-500 bg-red-950/60 text-red-300'
                         : t.priority === 'HIGH'
                         ? 'border-amber-500 bg-amber-950/60 text-amber-300'
-                        : 'border-cyan-500 bg-cyan-950/60 text-cyan-300'
+                        : 'border-white/20 bg-white/5 text-white'
                     }`}
                   >
                     {t.priority}
@@ -364,7 +364,7 @@ export const TasksPage: React.FC = () => {
                   <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
                     <button
                       onClick={() => handleStartEdit(t)}
-                      className="p-1 hover:text-cyan-300 text-gray-400"
+                      className="p-1 hover:text-white text-gray-400"
                     >
                       <Edit2 className="w-3.5 h-3.5" />
                     </button>

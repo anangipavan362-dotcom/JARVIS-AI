@@ -19,9 +19,9 @@ const GlobeScene: React.FC<{ status: string }> = ({ status }) => {
     const phi = Math.PI * (Math.sqrt(5) - 1); // Golden ratio
 
     for (let i = 0; i < numPoints; i++) {
-      const y = 1 - (i / (numPoints - 1)) * 2; // y goes from 1 to -1
-      const radius = Math.sqrt(1 - y * y); // radius at y
-      const theta = phi * i; // golden angle increment
+      const y = 1 - (i / (numPoints - 1)) * 2;
+      const radius = Math.sqrt(1 - y * y);
+      const theta = phi * i;
 
       const x = Math.cos(theta) * radius * 1.8;
       const z = Math.sin(theta) * radius * 1.8;
@@ -43,7 +43,8 @@ const GlobeScene: React.FC<{ status: string }> = ({ status }) => {
     }
   });
 
-  const primaryColor = status === 'OFFLINE' ? '#FF2A55' : '#00E5FF';
+  const primaryColor = '#FFFFFF';
+  const secondaryColor = '#C8C8C8';
 
   return (
     <group ref={globeRef}>
@@ -51,10 +52,10 @@ const GlobeScene: React.FC<{ status: string }> = ({ status }) => {
       <mesh>
         <sphereGeometry args={[1.75, 24, 24]} />
         <meshBasicMaterial
-          color="#008CFF"
+          color={secondaryColor}
           wireframe
           transparent
-          opacity={0.12}
+          opacity={0.15}
         />
       </mesh>
 
@@ -67,7 +68,7 @@ const GlobeScene: React.FC<{ status: string }> = ({ status }) => {
           size={0.045}
           color={primaryColor}
           transparent
-          opacity={0.8}
+          opacity={0.85}
           blending={THREE.AdditiveBlending}
         />
       </points>
@@ -76,9 +77,9 @@ const GlobeScene: React.FC<{ status: string }> = ({ status }) => {
       <mesh ref={ringRef} rotation={[Math.PI / 3, 0, 0]}>
         <torusGeometry args={[2.2, 0.015, 16, 64]} />
         <meshBasicMaterial
-          color={primaryColor}
+          color={secondaryColor}
           transparent
-          opacity={0.6}
+          opacity={0.65}
           blending={THREE.AdditiveBlending}
         />
       </mesh>
@@ -95,27 +96,31 @@ const GlobeScene: React.FC<{ status: string }> = ({ status }) => {
 export const Globe: React.FC<GlobeProps> = ({
   size = 220,
   status = 'ONLINE',
-  networkLatency = 24
+  networkLatency = 24,
 }) => {
   return (
     <div
-      className="relative flex flex-col items-center justify-center select-none"
+      className="relative flex items-center justify-center select-none overflow-hidden"
       style={{ width: size, height: size }}
     >
-      <div className="absolute inset-0 rounded-full bg-cyan-500/10 blur-xl pointer-events-none" />
       <Canvas
         camera={{ position: [0, 0, 4.8], fov: 45 }}
         gl={{ antialias: true, alpha: true }}
       >
-        <ambientLight intensity={0.5} />
+        <ambientLight intensity={0.4} />
         <GlobeScene status={status} />
       </Canvas>
 
-      {/* HUD Telemetry Tag */}
-      <div className="absolute bottom-1 px-2 py-0.5 rounded bg-black/70 border border-cyan-500/30 text-[9px] font-mono text-cyan-300 flex items-center gap-1.5 pointer-events-none">
-        <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-        <span>NETWORK MONITOR // {networkLatency}ms</span>
+      {/* Overlay Status Pill in Center Bottom */}
+      <div className="absolute bottom-2 inset-x-0 flex items-center justify-center pointer-events-none">
+        <div className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-black/70 border border-white/15 backdrop-blur-md">
+          <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+          <span className="text-[9px] font-mono font-bold tracking-widest text-white uppercase">
+            SAT-NET // {networkLatency}MS
+          </span>
+        </div>
       </div>
     </div>
   );
 };
+export default Globe;

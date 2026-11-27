@@ -31,30 +31,30 @@ export const WeatherWidget: React.FC = () => {
       headerAction={
         <button
           onClick={() => navigate('/weather')}
-          className="text-cyan-400 hover:text-white text-xs font-mono flex items-center gap-1"
+          className="text-gray-400 hover:text-white text-xs font-mono flex items-center gap-1 cursor-pointer"
         >
           <span>EXPAND</span> <ArrowRight className="w-3 h-3" />
         </button>
       }
     >
       {loading ? (
-        <div className="py-6 text-center font-mono text-xs text-cyan-400/60 animate-pulse">
+        <div className="py-6 text-center font-mono text-xs text-gray-400 animate-pulse">
           ACQUIRING ATMOSPHERIC TELEMETRY...
         </div>
       ) : weather ? (
         <div className="space-y-3">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2 text-xs font-mono text-cyan-300">
-              <MapPin className="w-3.5 h-3.5 text-cyan-400" />
+            <div className="flex items-center gap-2 text-xs font-mono text-white">
+              <MapPin className="w-3.5 h-3.5 text-white" />
               <span className="font-bold">{weather.city}</span>
             </div>
-            <span className="text-[10px] font-mono text-cyan-500/70">
+            <span className="text-[10px] font-mono text-gray-400">
               FEELS LIKE {weather.feels_like}°C
             </span>
           </div>
 
           <div className="flex items-baseline gap-3">
-            <span className="text-3xl font-hud font-black text-cyan-200">
+            <span className="text-3xl font-hud font-black text-white">
               {weather.temperature}°C
             </span>
             <span className="text-xs font-mono text-gray-300">
@@ -62,13 +62,13 @@ export const WeatherWidget: React.FC = () => {
             </span>
           </div>
 
-          <div className="grid grid-cols-2 gap-2 pt-2 border-t border-cyan-500/10 text-[11px] font-mono text-gray-400">
+          <div className="grid grid-cols-2 gap-2 pt-2 border-t border-white/10 text-[11px] font-mono text-gray-400">
             <div className="flex items-center gap-1.5">
-              <Droplets className="w-3.5 h-3.5 text-blue-400" />
+              <Droplets className="w-3.5 h-3.5 text-white" />
               <span>Humidity: {weather.humidity}%</span>
             </div>
             <div className="flex items-center gap-1.5">
-              <Wind className="w-3.5 h-3.5 text-cyan-400" />
+              <Wind className="w-3.5 h-3.5 text-white" />
               <span>Wind: {weather.wind} km/h</span>
             </div>
           </div>
@@ -81,3 +81,4 @@ export const WeatherWidget: React.FC = () => {
     </CyberCard>
   );
 };
+export default WeatherWidget;

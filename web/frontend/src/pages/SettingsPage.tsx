@@ -75,16 +75,16 @@ export const SettingsPage: React.FC = () => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl sm:text-3xl font-hud font-black tracking-widest text-cyan-300 uppercase">
+          <h1 className="text-2xl sm:text-3xl font-hud font-black tracking-widest text-white uppercase">
             SYSTEM CONFIGURATION
           </h1>
-          <p className="text-xs font-mono text-cyan-400/70 tracking-widest uppercase mt-1">
+          <p className="text-xs font-mono text-gray-400 tracking-widest uppercase mt-1">
             CUSTOMIZE J.A.R.V.I.S. INTERACTION & TELEMETRY PARAMETERS
           </p>
         </div>
 
         {savedSuccess && (
-          <div className="px-3 py-1 rounded bg-green-950/60 border border-green-400 text-green-300 text-xs font-mono flex items-center gap-1.5 animate-pulse">
+          <div className="px-3 py-1 rounded bg-white/5 border border-green-400 text-gray-200 text-xs font-mono flex items-center gap-1.5 animate-pulse">
             <CheckCircle2 className="w-4 h-4" />
             <span>CONFIG SAVED</span>
           </div>
@@ -92,7 +92,7 @@ export const SettingsPage: React.FC = () => {
       </div>
 
       {/* Tabs */}
-      <div className="flex items-center gap-2 overflow-x-auto pb-2 border-b border-cyan-500/20">
+      <div className="flex items-center gap-2 overflow-x-auto pb-2 border-b border-white/10">
         {tabs.map((tab) => {
           const Icon = tab.icon;
           const isSelected = activeTab === tab.id;
@@ -105,8 +105,8 @@ export const SettingsPage: React.FC = () => {
               }}
               className={`flex items-center gap-2 px-4 py-2 rounded text-xs font-hud uppercase tracking-wider transition-all whitespace-nowrap border ${
                 isSelected
-                  ? 'bg-cyan-950 border-cyan-400 text-white shadow-[0_0_12px_rgba(0,229,255,0.3)]'
-                  : 'bg-black/40 border-cyan-500/20 text-gray-400 hover:text-cyan-300'
+                  ? 'bg-white/5 border-white/40 text-white shadow-[0_0_12px_rgba(255, 255, 255, 0.3)]'
+                  : 'bg-black/40 border-white/10 text-gray-400 hover:text-white'
               }`}
             >
               <Icon className="w-3.5 h-3.5" />
@@ -122,7 +122,7 @@ export const SettingsPage: React.FC = () => {
         {activeTab === 'account' && (
           <div className="space-y-6">
             <div>
-              <h3 className="text-sm font-hud font-bold text-cyan-300 uppercase tracking-wider mb-2">
+              <h3 className="text-sm font-hud font-bold text-white uppercase tracking-wider mb-2">
                 ACTIVE HARDWARE SESSIONS
               </h3>
               <p className="text-xs font-mono text-gray-400 mb-4">
@@ -133,14 +133,14 @@ export const SettingsPage: React.FC = () => {
                 {sessions.map((s, i) => (
                   <div
                     key={s.id || i}
-                    className="p-3.5 rounded bg-black/50 border border-cyan-500/25 flex items-center justify-between text-xs font-mono"
+                    className="p-3.5 rounded bg-black/50 border border-white/10 flex items-center justify-between text-xs font-mono"
                   >
                     <div className="flex items-center gap-3">
-                      <div className="p-2 rounded bg-cyan-950/60 border border-cyan-500/30 text-cyan-400">
+                      <div className="p-2 rounded bg-white/5 border border-white/10 text-gray-200">
                         <Laptop className="w-4 h-4" />
                       </div>
                       <div>
-                        <span className="font-bold text-cyan-200 block">
+                        <span className="font-bold text-white block">
                           {s.device_info || 'Terminal Node'} ({s.browser || 'Web Client'})
                         </span>
                         <span className="text-[10px] text-gray-400">
@@ -148,14 +148,14 @@ export const SettingsPage: React.FC = () => {
                         </span>
                       </div>
                     </div>
-                    <span className="text-[10px] font-hud uppercase text-green-400">
+                    <span className="text-[10px] font-hud uppercase text-white">
                       ● ACTIVE
                     </span>
                   </div>
                 ))}
               </div>
 
-              <div className="mt-6 pt-4 border-t border-cyan-500/20">
+              <div className="mt-6 pt-4 border-t border-white/10">
                 <NeonButton
                   variant="alert"
                   size="sm"
@@ -172,7 +172,7 @@ export const SettingsPage: React.FC = () => {
         {activeTab === 'ai' && settings && (
           <div className="space-y-6">
             <div>
-              <h3 className="text-sm font-hud font-bold text-cyan-300 uppercase tracking-wider mb-2">
+              <h3 className="text-sm font-hud font-bold text-white uppercase tracking-wider mb-2">
                 NEURAL PERSONALITY & MODEL MATRIX
               </h3>
               <p className="text-xs font-mono text-gray-400 mb-4">
@@ -186,7 +186,7 @@ export const SettingsPage: React.FC = () => {
                 <select
                   value={settings.ai_personality}
                   onChange={(e) => handleUpdate({ ai_personality: e.target.value })}
-                  className="w-full px-3 py-2 bg-black/60 border border-cyan-500/30 rounded text-cyan-200 focus:outline-none"
+                  className="w-full px-3 py-2 bg-black/60 border border-white/10 rounded text-white focus:outline-none"
                 >
                   <option value="jarvis">J.A.R.V.I.S. (Intelligent, Polite, Witty)</option>
                   <option value="friday">F.R.I.D.A.Y. (Direct, Tactical, Fast)</option>
@@ -199,7 +199,7 @@ export const SettingsPage: React.FC = () => {
                 <select
                   value={settings.response_length}
                   onChange={(e) => handleUpdate({ response_length: e.target.value })}
-                  className="w-full px-3 py-2 bg-black/60 border border-cyan-500/30 rounded text-cyan-200 focus:outline-none"
+                  className="w-full px-3 py-2 bg-black/60 border border-white/10 rounded text-white focus:outline-none"
                 >
                   <option value="adaptive">Adaptive (Auto-Sized)</option>
                   <option value="concise">Tactical Concise (Military style)</option>
@@ -214,7 +214,7 @@ export const SettingsPage: React.FC = () => {
         {activeTab === 'voice' && settings && (
           <div className="space-y-6">
             <div>
-              <h3 className="text-sm font-hud font-bold text-cyan-300 uppercase tracking-wider mb-2">
+              <h3 className="text-sm font-hud font-bold text-white uppercase tracking-wider mb-2">
                 SPEECH RECOGNITION & SYNTHESIS
               </h3>
               <p className="text-xs font-mono text-gray-400 mb-4">
@@ -228,15 +228,15 @@ export const SettingsPage: React.FC = () => {
                   type="checkbox"
                   checked={settings.voice_enabled}
                   onChange={(e) => handleUpdate({ voice_enabled: e.target.checked })}
-                  className="w-4 h-4 accent-cyan-400"
+                  className="w-4 h-4 accent-white"
                 />
-                <span className="text-cyan-200">ENABLE VOICE RECOGNITION MODULE</span>
+                <span className="text-white">ENABLE VOICE RECOGNITION MODULE</span>
               </label>
 
               <div>
                 <div className="flex justify-between text-gray-400 mb-1">
                   <span>SPEECH RATE MULTIPLIER:</span>
-                  <span className="text-cyan-300">{settings.voice_speed}x</span>
+                  <span className="text-white">{settings.voice_speed}x</span>
                 </div>
                 <input
                   type="range"
@@ -245,7 +245,7 @@ export const SettingsPage: React.FC = () => {
                   step="0.1"
                   value={settings.voice_speed}
                   onChange={(e) => handleUpdate({ voice_speed: parseFloat(e.target.value) })}
-                  className="w-full accent-cyan-400"
+                  className="w-full accent-white"
                 />
               </div>
             </div>
@@ -256,7 +256,7 @@ export const SettingsPage: React.FC = () => {
         {activeTab === 'appearance' && settings && (
           <div className="space-y-6">
             <div>
-              <h3 className="text-sm font-hud font-bold text-cyan-300 uppercase tracking-wider mb-2">
+              <h3 className="text-sm font-hud font-bold text-white uppercase tracking-wider mb-2">
                 HUD VISUAL THEME & INTENSITY
               </h3>
               <p className="text-xs font-mono text-gray-400 mb-4">
@@ -270,9 +270,9 @@ export const SettingsPage: React.FC = () => {
                 <select
                   value={settings.theme}
                   onChange={(e) => handleUpdate({ theme: e.target.value })}
-                  className="w-full px-3 py-2 bg-black/60 border border-cyan-500/30 rounded text-cyan-200 focus:outline-none"
+                  className="w-full px-3 py-2 bg-black/60 border border-white/10 rounded text-white focus:outline-none"
                 >
-                  <option value="jarvis_dark">JARVIS Dark (Pitch Black / Cyan Neon)</option>
+                  <option value="jarvis_dark">JARVIS Monochrome (Deep Black / Silver White)</option>
                   <option value="midnight_blue">Midnight Blue (Deep Space Navy)</option>
                   <option value="high_contrast">High Contrast Cyber</option>
                 </select>
@@ -283,7 +283,7 @@ export const SettingsPage: React.FC = () => {
                 <select
                   value={settings.glow_intensity}
                   onChange={(e) => handleUpdate({ glow_intensity: e.target.value })}
-                  className="w-full px-3 py-2 bg-black/60 border border-cyan-500/30 rounded text-cyan-200 focus:outline-none"
+                  className="w-full px-3 py-2 bg-black/60 border border-white/10 rounded text-white focus:outline-none"
                 >
                   <option value="high">High Luminous Aura</option>
                   <option value="normal">Standard Hologram</option>
@@ -299,7 +299,7 @@ export const SettingsPage: React.FC = () => {
                     localStorage.setItem('jarvis_3d_enabled', e.target.value);
                     sound.playClick();
                   }}
-                  className="w-full px-3 py-2 bg-black/60 border border-cyan-500/30 rounded text-cyan-200 focus:outline-none"
+                  className="w-full px-3 py-2 bg-black/60 border border-white/10 rounded text-white focus:outline-none"
                 >
                   <option value="enabled">Enabled (WebGL 3D Core)</option>
                   <option value="disabled">Disabled (Lightweight 2D Mode)</option>
@@ -314,7 +314,7 @@ export const SettingsPage: React.FC = () => {
                     localStorage.setItem('jarvis_perf_mode', e.target.value);
                     sound.playClick();
                   }}
-                  className="w-full px-3 py-2 bg-black/60 border border-cyan-500/30 rounded text-cyan-200 focus:outline-none"
+                  className="w-full px-3 py-2 bg-black/60 border border-white/10 rounded text-white focus:outline-none"
                 >
                   <option value="high">High Fidelity (Full Particle Matrix)</option>
                   <option value="battery">Battery Saver (Optimized FPS)</option>
@@ -329,7 +329,7 @@ export const SettingsPage: React.FC = () => {
                     localStorage.setItem('jarvis_anim_intensity', e.target.value);
                     sound.playClick();
                   }}
-                  className="w-full px-3 py-2 bg-black/60 border border-cyan-500/30 rounded text-cyan-200 focus:outline-none"
+                  className="w-full px-3 py-2 bg-black/60 border border-white/10 rounded text-white focus:outline-none"
                 >
                   <option value="high">Dynamic Kinetic Orbitals</option>
                   <option value="balanced">Balanced Motion</option>
@@ -345,7 +345,7 @@ export const SettingsPage: React.FC = () => {
                     localStorage.setItem('jarvis_sound_enabled', e.target.value);
                     sound.playClick();
                   }}
-                  className="w-full px-3 py-2 bg-black/60 border border-cyan-500/30 rounded text-cyan-200 focus:outline-none"
+                  className="w-full px-3 py-2 bg-black/60 border border-white/10 rounded text-white focus:outline-none"
                 >
                   <option value="true">Active (Tactile Audio Feedback)</option>
                   <option value="false">Muted (Silent Protocol)</option>
@@ -358,7 +358,7 @@ export const SettingsPage: React.FC = () => {
         {/* PRIVACY TAB */}
         {activeTab === 'privacy' && settings && (
           <div className="space-y-4 text-xs font-mono">
-            <h3 className="text-sm font-hud font-bold text-cyan-300 uppercase tracking-wider mb-2">
+            <h3 className="text-sm font-hud font-bold text-white uppercase tracking-wider mb-2">
               PRIVACY & DATA RETENTION
             </h3>
             <p className="text-gray-400 mb-4">
@@ -370,9 +370,9 @@ export const SettingsPage: React.FC = () => {
                 type="checkbox"
                 checked={settings.history_retention}
                 onChange={(e) => handleUpdate({ history_retention: e.target.checked })}
-                className="w-4 h-4 accent-cyan-400"
+                className="w-4 h-4 accent-white"
               />
-              <span className="text-cyan-200">RETAIN CONSULTATION HISTORY IN DATABASE</span>
+              <span className="text-white">RETAIN CONSULTATION HISTORY IN DATABASE</span>
             </label>
           </div>
         )}
@@ -380,7 +380,7 @@ export const SettingsPage: React.FC = () => {
         {/* NOTIFICATIONS TAB */}
         {activeTab === 'notifications' && settings && (
           <div className="space-y-4 text-xs font-mono">
-            <h3 className="text-sm font-hud font-bold text-cyan-300 uppercase tracking-wider mb-2">
+            <h3 className="text-sm font-hud font-bold text-white uppercase tracking-wider mb-2">
               DISPATCH NOTIFICATION PREFERENCES
             </h3>
 
@@ -390,9 +390,9 @@ export const SettingsPage: React.FC = () => {
                   type="checkbox"
                   checked={settings.notify_news}
                   onChange={(e) => handleUpdate({ notify_news: e.target.checked })}
-                  className="w-4 h-4 accent-cyan-400"
+                  className="w-4 h-4 accent-white"
                 />
-                <span className="text-cyan-200">BREAKING INTELLIGENCE DISPATCHES</span>
+                <span className="text-white">BREAKING INTELLIGENCE DISPATCHES</span>
               </label>
 
               <label className="flex items-center gap-3 cursor-pointer">
@@ -400,9 +400,9 @@ export const SettingsPage: React.FC = () => {
                   type="checkbox"
                   checked={settings.notify_sports}
                   onChange={(e) => handleUpdate({ notify_sports: e.target.checked })}
-                  className="w-4 h-4 accent-cyan-400"
+                  className="w-4 h-4 accent-white"
                 />
-                <span className="text-cyan-200">LIVE SPORTS FIXTURES & UPDATES</span>
+                <span className="text-white">LIVE SPORTS FIXTURES & UPDATES</span>
               </label>
 
               <label className="flex items-center gap-3 cursor-pointer">
@@ -410,9 +410,9 @@ export const SettingsPage: React.FC = () => {
                   type="checkbox"
                   checked={settings.notify_tasks}
                   onChange={(e) => handleUpdate({ notify_tasks: e.target.checked })}
-                  className="w-4 h-4 accent-cyan-400"
+                  className="w-4 h-4 accent-white"
                 />
-                <span className="text-cyan-200">MISSION TASK REMINDERS</span>
+                <span className="text-white">MISSION TASK REMINDERS</span>
               </label>
             </div>
           </div>

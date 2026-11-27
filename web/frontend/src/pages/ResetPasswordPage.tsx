@@ -40,16 +40,16 @@ export const ResetPasswordPage: React.FC = () => {
   };
 
   return (
-    <div className="relative min-h-screen bg-[#030712] text-[#E8FFFF] flex items-center justify-center p-4 selection:bg-cyan-500 selection:text-black">
+    <div className="relative min-h-screen bg-[#050505] text-[#E8FFFF] flex items-center justify-center p-4 selection:bg-white selection:text-black">
       <div className="w-full max-w-md">
         <div className="text-center mb-6">
           <div className="flex justify-center mb-2">
             <ArcReactor state="THINKING" size={110} subtext="SECURITY OVERRIDE" />
           </div>
-          <h1 className="text-2xl font-hud font-black tracking-widest text-cyan-300 uppercase">
+          <h1 className="text-2xl font-hud font-black tracking-widest text-white uppercase">
             RESET ACCESS KEY
           </h1>
-          <p className="text-xs font-mono text-cyan-400/80 tracking-widest uppercase mt-1">
+          <p className="text-xs font-mono text-gray-400 tracking-widest uppercase mt-1">
             ESTABLISH NEW CREDENTIALS
           </p>
         </div>
@@ -64,15 +64,15 @@ export const ResetPasswordPage: React.FC = () => {
 
           {success ? (
             <div className="text-center py-4 space-y-3">
-              <div className="p-3 rounded bg-green-950/40 border border-green-400/60 text-green-300 text-xs font-mono">
-                <CheckCircle2 className="w-6 h-6 text-green-400 mx-auto mb-2" />
+              <div className="p-3 rounded bg-white/5 border border-green-400/60 text-gray-200 text-xs font-mono">
+                <CheckCircle2 className="w-6 h-6 text-white mx-auto mb-2" />
                 <p>ACCESS CREDENTIALS OVERWRITTEN SUCCESSFULLY. REDIRECTING TO TERMINAL...</p>
               </div>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label className="block text-[11px] font-hud tracking-wider text-cyan-300 uppercase mb-1">
+                <label className="block text-[11px] font-hud tracking-wider text-white uppercase mb-1">
                   SECURITY RESET TOKEN
                 </label>
                 <input
@@ -81,16 +81,16 @@ export const ResetPasswordPage: React.FC = () => {
                   value={token}
                   onChange={(e) => setToken(e.target.value)}
                   placeholder="Paste recovery token"
-                  className="w-full px-3 py-2 bg-black/60 border border-cyan-500/30 rounded text-xs font-mono text-cyan-100 focus:border-cyan-400 focus:outline-none"
+                  className="w-full px-3 py-2 bg-black/60 border border-white/10 rounded text-xs font-mono text-white focus:border-white/40 focus:outline-none"
                 />
               </div>
 
               <div>
-                <label className="block text-[11px] font-hud tracking-wider text-cyan-300 uppercase mb-1">
+                <label className="block text-[11px] font-hud tracking-wider text-white uppercase mb-1">
                   NEW PASSWORD
                 </label>
                 <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-cyan-500">
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
                     <Lock className="w-4 h-4" />
                   </div>
                   <input
@@ -99,14 +99,14 @@ export const ResetPasswordPage: React.FC = () => {
                     value={newPassword}
                     onChange={(e) => setNewPassword(e.target.value)}
                     placeholder="Minimum 8 characters"
-                    className="w-full pl-9 pr-3 py-2 bg-black/60 border border-cyan-500/30 rounded text-xs font-mono text-cyan-100 focus:border-cyan-400 focus:outline-none"
+                    className="w-full pl-9 pr-3 py-2 bg-black/60 border border-white/10 rounded text-xs font-mono text-white focus:border-white/40 focus:outline-none"
                   />
                 </div>
               </div>
 
               <NeonButton
                 type="submit"
-                variant="cyan"
+                variant="solid"
                 size="md"
                 loading={loading}
                 className="w-full mt-2"
@@ -115,7 +115,7 @@ export const ResetPasswordPage: React.FC = () => {
               </NeonButton>
 
               <div className="text-center pt-2">
-                <Link to="/login" className="text-xs font-mono text-gray-400 hover:text-cyan-300">
+                <Link to="/login" className="text-xs font-mono text-gray-400 hover:text-white">
                   CANCEL & RETURN
                 </Link>
               </div>

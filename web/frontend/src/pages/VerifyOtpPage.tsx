@@ -154,12 +154,12 @@ export const VerifyOtpPage: React.FC = () => {
   };
 
   return (
-    <div className="relative min-h-screen bg-[#030712] text-[#E8FFFF] flex items-center justify-center p-4 selection:bg-cyan-500 selection:text-black overflow-hidden select-none">
+    <div className="relative min-h-screen bg-[#050505] text-[#E8FFFF] flex items-center justify-center p-4 selection:bg-white selection:text-black overflow-hidden select-none">
       {/* 3D Ambient Holographic Particles */}
       <div className="absolute inset-0 z-0 pointer-events-none opacity-40">
         <Canvas camera={{ position: [0, 0, 5], fov: 60 }}>
           <ambientLight intensity={0.5} />
-          <ParticleField count={450} speed={0.35} color="#00e5ff" />
+          <ParticleField count={450} speed={0.35} color="#FFFFFF" />
         </Canvas>
       </div>
 
@@ -173,32 +173,32 @@ export const VerifyOtpPage: React.FC = () => {
               subtext="OTP GATEWAY"
             />
           </div>
-          <h1 className="text-2xl font-hud font-black tracking-widest text-cyan-300 uppercase">
+          <h1 className="text-2xl font-hud font-black tracking-widest text-white uppercase">
             CLEARANCE VERIFICATION
           </h1>
-          <p className="text-xs font-mono text-cyan-400/80 tracking-widest uppercase mt-1">
+          <p className="text-xs font-mono text-gray-400 tracking-widest uppercase mt-1">
             ENTER 6-DIGIT TACTICAL CODE
           </p>
         </div>
 
         {/* Expiration & Node Status */}
         <div className="grid grid-cols-2 gap-2 mb-4 text-center">
-          <div className="p-2 rounded bg-cyan-950/40 border border-cyan-500/20 backdrop-blur-sm">
-            <div className="text-[9px] font-mono text-cyan-400/70 uppercase">CODE EXPIRES IN</div>
+          <div className="p-2 rounded bg-white/5 border border-white/10 backdrop-blur-sm">
+            <div className="text-[9px] font-mono text-gray-400 uppercase">CODE EXPIRES IN</div>
             <div className="text-xs font-hud font-bold text-amber-400 mt-0.5">
               {formatTimer(expirationSeconds)}
             </div>
           </div>
-          <div className="p-2 rounded bg-cyan-950/40 border border-cyan-500/20 backdrop-blur-sm">
-            <div className="text-[9px] font-mono text-cyan-400/70 uppercase">DESTINATION</div>
-            <div className="text-[10px] font-mono text-cyan-200 mt-0.5 truncate px-1" title={email}>
+          <div className="p-2 rounded bg-white/5 border border-white/10 backdrop-blur-sm">
+            <div className="text-[9px] font-mono text-gray-400 uppercase">DESTINATION</div>
+            <div className="text-[10px] font-mono text-white mt-0.5 truncate px-1" title={email}>
               {email || 'N/A'}
             </div>
           </div>
         </div>
 
         {/* 3D Holographic Card Form */}
-        <HolographicCard glowColor="cyan" className="p-6">
+        <HolographicCard glowColor="white" className="p-6">
           {errorMsg && (
             <div className="mb-4 p-3 rounded bg-red-950/50 border border-red-500/60 flex items-center gap-2 text-xs font-mono text-red-400">
               <ShieldAlert className="w-4 h-4 text-red-400 shrink-0" />
@@ -207,15 +207,15 @@ export const VerifyOtpPage: React.FC = () => {
           )}
 
           {successMsg && (
-            <div className="mb-4 p-3 rounded bg-green-950/60 border border-green-400/60 flex items-center gap-2 text-xs font-mono text-green-300 animate-pulse">
-              <CheckCircle2 className="w-4 h-4 text-green-400 shrink-0" />
+            <div className="mb-4 p-3 rounded bg-white/5 border border-green-400/60 flex items-center gap-2 text-xs font-mono text-gray-200 animate-pulse">
+              <CheckCircle2 className="w-4 h-4 text-white shrink-0" />
               <span>{successMsg}</span>
             </div>
           )}
 
           <form onSubmit={handleManualSubmit} className="space-y-6">
             <div>
-              <label className="block text-[10px] font-hud tracking-widest text-cyan-300 uppercase mb-3 text-center">
+              <label className="block text-[10px] font-hud tracking-widest text-white uppercase mb-3 text-center">
                 6-DIGIT CLEARANCE OTP
               </label>
 
@@ -231,7 +231,7 @@ export const VerifyOtpPage: React.FC = () => {
                     value={digit}
                     onChange={(e) => handleChange(index, e.target.value)}
                     onKeyDown={(e) => handleKeyDown(index, e)}
-                    className="w-11 h-13 sm:w-12 sm:h-14 text-center text-xl font-hud font-black text-cyan-200 bg-black/70 border border-cyan-500/40 rounded focus:outline-none focus:border-cyan-300 focus:shadow-[0_0_15px_rgba(0,229,255,0.4)] transition-all"
+                    className="w-11 h-13 sm:w-12 sm:h-14 text-center text-xl font-hud font-black text-white bg-black/70 border border-white/10 rounded focus:outline-none focus:border-white-300 focus:shadow-[0_0_15px_rgba(255, 255, 255, 0.4)] transition-all"
                   />
                 ))}
               </div>
@@ -239,7 +239,7 @@ export const VerifyOtpPage: React.FC = () => {
 
             <NeonButton
               type="submit"
-              variant="cyan"
+              variant="solid"
               size="md"
               loading={loading}
               className="w-full"
@@ -250,14 +250,14 @@ export const VerifyOtpPage: React.FC = () => {
           </form>
 
           {/* Resend Actions & Cooldown */}
-          <div className="mt-6 pt-4 border-t border-cyan-500/20 flex flex-col items-center space-y-3">
+          <div className="mt-6 pt-4 border-t border-white/10 flex flex-col items-center space-y-3">
             <button
               onClick={handleResend}
               disabled={cooldown > 0 || resending}
               className={`text-xs font-mono flex items-center gap-1.5 transition-colors ${
                 cooldown > 0
                   ? 'text-gray-500 cursor-not-allowed'
-                  : 'text-cyan-400 hover:text-white hover:underline'
+                  : 'text-gray-200 hover:text-white hover:underline'
               }`}
             >
               <RefreshCw className={`w-3.5 h-3.5 ${resending ? 'animate-spin' : ''}`} />
@@ -267,11 +267,11 @@ export const VerifyOtpPage: React.FC = () => {
             </button>
 
             <div className="flex items-center justify-between w-full text-[11px] font-mono text-gray-400 pt-2">
-              <Link to="/register" className="hover:text-cyan-300 flex items-center gap-1">
+              <Link to="/register" className="hover:text-white flex items-center gap-1">
                 <ArrowLeft className="w-3 h-3" />
                 <span>CHANGE EMAIL</span>
               </Link>
-              <Link to="/login" className="hover:text-cyan-300">
+              <Link to="/login" className="hover:text-white">
                 RETURN TO LOGIN
               </Link>
             </div>

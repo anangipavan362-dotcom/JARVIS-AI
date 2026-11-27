@@ -64,19 +64,19 @@ export const WeatherPage: React.FC = () => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl sm:text-3xl font-hud font-black tracking-widest text-cyan-300 uppercase">
+          <h1 className="text-2xl sm:text-3xl font-hud font-black tracking-widest text-white uppercase">
             JARVIS WEATHER
           </h1>
-          <p className="text-xs font-mono text-cyan-400/70 tracking-widest uppercase mt-1">
+          <p className="text-xs font-mono text-gray-400 tracking-widest uppercase mt-1">
             METEOROLOGICAL SENSOR SUITE & FORECAST RADAR
           </p>
         </div>
 
         <button
           onClick={handleUseBrowserLocation}
-          className="px-3 py-1.5 rounded bg-cyan-950/60 border border-cyan-400 text-xs font-hud text-cyan-300 hover:text-white flex items-center gap-1.5"
+          className="px-3 py-1.5 rounded bg-white/5 border border-white/40 text-xs font-hud text-white hover:text-white flex items-center gap-1.5"
         >
-          <Compass className="w-4 h-4 text-cyan-400" />
+          <Compass className="w-4 h-4 text-gray-200" />
           <span>USE BROWSER GPS</span>
         </button>
       </div>
@@ -85,18 +85,18 @@ export const WeatherPage: React.FC = () => {
       <div className="cyber-panel p-4 rounded-lg">
         <form onSubmit={handleSearch} className="flex gap-2">
           <div className="relative flex-1">
-            <MapPin className="w-4 h-4 text-cyan-400 absolute left-3 top-3" />
+            <MapPin className="w-4 h-4 text-gray-200 absolute left-3 top-3" />
             <input
               type="text"
               placeholder="Search global coordinates or city (e.g. London, Tokyo, Mumbai, Paris)..."
               value={cityInput}
               onChange={(e) => setCityInput(e.target.value)}
-              className="w-full pl-9 pr-3 py-2 bg-black/60 border border-cyan-500/30 rounded text-xs font-mono text-cyan-100 placeholder-cyan-500/30 focus:outline-none focus:border-cyan-400"
+              className="w-full pl-9 pr-3 py-2 bg-black/60 border border-white/10 rounded text-xs font-mono text-white placeholder-gray-600 focus:outline-none focus:border-white/40"
             />
           </div>
           <button
             type="submit"
-            className="px-5 py-2 rounded bg-cyan-950 border border-cyan-400 text-xs font-hud font-bold text-cyan-300 hover:text-white"
+            className="px-5 py-2 rounded bg-white/5 border border-white/40 text-xs font-hud font-bold text-white hover:text-white"
           >
             SEARCH
           </button>
@@ -105,50 +105,50 @@ export const WeatherPage: React.FC = () => {
 
       {/* Current Atmospheric Telemetry Overview */}
       {loading ? (
-        <div className="py-20 text-center font-mono text-xs text-cyan-400 animate-pulse">
+        <div className="py-20 text-center font-mono text-xs text-gray-200 animate-pulse">
           SAMPLING SATELLITE ATMOSPHERIC SENSORS...
         </div>
       ) : weather ? (
         <div className="space-y-6">
           <div className="cyber-panel rounded-lg p-6 sm:p-8 tech-corner-tl tech-corner-br flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="space-y-2 text-center md:text-left">
-              <div className="flex items-center justify-center md:justify-start gap-2 text-sm font-mono text-cyan-400">
+              <div className="flex items-center justify-center md:justify-start gap-2 text-sm font-mono text-gray-200">
                 <MapPin className="w-4 h-4" />
-                <span className="font-bold text-lg text-cyan-200">{weather.city}</span>
+                <span className="font-bold text-lg text-white">{weather.city}</span>
               </div>
               <div className="text-5xl sm:text-6xl font-hud font-black text-white tracking-tight">
                 {weather.temperature}°C
               </div>
-              <p className="text-sm font-mono text-cyan-300 uppercase tracking-wider">
+              <p className="text-sm font-mono text-white uppercase tracking-wider">
                 {weather.condition}
               </p>
             </div>
 
             {/* Metric Gauges */}
             <div className="grid grid-cols-2 gap-3 w-full md:w-auto text-xs font-mono">
-              <div className="p-3 rounded bg-black/50 border border-cyan-500/20">
+              <div className="p-3 rounded bg-black/50 border border-white/10">
                 <span className="text-gray-400 block text-[10px]">FEELS LIKE</span>
-                <span className="text-base font-bold text-cyan-200">{weather.feels_like}°C</span>
+                <span className="text-base font-bold text-white">{weather.feels_like}°C</span>
               </div>
-              <div className="p-3 rounded bg-black/50 border border-cyan-500/20">
+              <div className="p-3 rounded bg-black/50 border border-white/10">
                 <span className="text-gray-400 block text-[10px]">HUMIDITY</span>
-                <span className="text-base font-bold text-blue-300">{weather.humidity}%</span>
+                <span className="text-base font-bold text-gray-200">{weather.humidity}%</span>
               </div>
-              <div className="p-3 rounded bg-black/50 border border-cyan-500/20">
+              <div className="p-3 rounded bg-black/50 border border-white/10">
                 <span className="text-gray-400 block text-[10px]">WIND VELOCITY</span>
-                <span className="text-base font-bold text-cyan-200">{weather.wind} km/h</span>
+                <span className="text-base font-bold text-white">{weather.wind} km/h</span>
               </div>
-              <div className="p-3 rounded bg-black/50 border border-cyan-500/20">
+              <div className="p-3 rounded bg-black/50 border border-white/10">
                 <span className="text-gray-400 block text-[10px]">SENSOR STATUS</span>
-                <span className="text-base font-bold text-green-400">ONLINE</span>
+                <span className="text-base font-bold text-white">ONLINE</span>
               </div>
             </div>
           </div>
 
           {/* Multi-Day Forecast Matrix */}
           <div>
-            <h3 className="text-sm font-hud font-bold text-cyan-300 uppercase tracking-wider mb-3 flex items-center gap-2">
-              <Calendar className="w-4 h-4 text-cyan-400" />
+            <h3 className="text-sm font-hud font-bold text-white uppercase tracking-wider mb-3 flex items-center gap-2">
+              <Calendar className="w-4 h-4 text-gray-200" />
               <span>5-DAY METEOROLOGICAL FORECAST</span>
             </h3>
 
@@ -158,7 +158,7 @@ export const WeatherPage: React.FC = () => {
                   key={i}
                   className="cyber-panel rounded-lg p-3 text-center space-y-1 tech-corner-tl"
                 >
-                  <span className="text-[11px] font-mono text-cyan-400 font-bold block">
+                  <span className="text-[11px] font-mono text-gray-200 font-bold block">
                     {day.date}
                   </span>
                   <div className="text-lg font-hud font-bold text-white">

@@ -19,31 +19,31 @@ export const CyberCard: React.FC<CyberCardProps> = ({
   children,
   className = '',
   glow = false,
-  alert = false
+  alert = false,
 }) => {
   return (
     <div
-      className={`cyber-panel rounded-lg p-4 tech-corner-tl tech-corner-br flex flex-col relative transition-all duration-300 ${
-        glow ? 'cyber-panel-glow' : ''
-      } ${alert ? 'cyber-panel-alert' : ''} ${className}`}
+      className={`bg-[#080808]/90 backdrop-blur-2xl border border-white/10 rounded-2xl p-4 flex flex-col relative transition-all duration-300 ${
+        glow ? 'border-white/40 shadow-[0_0_25px_rgba(255,255,255,0.1)]' : ''
+      } ${alert ? 'border-white/50' : ''} ${className}`}
     >
       {/* Top Header Row */}
       {(title || headerAction) && (
-        <div className="flex items-center justify-between pb-3 mb-3 border-b border-cyan-500/20">
+        <div className="flex items-center justify-between pb-3 mb-3 border-b border-white/10">
           <div className="flex items-center gap-2">
             {badge && (
-              <span className="px-2 py-0.5 text-[9px] font-mono uppercase rounded bg-cyan-950/80 border border-cyan-500/40 text-cyan-300">
+              <span className="px-2 py-0.5 text-[9px] font-mono uppercase rounded-full bg-white/10 border border-white/20 text-white font-bold">
                 {badge}
               </span>
             )}
             <div>
               {title && (
-                <h3 className="text-sm font-hud font-bold text-cyan-200 tracking-wider uppercase">
+                <h3 className="text-sm font-hud font-bold text-white tracking-wider uppercase">
                   {title}
                 </h3>
               )}
               {subtitle && (
-                <p className="text-[10px] font-mono text-cyan-400/60 -mt-0.5">
+                <p className="text-[10px] font-mono text-gray-400 -mt-0.5">
                   {subtitle}
                 </p>
               )}
@@ -58,3 +58,4 @@ export const CyberCard: React.FC<CyberCardProps> = ({
     </div>
   );
 };
+export default CyberCard;

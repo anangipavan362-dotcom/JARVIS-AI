@@ -9,7 +9,7 @@ interface HUDProps {
 
 export const HUD: React.FC<HUDProps> = ({
   title = 'J.A.R.V.I.S. AI COMMAND SYSTEM',
-  subtext = 'ALL SUBSYSTEMS NOMINAL // LIVE NEURAL MATRIX'
+  subtext = 'ALL SUBSYSTEMS NOMINAL // DIGITAL HUMAN INTELLIGENCE ACTIVE',
 }) => {
   const [timeStr, setTimeStr] = useState<string>('');
   const [telemetry, setTelemetry] = useState<{
@@ -63,21 +63,21 @@ export const HUD: React.FC<HUDProps> = ({
 
   return (
     <div className="w-full select-none mb-6">
-      {/* Agenciy Top Telemetry Ribbon */}
-      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 p-4 sm:p-5 rounded-3xl glass-fusion border border-white/10 shadow-[0_15px_40px_rgba(0,0,0,0.6)] backdrop-blur-2xl">
-        {/* Left: Identity & Core Status with Editorial Typography */}
+      {/* Top Futuristic Telemetry HUD (Strict Monochrome) */}
+      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 p-4 sm:p-5 rounded-3xl bg-[#080808]/90 border border-white/10 shadow-[0_15px_40px_rgba(0,0,0,0.8)] backdrop-blur-2xl">
+        {/* Left: Identity & Core Status */}
         <div className="flex items-center gap-3.5">
-          <div className="relative w-10 h-10 rounded-2xl border border-cyan-400/50 bg-cyan-950/70 flex items-center justify-center shrink-0 shadow-[0_0_15px_rgba(0,229,255,0.3)]">
-            <div className="w-4 h-4 rounded-full bg-cyan-400 animate-pulse shadow-[0_0_10px_#00E5FF]" />
-            <div className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping" />
+          <div className="relative w-10 h-10 rounded-2xl border border-white/30 bg-[#111111] flex items-center justify-center shrink-0 shadow-[0_0_15px_rgba(255,255,255,0.15)]">
+            <div className="w-3.5 h-3.5 rounded-full bg-white animate-pulse shadow-[0_0_12px_#FFFFFF]" />
+            <div className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-white animate-ping" />
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <span className="text-[10px] font-mono font-bold text-cyan-400 uppercase tracking-widest px-2 py-0.5 rounded-full bg-cyan-950/60 border border-cyan-500/30">
+              <span className="text-[10px] font-mono font-bold text-white uppercase tracking-widest px-2 py-0.5 rounded-full bg-white/10 border border-white/20">
                 (00) // COCKPIT
               </span>
-              <span className="text-[10px] font-mono text-emerald-400 font-bold flex items-center gap-1">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+              <span className="text-[10px] font-mono text-[#C8C8C8] font-bold flex items-center gap-1">
+                <span className="w-1.5 h-1.5 rounded-full bg-white" />
                 NOMINAL
               </span>
             </div>
@@ -90,32 +90,33 @@ export const HUD: React.FC<HUDProps> = ({
           </div>
         </div>
 
-        {/* Right: Live Telemetry Stats Ribbon */}
+        {/* Right: Live Telemetry Stats Ribbon (Monochrome Glass Pills) */}
         <div className="flex flex-wrap items-center gap-2 sm:gap-2.5 text-xs font-mono">
-          <div className="flex items-center gap-2 px-3 py-1.5 rounded-full glass-pill border border-white/10 text-cyan-300">
-            <Cpu className="w-3.5 h-3.5 text-cyan-400" />
+          <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-gray-200">
+            <Cpu className="w-3.5 h-3.5 text-white" />
             <span className="text-[10px] text-gray-400">CPU</span>
             <span className="font-bold text-white">{telemetry.cpu}%</span>
           </div>
 
-          <div className="flex items-center gap-2 px-3 py-1.5 rounded-full glass-pill border border-white/10 text-indigo-300">
-            <Activity className="w-3.5 h-3.5 text-indigo-400" />
+          <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-gray-200">
+            <Activity className="w-3.5 h-3.5 text-white" />
             <span className="text-[10px] text-gray-400">RAM</span>
             <span className="font-bold text-white">{telemetry.ram} MB</span>
           </div>
 
-          <div className="flex items-center gap-2 px-3 py-1.5 rounded-full glass-pill border border-white/10 text-emerald-300">
-            <Wifi className="w-3.5 h-3.5 text-emerald-400" />
+          <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-gray-200">
+            <Wifi className="w-3.5 h-3.5 text-white" />
             <span className="text-[10px] text-gray-400">PING</span>
-            <span className="font-bold text-emerald-400">{telemetry.latency}ms</span>
+            <span className="font-bold text-white">{telemetry.latency}ms</span>
           </div>
 
-          <div className="flex items-center gap-2 px-3 py-1.5 rounded-full glass-pill border border-white/10 text-cyan-200">
-            <Clock className="w-3.5 h-3.5 text-cyan-400" />
-            <span className="font-bold tracking-widest text-cyan-300">{timeStr}</span>
+          <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/15 text-white">
+            <Clock className="w-3.5 h-3.5 text-white" />
+            <span className="font-bold tracking-widest text-white">{timeStr}</span>
           </div>
         </div>
       </div>
     </div>
   );
 };
+export default HUD;

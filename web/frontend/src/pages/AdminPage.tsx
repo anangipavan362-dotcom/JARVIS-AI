@@ -184,12 +184,12 @@ export const AdminPage: React.FC = () => {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2">
-            <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping" />
-            <h1 className="text-2xl sm:text-3xl font-hud font-black tracking-widest text-cyan-300 uppercase">
+            <span className="w-2.5 h-2.5 rounded-full bg-white animate-ping" />
+            <h1 className="text-2xl sm:text-3xl font-hud font-black tracking-widest text-white uppercase">
               JARVIS CYBER COMMAND CENTER
             </h1>
           </div>
-          <p className="text-xs font-mono text-cyan-400/70 tracking-widest uppercase mt-1">
+          <p className="text-xs font-mono text-gray-400 tracking-widest uppercase mt-1">
             EXECUTIVE CONTROL, CLEARANCE GOVERNANCE & TELEMETRY SURVEILLANCE
           </p>
         </div>
@@ -199,7 +199,7 @@ export const AdminPage: React.FC = () => {
             sound.playClick();
             loadData();
           }}
-          className="px-3 py-1.5 rounded bg-cyan-950/60 border border-cyan-400 text-xs font-hud text-cyan-300 hover:text-white flex items-center gap-1.5"
+          className="px-3 py-1.5 rounded bg-white/5 border border-white/40 text-xs font-hud text-white hover:text-white flex items-center gap-1.5"
         >
           <RefreshCw className={`w-3.5 h-3.5 ${loading ? 'animate-spin' : ''}`} />
           <span>SYNCHRONIZE CORE</span>
@@ -209,13 +209,13 @@ export const AdminPage: React.FC = () => {
       {/* Stats Counter Matrix */}
       <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-3">
         {[
-          { label: 'TOTAL OPERATIVES', val: stats?.total_users || users.length, glow: 'cyan' as const },
-          { label: 'ACTIVE CLEARANCE', val: stats?.active_users || 0, glow: 'green' as const },
-          { label: 'PENDING OTP', val: users.filter((u) => u.status === 'PENDING_VERIFICATION').length, glow: 'purple' as const },
+          { label: 'TOTAL OPERATIVES', val: stats?.total_users || users.length, glow: 'white' as const },
+          { label: 'ACTIVE CLEARANCE', val: stats?.active_users || 0, glow: 'white' as const },
+          { label: 'PENDING OTP', val: users.filter((u) => u.status === 'PENDING_VERIFICATION').length, glow: 'white' as const },
           { label: 'ACTIVE SESSIONS', val: stats?.active_sessions || 0, glow: 'blue' as const },
           { label: 'SUSPENDED', val: users.filter((u) => u.status === 'SUSPENDED').length, glow: 'red' as const },
           { label: 'SECURITY EVENTS', val: securityEvents.length, glow: 'amber' as const },
-          { label: 'HEALTH CORE', val: stats?.system_health || 'OPTIMAL', glow: 'green' as const },
+          { label: 'HEALTH CORE', val: stats?.system_health || 'OPTIMAL', glow: 'white' as const },
         ].map((s, idx) => (
           <HolographicCard
             key={idx}
@@ -223,7 +223,7 @@ export const AdminPage: React.FC = () => {
             className="p-3 text-center"
           >
             <span className="text-[9px] font-mono text-gray-400 block uppercase">{s.label}</span>
-            <span className="text-sm sm:text-base font-hud font-bold text-cyan-200 mt-1 block">
+            <span className="text-sm sm:text-base font-hud font-bold text-white mt-1 block">
               {s.val}
             </span>
           </HolographicCard>
@@ -231,7 +231,7 @@ export const AdminPage: React.FC = () => {
       </div>
 
       {/* Command Tabs Navigation */}
-      <div className="flex flex-wrap items-center gap-2 border-b border-cyan-500/20 pb-2">
+      <div className="flex flex-wrap items-center gap-2 border-b border-white/10 pb-2">
         {[
           { id: 'USERS', label: 'PERSONNEL DIRECTORY', icon: Users },
           { id: 'SECURITY', label: 'OTP & SECURITY GOVERNANCE', icon: KeyRound },
@@ -250,8 +250,8 @@ export const AdminPage: React.FC = () => {
               }}
               className={`flex items-center gap-2 px-3 py-2 rounded text-xs font-hud tracking-wider uppercase transition-all ${
                 isActive
-                  ? 'bg-cyan-500 text-black font-bold shadow-[0_0_15px_rgba(0,229,255,0.4)]'
-                  : 'bg-black/60 border border-cyan-500/30 text-cyan-300 hover:text-white hover:border-cyan-400'
+                  ? 'bg-white text-black font-bold shadow-[0_0_15px_rgba(255, 255, 255, 0.4)]'
+                  : 'bg-black/60 border border-white/10 text-white hover:text-white hover:border-white/40'
               }`}
             >
               <Icon className="w-4 h-4" />
@@ -267,13 +267,13 @@ export const AdminPage: React.FC = () => {
           {/* Filter Bar */}
           <div className="cyber-panel p-3 rounded-lg flex flex-col sm:flex-row items-center justify-between gap-3">
             <div className="relative w-full sm:w-80">
-              <Search className="w-4 h-4 text-cyan-400 absolute left-3 top-2.5 pointer-events-none" />
+              <Search className="w-4 h-4 text-gray-200 absolute left-3 top-2.5 pointer-events-none" />
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search operative, username, email..."
-                className="w-full pl-9 pr-3 py-1.5 bg-black/70 border border-cyan-500/30 rounded text-xs font-mono text-cyan-200 placeholder-cyan-500/40 focus:outline-none focus:border-cyan-400"
+                className="w-full pl-9 pr-3 py-1.5 bg-black/70 border border-white/10 rounded text-xs font-mono text-white placeholder-gray-600 focus:outline-none focus:border-white/40"
               />
             </div>
 
@@ -283,7 +283,7 @@ export const AdminPage: React.FC = () => {
                 <select
                   value={statusFilter}
                   onChange={(e) => setStatusFilter(e.target.value)}
-                  className="bg-black/70 border border-cyan-500/30 rounded px-2 py-1 text-xs font-mono text-cyan-300 focus:outline-none"
+                  className="bg-black/70 border border-white/10 rounded px-2 py-1 text-xs font-mono text-white focus:outline-none"
                 >
                   <option value="ALL">ALL STATES</option>
                   <option value="VERIFIED">VERIFIED</option>
@@ -298,7 +298,7 @@ export const AdminPage: React.FC = () => {
                 <select
                   value={roleFilter}
                   onChange={(e) => setRoleFilter(e.target.value)}
-                  className="bg-black/70 border border-cyan-500/30 rounded px-2 py-1 text-xs font-mono text-cyan-300 focus:outline-none"
+                  className="bg-black/70 border border-white/10 rounded px-2 py-1 text-xs font-mono text-white focus:outline-none"
                 >
                   <option value="ALL">ALL ROLES</option>
                   <option value="USER">USER</option>
@@ -309,16 +309,16 @@ export const AdminPage: React.FC = () => {
           </div>
 
           {/* Users Table wrapped in HolographicCard */}
-          <HolographicCard glowColor="cyan" className="p-5">
-            <h3 className="text-xs font-hud font-bold text-cyan-300 uppercase tracking-wider mb-4 pb-2 border-b border-cyan-500/20 flex items-center justify-between">
+          <HolographicCard glowColor="white" className="p-5">
+            <h3 className="text-xs font-hud font-bold text-white uppercase tracking-wider mb-4 pb-2 border-b border-white/10 flex items-center justify-between">
               <span className="flex items-center gap-2">
-                <Users className="w-4 h-4 text-cyan-400" />
+                <Users className="w-4 h-4 text-gray-200" />
                 <span>PERSONNEL REGISTRY ({filteredUsers.length} OPERATIVES MATCHED)</span>
               </span>
             </h3>
 
             {loading ? (
-              <div className="py-16 text-center font-mono text-xs text-cyan-400 animate-pulse">
+              <div className="py-16 text-center font-mono text-xs text-gray-200 animate-pulse">
                 SCANNING CREDENTIAL ROSTER...
               </div>
             ) : filteredUsers.length === 0 ? (
@@ -329,7 +329,7 @@ export const AdminPage: React.FC = () => {
               <div className="overflow-x-auto">
                 <table className="w-full text-left text-xs font-mono">
                   <thead>
-                    <tr className="border-b border-cyan-500/30 text-[10px] font-hud text-cyan-400 uppercase">
+                    <tr className="border-b border-white/10 text-[10px] font-hud text-gray-200 uppercase">
                       <th className="pb-3 pr-4">OPERATIVE</th>
                       <th className="pb-3 px-4">EMAIL</th>
                       <th className="pb-3 px-4">ROLE</th>
@@ -338,11 +338,11 @@ export const AdminPage: React.FC = () => {
                       <th className="pb-3 pl-4 text-right">TACTICAL ACTIONS</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-cyan-500/10">
+                  <tbody className="divide-y divide-white/10">
                     {filteredUsers.map((u) => (
-                      <tr key={u.id} className="hover:bg-cyan-950/20">
+                      <tr key={u.id} className="hover:bg-white/5">
                         <td className="py-3 pr-4">
-                          <div className="font-bold text-cyan-100">{u.full_name}</div>
+                          <div className="font-bold text-white">{u.full_name}</div>
                           <div className="text-[10px] text-gray-400">@{u.username}</div>
                         </td>
                         <td className="py-3 px-4 text-gray-300">{u.email}</td>
@@ -351,8 +351,8 @@ export const AdminPage: React.FC = () => {
                             onClick={() => handleToggleRole(u)}
                             className={`px-2 py-0.5 rounded text-[9px] font-hud uppercase border ${
                               u.role === 'ADMIN'
-                                ? 'border-purple-400 bg-purple-950 text-purple-300'
-                                : 'border-cyan-500/40 bg-black text-cyan-300'
+                                ? 'border-white/30 bg-white/5 text-white'
+                                : 'border-white/10 bg-black text-white'
                             }`}
                           >
                             {u.role}
@@ -363,7 +363,7 @@ export const AdminPage: React.FC = () => {
                             <span
                               className={`inline-flex items-center gap-1 text-[10px] uppercase font-bold px-2 py-0.5 rounded ${
                                 u.status === 'VERIFIED'
-                                  ? 'text-green-400 bg-green-950/40 border border-green-500/30'
+                                  ? 'text-white bg-white/5 border border-green-500/30'
                                   : u.status === 'PENDING_VERIFICATION'
                                   ? 'text-amber-400 bg-amber-950/40 border border-amber-500/30'
                                   : 'text-red-400 bg-red-950/40 border border-red-500/30'
@@ -380,7 +380,7 @@ export const AdminPage: React.FC = () => {
                               <button
                                 onClick={() => handleToggleStatus(u, 'VERIFIED')}
                                 title="Admin Override: Instantly Approve Operative"
-                                className="px-2 py-0.5 rounded text-[9px] font-hud uppercase bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 hover:bg-emerald-500/30 inline-flex items-center gap-1 transition-colors"
+                                className="px-2 py-0.5 rounded text-[9px] font-hud uppercase bg-white/10 text-white border border-white/10 hover:bg-white/10 inline-flex items-center gap-1 transition-colors"
                               >
                                 <CheckCircle className="w-3 h-3" />
                                 <span>APPROVE</span>
@@ -395,7 +395,7 @@ export const AdminPage: React.FC = () => {
                           <button
                             onClick={() => handleInspectUser(u)}
                             title="Inspect Operative Dossier"
-                            className="p-1 rounded bg-cyan-950/60 border border-cyan-500/30 hover:border-cyan-400 text-cyan-300 inline-flex items-center gap-1 text-[10px]"
+                            className="p-1 rounded bg-white/5 border border-white/10 hover:border-white/40 text-white inline-flex items-center gap-1 text-[10px]"
                           >
                             <Eye className="w-3.5 h-3.5" />
                             <span>DOSSIER</span>
@@ -403,7 +403,7 @@ export const AdminPage: React.FC = () => {
                           <button
                             onClick={() => handleToggleActive(u)}
                             title={u.is_active ? 'Suspend Operative' : 'Activate Operative'}
-                            className="p-1 hover:text-cyan-300 text-gray-400"
+                            className="p-1 hover:text-white text-gray-400"
                           >
                             <UserCheck className="w-4 h-4" />
                           </button>
@@ -429,23 +429,23 @@ export const AdminPage: React.FC = () => {
       {selectedUserDetail && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
           <div className="w-full max-w-2xl">
-            <HolographicCard glowColor="purple" className="p-6 relative max-h-[85vh] overflow-y-auto">
+            <HolographicCard glowColor="white" className="p-6 relative max-h-[85vh] overflow-y-auto">
               <button
                 onClick={() => setSelectedUserDetail(null)}
-                className="absolute top-4 right-4 p-1 rounded bg-black/60 border border-cyan-500/30 text-gray-400 hover:text-white"
+                className="absolute top-4 right-4 p-1 rounded bg-black/60 border border-white/10 text-gray-400 hover:text-white"
               >
                 <X className="w-4 h-4" />
               </button>
 
-              <div className="flex items-center gap-3 border-b border-purple-500/20 pb-3 mb-4">
-                <div className="w-10 h-10 rounded-full bg-purple-900/60 border border-purple-400 flex items-center justify-center font-hud font-bold text-purple-300">
+              <div className="flex items-center gap-3 border-b border-white/10 pb-3 mb-4">
+                <div className="w-10 h-10 rounded-full bg-white/10 border border-white/30 flex items-center justify-center font-hud font-bold text-white">
                   {selectedUserDetail.user.username.slice(0, 2).toUpperCase()}
                 </div>
                 <div>
                   <h3 className="text-base font-hud font-bold text-white">
                     {selectedUserDetail.user.full_name}
                   </h3>
-                  <p className="text-xs font-mono text-purple-300">
+                  <p className="text-xs font-mono text-white">
                     @{selectedUserDetail.user.username} • {selectedUserDetail.user.email}
                   </p>
                 </div>
@@ -453,30 +453,30 @@ export const AdminPage: React.FC = () => {
 
               {/* Status Badges Row */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-4 text-center text-xs font-mono">
-                <div className="p-2 rounded bg-black/40 border border-cyan-500/20">
+                <div className="p-2 rounded bg-black/40 border border-white/10">
                   <span className="text-[9px] text-gray-400 block">ROLE</span>
-                  <span className="font-bold text-cyan-300">{selectedUserDetail.user.role}</span>
+                  <span className="font-bold text-white">{selectedUserDetail.user.role}</span>
                 </div>
-                <div className="p-2 rounded bg-black/40 border border-cyan-500/20">
+                <div className="p-2 rounded bg-black/40 border border-white/10">
                   <span className="text-[9px] text-gray-400 block">CLEARANCE</span>
-                  <span className="font-bold text-green-400">{selectedUserDetail.user.status}</span>
+                  <span className="font-bold text-white">{selectedUserDetail.user.status}</span>
                 </div>
-                <div className="p-2 rounded bg-black/40 border border-cyan-500/20">
+                <div className="p-2 rounded bg-black/40 border border-white/10">
                   <span className="text-[9px] text-gray-400 block">ACTIVE SESSIONS</span>
-                  <span className="font-bold text-purple-300">
+                  <span className="font-bold text-white">
                     {selectedUserDetail.active_sessions_count}
                   </span>
                 </div>
-                <div className="p-2 rounded bg-black/40 border border-cyan-500/20">
+                <div className="p-2 rounded bg-black/40 border border-white/10">
                   <span className="text-[9px] text-gray-400 block">AI MESSAGES</span>
-                  <span className="font-bold text-cyan-200">
+                  <span className="font-bold text-white">
                     {selectedUserDetail.messages_count}
                   </span>
                 </div>
               </div>
 
               {/* Status Actions */}
-              <div className="flex items-center gap-2 mb-4 p-2 rounded bg-black/60 border border-purple-500/20 text-xs font-mono">
+              <div className="flex items-center gap-2 mb-4 p-2 rounded bg-black/60 border border-white/10 text-xs font-mono">
                 <span className="text-gray-400">STATUS CONTROL:</span>
                 {['VERIFIED', 'PENDING_VERIFICATION', 'SUSPENDED', 'DISABLED'].map((st) => (
                   <button
@@ -484,8 +484,8 @@ export const AdminPage: React.FC = () => {
                     onClick={() => handleToggleStatus(selectedUserDetail.user, st)}
                     className={`px-2 py-1 rounded text-[10px] font-hud uppercase ${
                       selectedUserDetail.user.status === st
-                        ? 'bg-purple-600 text-white font-bold'
-                        : 'bg-black border border-purple-500/30 text-gray-300 hover:text-white'
+                        ? 'bg-white text-black text-white font-bold'
+                        : 'bg-black border border-white/10 text-gray-300 hover:text-white'
                     }`}
                   >
                     {st.replace('_', ' ')}
@@ -495,7 +495,7 @@ export const AdminPage: React.FC = () => {
 
               {/* Recent Activity Stream */}
               <div className="space-y-2">
-                <h4 className="text-xs font-hud font-bold text-cyan-300 uppercase">
+                <h4 className="text-xs font-hud font-bold text-white uppercase">
                   RECENT MISSION ACTIVITY
                 </h4>
                 {selectedUserDetail.recent_activities.length === 0 ? (
@@ -505,10 +505,10 @@ export const AdminPage: React.FC = () => {
                     {selectedUserDetail.recent_activities.map((act) => (
                       <div
                         key={act.id}
-                        className="p-2 rounded bg-black/50 border border-cyan-500/10 text-xs font-mono flex items-center justify-between"
+                        className="p-2 rounded bg-black/50 border border-white/10 text-xs font-mono flex items-center justify-between"
                       >
                         <div>
-                          <span className="text-cyan-400 font-bold">{act.action}</span>
+                          <span className="text-gray-200 font-bold">{act.action}</span>
                           {act.details && <span className="text-gray-300 ml-2">- {act.details}</span>}
                         </div>
                         <span className="text-[10px] text-gray-500 shrink-0">
@@ -528,14 +528,14 @@ export const AdminPage: React.FC = () => {
       {activeTab === 'SECURITY' && (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* OTP Policy Parameters */}
-          <HolographicCard glowColor="purple" className="p-5 space-y-4">
-            <h3 className="text-xs font-hud font-bold text-purple-300 uppercase tracking-wider flex items-center gap-2 border-b border-purple-500/20 pb-2">
-              <KeyRound className="w-4 h-4 text-purple-400" />
+          <HolographicCard glowColor="white" className="p-5 space-y-4">
+            <h3 className="text-xs font-hud font-bold text-white uppercase tracking-wider flex items-center gap-2 border-b border-white/10 pb-2">
+              <KeyRound className="w-4 h-4 text-gray-300" />
               <span>CRYPTOGRAPHIC OTP CONFIGURATION</span>
             </h3>
 
             {settingSaveStatus && (
-              <div className="p-2 rounded bg-green-950/50 border border-green-500/50 text-xs font-mono text-green-300 animate-pulse">
+              <div className="p-2 rounded bg-white/5 border border-green-500/50 text-xs font-mono text-gray-200 animate-pulse">
                 ✓ {settingSaveStatus}
               </div>
             )}
@@ -547,12 +547,12 @@ export const AdminPage: React.FC = () => {
                 { key: 'otp_max_attempts', label: 'MAX VALIDATION ATTEMPTS', desc: 'Attempts before code is locked & invalidated' },
                 { key: 'otp_resend_cooldown_sec', label: 'RESEND COOLDOWN (SECONDS)', desc: 'Required delay between resend dispatches' },
               ].map((item) => (
-                <div key={item.key} className="p-3 rounded bg-black/60 border border-purple-500/20 space-y-1.5">
+                <div key={item.key} className="p-3 rounded bg-black/60 border border-white/10 space-y-1.5">
                   <div className="flex items-center justify-between">
-                    <span className="font-hud font-bold text-purple-300">{item.label}</span>
+                    <span className="font-hud font-bold text-white">{item.label}</span>
                     <button
                       onClick={() => handleSaveSetting(item.key)}
-                      className="px-2 py-0.5 rounded bg-purple-950 text-purple-300 border border-purple-400 text-[10px] hover:text-white"
+                      className="px-2 py-0.5 rounded bg-white/5 text-white border border-white/30 text-[10px] hover:text-white"
                     >
                       APPLY
                     </button>
@@ -564,7 +564,7 @@ export const AdminPage: React.FC = () => {
                     onChange={(e) =>
                       setSettingEdits({ ...settingEdits, [item.key]: e.target.value })
                     }
-                    className="w-full px-2.5 py-1 bg-black/80 border border-purple-500/40 rounded text-xs font-mono text-purple-200 focus:outline-none focus:border-purple-300"
+                    className="w-full px-2.5 py-1 bg-black/80 border border-white/10 rounded text-xs font-mono text-white-200 focus:outline-none focus:border-white-300"
                   />
                 </div>
               ))}
@@ -610,9 +610,9 @@ export const AdminPage: React.FC = () => {
       {/* TAB 3: AI & VOCAL DIRECTIVES */}
       {activeTab === 'AI_VOICE' && (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <HolographicCard glowColor="cyan" className="p-5 space-y-4">
-            <h3 className="text-xs font-hud font-bold text-cyan-300 uppercase tracking-wider flex items-center gap-2 border-b border-cyan-500/20 pb-2">
-              <Cpu className="w-4 h-4 text-cyan-400" />
+          <HolographicCard glowColor="white" className="p-5 space-y-4">
+            <h3 className="text-xs font-hud font-bold text-white uppercase tracking-wider flex items-center gap-2 border-b border-white/10 pb-2">
+              <Cpu className="w-4 h-4 text-gray-200" />
               <span>NEURAL AI DIRECTIVES</span>
             </h3>
 
@@ -622,12 +622,12 @@ export const AdminPage: React.FC = () => {
                 { key: 'ai_default_model', label: 'DEFAULT NEURAL MODEL', desc: 'Gemini model identifier' },
                 { key: 'ai_temperature', label: 'TEMPERATURE / CREATIVITY', desc: '0.0 (Deterministic) - 1.0 (Creative)' },
               ].map((item) => (
-                <div key={item.key} className="p-3 rounded bg-black/60 border border-cyan-500/20 space-y-1.5">
+                <div key={item.key} className="p-3 rounded bg-black/60 border border-white/10 space-y-1.5">
                   <div className="flex items-center justify-between">
-                    <span className="font-hud font-bold text-cyan-300">{item.label}</span>
+                    <span className="font-hud font-bold text-white">{item.label}</span>
                     <button
                       onClick={() => handleSaveSetting(item.key)}
-                      className="px-2 py-0.5 rounded bg-cyan-950 text-cyan-300 border border-cyan-400 text-[10px] hover:text-white"
+                      className="px-2 py-0.5 rounded bg-white/5 text-white border border-white/40 text-[10px] hover:text-white"
                     >
                       APPLY
                     </button>
@@ -639,16 +639,16 @@ export const AdminPage: React.FC = () => {
                     onChange={(e) =>
                       setSettingEdits({ ...settingEdits, [item.key]: e.target.value })
                     }
-                    className="w-full px-2.5 py-1 bg-black/80 border border-cyan-500/40 rounded text-xs font-mono text-cyan-200 focus:outline-none focus:border-cyan-300"
+                    className="w-full px-2.5 py-1 bg-black/80 border border-white/10 rounded text-xs font-mono text-white focus:outline-none focus:border-white-300"
                   />
                 </div>
               ))}
             </div>
           </HolographicCard>
 
-          <HolographicCard glowColor="green" className="p-5 space-y-4">
-            <h3 className="text-xs font-hud font-bold text-green-300 uppercase tracking-wider flex items-center gap-2 border-b border-green-500/20 pb-2">
-              <Volume2 className="w-4 h-4 text-green-400" />
+          <HolographicCard glowColor="white" className="p-5 space-y-4">
+            <h3 className="text-xs font-hud font-bold text-gray-200 uppercase tracking-wider flex items-center gap-2 border-b border-green-500/20 pb-2">
+              <Volume2 className="w-4 h-4 text-white" />
               <span>VOCAL SYNTHESIS DIRECTIVES</span>
             </h3>
 
@@ -660,10 +660,10 @@ export const AdminPage: React.FC = () => {
               ].map((item) => (
                 <div key={item.key} className="p-3 rounded bg-black/60 border border-green-500/20 space-y-1.5">
                   <div className="flex items-center justify-between">
-                    <span className="font-hud font-bold text-green-300">{item.label}</span>
+                    <span className="font-hud font-bold text-gray-200">{item.label}</span>
                     <button
                       onClick={() => handleSaveSetting(item.key)}
-                      className="px-2 py-0.5 rounded bg-green-950 text-green-300 border border-green-400 text-[10px] hover:text-white"
+                      className="px-2 py-0.5 rounded bg-green-950 text-gray-200 border border-green-400 text-[10px] hover:text-white"
                     >
                       APPLY
                     </button>
@@ -689,8 +689,8 @@ export const AdminPage: React.FC = () => {
         <div className="space-y-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {/* User Registrations Chart */}
-            <HolographicCard glowColor="cyan" className="p-5">
-              <h3 className="text-xs font-hud font-bold text-cyan-300 uppercase tracking-wider mb-4 pb-2 border-b border-cyan-500/20">
+            <HolographicCard glowColor="white" className="p-5">
+              <h3 className="text-xs font-hud font-bold text-white uppercase tracking-wider mb-4 pb-2 border-b border-white/10">
                 OPERATIVE REGISTRATIONS (REAL TIMELINE)
               </h3>
               <div className="h-64 w-full">
@@ -698,23 +698,23 @@ export const AdminPage: React.FC = () => {
                   <AreaChart data={analytics?.registration_timeline || []}>
                     <defs>
                       <linearGradient id="regGrad" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="5%" stopColor="#00E5FF" stopOpacity={0.4} />
-                        <stop offset="95%" stopColor="#00E5FF" stopOpacity={0} />
+                        <stop offset="5%" stopColor="#FFFFFF" stopOpacity={0.4} />
+                        <stop offset="95%" stopColor="#FFFFFF" stopOpacity={0} />
                       </linearGradient>
                     </defs>
-                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(0, 229, 255, 0.1)" />
+                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(255, 255, 255, 0.1)" />
                     <XAxis dataKey="date" stroke="#7A92A6" fontSize={11} fontStyle="monospace" />
                     <YAxis stroke="#7A92A6" fontSize={11} fontStyle="monospace" allowDecimals={false} />
-                    <Tooltip contentStyle={{ backgroundColor: '#050E1A', borderColor: '#00E5FF', fontSize: 11 }} />
-                    <Area type="monotone" dataKey="registrations" stroke="#00E5FF" fillOpacity={1} fill="url(#regGrad)" />
+                    <Tooltip contentStyle={{ backgroundColor: '#050E1A', borderColor: '#FFFFFF', fontSize: 11 }} />
+                    <Area type="monotone" dataKey="registrations" stroke="#FFFFFF" fillOpacity={1} fill="url(#regGrad)" />
                   </AreaChart>
                 </ResponsiveContainer>
               </div>
             </HolographicCard>
 
             {/* AI Traffic Throughput Chart */}
-            <HolographicCard glowColor="purple" className="p-5">
-              <h3 className="text-xs font-hud font-bold text-purple-300 uppercase tracking-wider mb-4 pb-2 border-b border-purple-500/20">
+            <HolographicCard glowColor="white" className="p-5">
+              <h3 className="text-xs font-hud font-bold text-white uppercase tracking-wider mb-4 pb-2 border-b border-white/10">
                 AI CONVERSATION TRAFFIC (MESSAGES)
               </h3>
               <div className="h-64 w-full">
@@ -735,10 +735,10 @@ export const AdminPage: React.FC = () => {
 
       {/* TAB 5: AUDIT TRAIL */}
       {activeTab === 'AUDIT_LOGS' && (
-        <HolographicCard glowColor="cyan" className="p-5">
-          <h3 className="text-xs font-hud font-bold text-cyan-300 uppercase tracking-wider mb-4 pb-2 border-b border-cyan-500/20 flex items-center justify-between">
+        <HolographicCard glowColor="white" className="p-5">
+          <h3 className="text-xs font-hud font-bold text-white uppercase tracking-wider mb-4 pb-2 border-b border-white/10 flex items-center justify-between">
             <span className="flex items-center gap-2">
-              <FileText className="w-4 h-4 text-cyan-400" />
+              <FileText className="w-4 h-4 text-gray-200" />
               <span>EXECUTIVE AUDIT TRAIL ({auditLogs.length} LOGGED ACTIONS)</span>
             </span>
           </h3>
@@ -751,7 +751,7 @@ export const AdminPage: React.FC = () => {
             <div className="overflow-x-auto">
               <table className="w-full text-left text-xs font-mono">
                 <thead>
-                  <tr className="border-b border-cyan-500/30 text-[10px] font-hud text-cyan-400 uppercase">
+                  <tr className="border-b border-white/10 text-[10px] font-hud text-gray-200 uppercase">
                     <th className="pb-3 pr-4">ACTION</th>
                     <th className="pb-3 px-4">ACTOR</th>
                     <th className="pb-3 px-4">TARGET</th>
@@ -760,12 +760,12 @@ export const AdminPage: React.FC = () => {
                     <th className="pb-3 pl-4 text-right">TIMESTAMP</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-cyan-500/10">
+                <tbody className="divide-y divide-white/10">
                   {auditLogs.map((log) => (
-                    <tr key={log.id} className="hover:bg-cyan-950/20">
-                      <td className="py-2.5 pr-4 font-bold text-cyan-300">{log.action}</td>
+                    <tr key={log.id} className="hover:bg-white/5">
+                      <td className="py-2.5 pr-4 font-bold text-white">{log.action}</td>
                       <td className="py-2.5 px-4 text-gray-300">{log.actor_username || 'SYSTEM'}</td>
-                      <td className="py-2.5 px-4 text-purple-300">
+                      <td className="py-2.5 px-4 text-white">
                         {log.target_type}: {log.target_id || 'GLOBAL'}
                       </td>
                       <td className="py-2.5 px-4 text-gray-400 max-w-xs truncate">{log.details}</td>

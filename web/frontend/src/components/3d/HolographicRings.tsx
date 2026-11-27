@@ -13,8 +13,8 @@ interface HolographicRingsProps {
 
 export const HolographicRings: React.FC<HolographicRingsProps> = ({
   state = 'IDLE',
-  primaryColor = '#00E5FF',
-  secondaryColor = '#008CFF'
+  primaryColor = '#FFFFFF',
+  secondaryColor = '#C8C8C8',
 }) => {
   const outerRingRef = useRef<THREE.Group>(null);
   const midRingRef = useRef<THREE.Group>(null);
@@ -28,7 +28,7 @@ export const HolographicRings: React.FC<HolographicRingsProps> = ({
     LISTENING: 1.8,
     THINKING: 2.6,
     SPEAKING: 1.6,
-    ERROR: 0.8
+    ERROR: 0.8,
   };
 
   const speed = speedMultipliers[state] || 1.0;
@@ -76,12 +76,12 @@ export const HolographicRings: React.FC<HolographicRingsProps> = ({
 
         {/* Outer Ring Telemetry Markers */}
         <Html position={[2.9, 0, 0]} center distanceFactor={10}>
-          <div className="text-[9px] font-mono font-bold text-cyan-300/80 bg-black/60 px-1.5 py-0.5 rounded border border-cyan-500/30 whitespace-nowrap select-none pointer-events-none">
+          <div className="text-[9px] font-mono font-bold text-white bg-black/80 px-2 py-0.5 rounded-full border border-white/20 whitespace-nowrap select-none pointer-events-none">
             SYSTEM // ONLINE
           </div>
         </Html>
         <Html position={[-2.9, 0, 0]} center distanceFactor={10}>
-          <div className="text-[9px] font-mono font-bold text-cyan-300/80 bg-black/60 px-1.5 py-0.5 rounded border border-cyan-500/30 whitespace-nowrap select-none pointer-events-none">
+          <div className="text-[9px] font-mono font-bold text-white bg-black/80 px-2 py-0.5 rounded-full border border-white/20 whitespace-nowrap select-none pointer-events-none">
             AI CORE // ACTIVE
           </div>
         </Html>
@@ -99,22 +99,12 @@ export const HolographicRings: React.FC<HolographicRingsProps> = ({
             blending={THREE.AdditiveBlending}
           />
         </mesh>
-        <Html position={[0, 2.35, 0]} center distanceFactor={10}>
-          <div className="text-[8px] font-mono font-bold text-blue-300/80 bg-black/60 px-1 py-0.5 rounded border border-blue-500/30 whitespace-nowrap select-none pointer-events-none">
-            VOICE // READY
-          </div>
-        </Html>
-        <Html position={[0, -2.35, 0]} center distanceFactor={10}>
-          <div className="text-[8px] font-mono font-bold text-blue-300/80 bg-black/60 px-1 py-0.5 rounded border border-blue-500/30 whitespace-nowrap select-none pointer-events-none">
-            NET // CONNECTED
-          </div>
-        </Html>
       </group>
 
-      {/* 3. Inner Energy Ring */}
+      {/* 3. Inner Precision Track */}
       <group ref={innerRingRef}>
         <mesh>
-          <ringGeometry args={[1.75, 1.78, 64]} />
+          <ringGeometry args={[1.6, 1.62, 48]} />
           <meshBasicMaterial
             color={primaryColor}
             side={THREE.DoubleSide}
@@ -125,10 +115,10 @@ export const HolographicRings: React.FC<HolographicRingsProps> = ({
         </mesh>
       </group>
 
-      {/* 4. Diagonal Orbital Holographic Rings */}
-      <group ref={diagonalRing1Ref} rotation={[Math.PI / 4, 0, 0]}>
-        <mesh>
-          <torusGeometry args={[2.0, 0.015, 16, 100]} />
+      {/* 4. Gyroscopic Diagonal Rings */}
+      <group ref={diagonalRing1Ref}>
+        <mesh rotation={[Math.PI / 4, 0, 0]}>
+          <torusGeometry args={[2.0, 0.012, 16, 64]} />
           <meshBasicMaterial
             color={primaryColor}
             transparent
@@ -138,13 +128,13 @@ export const HolographicRings: React.FC<HolographicRingsProps> = ({
         </mesh>
       </group>
 
-      <group ref={diagonalRing2Ref} rotation={[-Math.PI / 3, Math.PI / 6, 0]}>
-        <mesh>
-          <torusGeometry args={[2.4, 0.012, 16, 100]} />
+      <group ref={diagonalRing2Ref}>
+        <mesh rotation={[-Math.PI / 4, 0, 0]}>
+          <torusGeometry args={[2.4, 0.012, 16, 64]} />
           <meshBasicMaterial
             color={secondaryColor}
             transparent
-            opacity={0.5}
+            opacity={0.65}
             blending={THREE.AdditiveBlending}
           />
         </mesh>
@@ -152,3 +142,4 @@ export const HolographicRings: React.FC<HolographicRingsProps> = ({
     </group>
   );
 };
+export default HolographicRings;

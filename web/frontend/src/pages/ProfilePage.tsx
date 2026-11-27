@@ -101,22 +101,22 @@ export const ProfilePage: React.FC = () => {
     <div className="max-w-4xl mx-auto space-y-6 select-none pb-12">
       {/* Header */}
       <div>
-        <h1 className="text-2xl sm:text-3xl font-hud font-black tracking-widest text-cyan-300 uppercase">
+        <h1 className="text-2xl sm:text-3xl font-hud font-black tracking-widest text-white uppercase">
           MY OPERATIVE PROFILE
         </h1>
-        <p className="text-xs font-mono text-cyan-400/70 tracking-widest uppercase mt-1">
+        <p className="text-xs font-mono text-gray-400 tracking-widest uppercase mt-1">
           CREDENTIAL CLEARANCE & PERSONNEL ARCHIVES
         </p>
       </div>
 
       {/* Profile Overview Card */}
       <div className="cyber-panel rounded-lg p-6 sm:p-8 tech-corner-tl tech-corner-br">
-        <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6 pb-6 border-b border-cyan-500/20">
-          <div className="w-24 h-24 rounded-full border-2 border-cyan-400 bg-cyan-950/60 flex items-center justify-center overflow-hidden shrink-0 shadow-[0_0_20px_rgba(0,229,255,0.3)]">
+        <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6 pb-6 border-b border-white/10">
+          <div className="w-24 h-24 rounded-full border-2 border-white/40 bg-white/5 flex items-center justify-center overflow-hidden shrink-0 shadow-[0_0_20px_rgba(255, 255, 255, 0.3)]">
             {user?.avatar_url ? (
               <img src={user.avatar_url} alt={user.username} className="w-full h-full object-cover" />
             ) : (
-              <User className="w-12 h-12 text-cyan-300" />
+              <User className="w-12 h-12 text-white" />
             )}
           </div>
 
@@ -126,21 +126,21 @@ export const ProfilePage: React.FC = () => {
                 <h2 className="text-xl font-hud font-bold text-white uppercase tracking-wider">
                   {user?.full_name}
                 </h2>
-                <p className="text-xs font-mono text-cyan-400">@{user?.username}</p>
+                <p className="text-xs font-mono text-gray-200">@{user?.username}</p>
               </div>
 
-              <span className="px-3 py-1 rounded bg-cyan-950/80 border border-cyan-400 text-xs font-hud font-bold text-cyan-300 uppercase self-center sm:self-auto">
+              <span className="px-3 py-1 rounded bg-white/5 border border-white/40 text-xs font-hud font-bold text-white uppercase self-center sm:self-auto">
                 CLEARANCE: {user?.role}
               </span>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-4 text-xs font-mono text-gray-300">
               <div className="flex items-center gap-2">
-                <Mail className="w-4 h-4 text-cyan-400" />
+                <Mail className="w-4 h-4 text-gray-200" />
                 <span>{user?.email}</span>
               </div>
               <div className="flex items-center gap-2">
-                <Calendar className="w-4 h-4 text-cyan-400" />
+                <Calendar className="w-4 h-4 text-gray-200" />
                 <span>Enrolled: {user?.created_at ? new Date(user.created_at).toLocaleDateString() : 'Active'}</span>
               </div>
             </div>
@@ -150,7 +150,7 @@ export const ProfilePage: React.FC = () => {
         {/* Edit Profile Section */}
         {isEditing ? (
           <form onSubmit={handleUpdateProfile} className="pt-6 space-y-4">
-            <h3 className="text-xs font-hud font-bold text-cyan-300 uppercase">UPDATE PERSONNEL DATA</h3>
+            <h3 className="text-xs font-hud font-bold text-white uppercase">UPDATE PERSONNEL DATA</h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label className="block text-[11px] font-hud text-gray-400 uppercase mb-1">FULL NAME</label>
@@ -158,7 +158,7 @@ export const ProfilePage: React.FC = () => {
                   type="text"
                   value={fullName}
                   onChange={(e) => setFullName(e.target.value)}
-                  className="w-full px-3 py-1.5 bg-black/60 border border-cyan-500/30 rounded text-xs font-mono text-cyan-100 focus:outline-none focus:border-cyan-400"
+                  className="w-full px-3 py-1.5 bg-black/60 border border-white/10 rounded text-xs font-mono text-white focus:outline-none focus:border-white/40"
                 />
               </div>
               <div>
@@ -168,12 +168,12 @@ export const ProfilePage: React.FC = () => {
                   value={avatarUrl}
                   onChange={(e) => setAvatarUrl(e.target.value)}
                   placeholder="https://images.unsplash.com/..."
-                  className="w-full px-3 py-1.5 bg-black/60 border border-cyan-500/30 rounded text-xs font-mono text-cyan-100 focus:outline-none focus:border-cyan-400"
+                  className="w-full px-3 py-1.5 bg-black/60 border border-white/10 rounded text-xs font-mono text-white focus:outline-none focus:border-white/40"
                 />
               </div>
             </div>
             <div className="flex gap-2">
-              <NeonButton type="submit" variant="cyan" size="sm">
+              <NeonButton type="submit" variant="solid" size="sm">
                 SAVE CHANGES
               </NeonButton>
               <button
@@ -188,7 +188,7 @@ export const ProfilePage: React.FC = () => {
         ) : (
           <div className="pt-6 flex flex-wrap items-center gap-3">
             <NeonButton
-              variant="cyan"
+              variant="solid"
               size="sm"
               onClick={() => setIsEditing(true)}
               icon={<Edit2 className="w-3.5 h-3.5" />}
@@ -218,15 +218,15 @@ export const ProfilePage: React.FC = () => {
 
         {/* Change Password Form */}
         {showPasswordChange && (
-          <form onSubmit={handleChangePassword} className="mt-6 pt-6 border-t border-cyan-500/20 space-y-3">
-            <h3 className="text-xs font-hud font-bold text-cyan-300 uppercase">CHANGE ACCESS PASSWORD</h3>
+          <form onSubmit={handleChangePassword} className="mt-6 pt-6 border-t border-white/10 space-y-3">
+            <h3 className="text-xs font-hud font-bold text-white uppercase">CHANGE ACCESS PASSWORD</h3>
             {pwdError && (
               <div className="p-2 rounded bg-red-950/40 border border-red-500/40 text-red-300 text-xs font-mono">
                 {pwdError}
               </div>
             )}
             {pwdSuccess && (
-              <div className="p-2 rounded bg-green-950/40 border border-green-500/40 text-green-300 text-xs font-mono">
+              <div className="p-2 rounded bg-white/5 border border-green-500/40 text-gray-200 text-xs font-mono">
                 {pwdSuccess}
               </div>
             )}
@@ -237,7 +237,7 @@ export const ProfilePage: React.FC = () => {
                 placeholder="Current Password"
                 value={oldPassword}
                 onChange={(e) => setOldPassword(e.target.value)}
-                className="px-3 py-1.5 bg-black/60 border border-cyan-500/30 rounded text-xs font-mono text-cyan-100 focus:outline-none focus:border-cyan-400"
+                className="px-3 py-1.5 bg-black/60 border border-white/10 rounded text-xs font-mono text-white focus:outline-none focus:border-white/40"
               />
               <input
                 type="password"
@@ -245,7 +245,7 @@ export const ProfilePage: React.FC = () => {
                 placeholder="New Password (min 8 chars)"
                 value={newPassword}
                 onChange={(e) => setNewPassword(e.target.value)}
-                className="px-3 py-1.5 bg-black/60 border border-cyan-500/30 rounded text-xs font-mono text-cyan-100 focus:outline-none focus:border-cyan-400"
+                className="px-3 py-1.5 bg-black/60 border border-white/10 rounded text-xs font-mono text-white focus:outline-none focus:border-white/40"
               />
             </div>
             <NeonButton type="submit" variant="electric" size="sm">

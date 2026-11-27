@@ -2,7 +2,7 @@ import React from 'react';
 import { sound } from '../../utils/sound';
 
 interface NeonButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'cyan' | 'electric' | 'green' | 'alert' | 'ghost';
+  variant?: 'solid' | 'silver' | 'outline' | 'ghost' | 'cyan' | 'electric' | 'green' | 'alert';
   size?: 'sm' | 'md' | 'lg';
   loading?: boolean;
   icon?: React.ReactNode;
@@ -10,7 +10,7 @@ interface NeonButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> 
 
 export const NeonButton: React.FC<NeonButtonProps> = ({
   children,
-  variant = 'cyan',
+  variant = 'solid',
   size = 'md',
   loading = false,
   icon,
@@ -26,18 +26,23 @@ export const NeonButton: React.FC<NeonButtonProps> = ({
     }
   };
 
+  // Strict Monochrome Palette
   const getVariantStyles = () => {
     switch (variant) {
+      case 'solid':
       case 'cyan':
-        return 'border-cyan-400 text-cyan-300 bg-cyan-950/40 hover:bg-cyan-500/20 hover:text-white hover:border-cyan-300 hover:shadow-[0_0_20px_rgba(0,229,255,0.4)]';
+        return 'bg-white text-black font-black border border-white hover:bg-[#E5E5E5] hover:shadow-[0_0_20px_rgba(255,255,255,0.4)]';
+      case 'silver':
       case 'electric':
-        return 'border-blue-500 text-blue-300 bg-blue-950/40 hover:bg-blue-600/25 hover:text-white hover:border-blue-400 hover:shadow-[0_0_20px_rgba(0,140,255,0.4)]';
+        return 'bg-[#1A1A1A] text-white border border-white/20 hover:border-white/50 hover:bg-[#252525] hover:shadow-[0_0_15px_rgba(200,200,200,0.2)]';
+      case 'outline':
       case 'green':
-        return 'border-green-500 text-green-300 bg-green-950/40 hover:bg-green-500/20 hover:text-white hover:border-green-400 hover:shadow-[0_0_20px_rgba(0,255,102,0.4)]';
+        return 'bg-transparent text-white border border-white/30 hover:border-white hover:bg-white/10 hover:shadow-[0_0_15px_rgba(255,255,255,0.2)]';
       case 'alert':
-        return 'border-red-500 text-red-300 bg-red-950/40 hover:bg-red-500/20 hover:text-white hover:border-red-400 hover:shadow-[0_0_20px_rgba(255,48,48,0.4)]';
+        return 'bg-white/10 text-white border border-white/40 hover:bg-white/20 hover:border-white';
       case 'ghost':
-        return 'border-cyan-500/30 text-cyan-400/80 bg-transparent hover:bg-cyan-950/30 hover:text-cyan-200 hover:border-cyan-400/60';
+      default:
+        return 'bg-transparent text-gray-300 border border-white/10 hover:text-white hover:border-white/30 hover:bg-white/5';
     }
   };
 
@@ -56,13 +61,13 @@ export const NeonButton: React.FC<NeonButtonProps> = ({
     <button
       onClick={handleClick}
       disabled={disabled || loading}
-      className={`relative inline-flex items-center justify-center gap-2 font-hud font-semibold uppercase tracking-wider transition-all duration-300 border backdrop-blur-sm tech-corner-tl tech-corner-br select-none ${getVariantStyles()} ${getSizeStyles()} ${
+      className={`relative inline-flex items-center justify-center gap-2 font-hud font-semibold uppercase tracking-wider transition-all duration-300 backdrop-blur-sm rounded-xl select-none cursor-pointer ${getVariantStyles()} ${getSizeStyles()} ${
         disabled || loading ? 'opacity-40 cursor-not-allowed' : 'active:scale-95'
       } ${className}`}
       {...props}
     >
       {loading ? (
-        <span className="inline-block w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" />
+        <span className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" />
       ) : (
         icon
       )}
@@ -70,3 +75,4 @@ export const NeonButton: React.FC<NeonButtonProps> = ({
     </button>
   );
 };
+export default NeonButton;

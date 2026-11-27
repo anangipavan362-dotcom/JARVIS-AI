@@ -14,7 +14,6 @@ interface TasksWidgetProps {
 export const TasksWidget: React.FC<TasksWidgetProps> = ({ tasks, onRefresh }) => {
   const navigate = useNavigate();
   const [newTitle, setNewTitle] = useState('');
-  const [adding, setAdding] = useState(false);
 
   const handleQuickAdd = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -27,7 +26,6 @@ export const TasksWidget: React.FC<TasksWidgetProps> = ({ tasks, onRefresh }) =>
         category: 'Mission Directive',
       });
       setNewTitle('');
-      setAdding(false);
       onRefresh?.();
     } catch {}
   };
@@ -40,15 +38,6 @@ export const TasksWidget: React.FC<TasksWidgetProps> = ({ tasks, onRefresh }) =>
     } catch {}
   };
 
-  const getPriorityColor = (p: string) => {
-    switch (p) {
-      case 'URGENT': return 'text-red-400 border-red-500/50 bg-red-950/40';
-      case 'HIGH': return 'text-amber-400 border-amber-500/50 bg-amber-950/40';
-      case 'LOW': return 'text-gray-400 border-gray-500/50 bg-gray-950/40';
-      default: return 'text-cyan-400 border-cyan-500/50 bg-cyan-950/40';
-    }
-  };
-
   return (
     <CyberCard
       title="MISSION DIRECTIVES"
@@ -56,7 +45,7 @@ export const TasksWidget: React.FC<TasksWidgetProps> = ({ tasks, onRefresh }) =>
       headerAction={
         <button
           onClick={() => navigate('/tasks')}
-          className="text-cyan-400 hover:text-white text-xs font-mono flex items-center gap-1"
+          className="text-gray-400 hover:text-white text-xs font-mono flex items-center gap-1 cursor-pointer"
         >
           <span>ALL TASKS</span> <ArrowRight className="w-3 h-3" />
         </button>
@@ -70,11 +59,11 @@ export const TasksWidget: React.FC<TasksWidgetProps> = ({ tasks, onRefresh }) =>
             placeholder="Log new mission directive..."
             value={newTitle}
             onChange={(e) => setNewTitle(e.target.value)}
-            className="flex-1 px-3 py-1.5 bg-black/60 border border-cyan-500/30 rounded text-xs font-mono text-cyan-100 placeholder-cyan-500/30 focus:outline-none focus:border-cyan-400"
+            className="flex-1 px-3 py-1.5 bg-black/60 border border-white/15 rounded-xl text-xs font-mono text-white placeholder-gray-500 focus:outline-none focus:border-white"
           />
           <button
             type="submit"
-            className="p-1.5 rounded bg-cyan-950 border border-cyan-400 text-cyan-300 hover:text-white hover:bg-cyan-900 transition-all"
+            className="p-2 rounded-xl bg-white text-black hover:bg-[#E5E5E5] transition-all cursor-pointer font-bold"
           >
             <Plus className="w-4 h-4" />
           </button>
@@ -90,32 +79,28 @@ export const TasksWidget: React.FC<TasksWidgetProps> = ({ tasks, onRefresh }) =>
             tasks.map((t) => (
               <div
                 key={t.id}
-                className="flex items-center justify-between p-2 rounded bg-black/40 border border-cyan-500/15 text-xs font-mono"
+                className="flex items-center justify-between p-2 rounded-xl bg-white/[0.02] border border-white/5 text-xs font-mono"
               >
                 <div className="flex items-center gap-2 min-w-0">
                   <button
                     onClick={() => handleToggle(t)}
-                    className="text-cyan-400 hover:text-white transition-colors"
+                    className="text-gray-400 hover:text-white transition-colors cursor-pointer"
                   >
                     {t.completed ? (
-                      <CheckSquare className="w-4 h-4 text-green-400" />
+                      <CheckSquare className="w-4 h-4 text-white" />
                     ) : (
-                      <Square className="w-4 h-4 text-cyan-500/50" />
+                      <Square className="w-4 h-4 text-gray-400" />
                     )}
                   </button>
                   <span
                     className={`truncate ${
-                      t.completed ? 'line-through text-gray-500' : 'text-cyan-100'
+                      t.completed ? 'line-through text-gray-500' : 'text-gray-200'
                     }`}
                   >
                     {t.title}
                   </span>
                 </div>
-                <span
-                  className={`px-1.5 py-0.5 text-[9px] font-mono rounded border uppercase shrink-0 ${getPriorityColor(
-                    t.priority
-                  )}`}
-                >
+                <span className="text-[9px] uppercase px-1.5 py-0.5 rounded-full bg-white/10 border border-white/20 text-gray-300 shrink-0">
                   {t.priority}
                 </span>
               </div>
@@ -126,3 +111,4 @@ export const TasksWidget: React.FC<TasksWidgetProps> = ({ tasks, onRefresh }) =>
     </CyberCard>
   );
 };
+export default TasksWidget;

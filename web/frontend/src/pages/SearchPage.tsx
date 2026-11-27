@@ -37,10 +37,10 @@ export const SearchPage: React.FC = () => {
     <div className="max-w-4xl mx-auto space-y-6 select-none pb-8">
       {/* Header */}
       <div className="text-center">
-        <h1 className="text-2xl sm:text-3xl font-hud font-black tracking-widest text-cyan-300 uppercase">
+        <h1 className="text-2xl sm:text-3xl font-hud font-black tracking-widest text-white uppercase">
           TACTICAL SEARCH HUB
         </h1>
-        <p className="text-xs font-mono text-cyan-400/70 tracking-widest uppercase mt-1">
+        <p className="text-xs font-mono text-gray-400 tracking-widest uppercase mt-1">
           GLOBAL INTERNET INTELLIGENCE RECONNAISSANCE
         </p>
       </div>
@@ -49,7 +49,7 @@ export const SearchPage: React.FC = () => {
       <div className="cyber-panel rounded-lg p-6 tech-corner-tl tech-corner-br">
         <form onSubmit={handleSearch} className="space-y-4">
           <div className="relative">
-            <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-cyan-400">
+            <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-200">
               <Search className="w-5 h-5" />
             </div>
             <input
@@ -58,7 +58,7 @@ export const SearchPage: React.FC = () => {
               placeholder="Enter search parameters or technical query..."
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              className="w-full pl-11 pr-4 py-3 bg-black/70 border border-cyan-500/40 rounded text-sm font-mono text-cyan-100 placeholder-cyan-500/40 focus:outline-none focus:border-cyan-300 focus:shadow-[0_0_20px_rgba(0,229,255,0.3)]"
+              className="w-full pl-11 pr-4 py-3 bg-black/70 border border-white/10 rounded text-sm font-mono text-white placeholder-gray-600 focus:outline-none focus:border-white-300 focus:shadow-[0_0_20px_rgba(255, 255, 255, 0.3)]"
             />
           </div>
 
@@ -77,8 +77,8 @@ export const SearchPage: React.FC = () => {
                   }}
                   className={`flex items-center gap-2 px-3 py-1.5 rounded text-xs font-hud uppercase tracking-wider transition-all border ${
                     isSelected
-                      ? 'bg-cyan-950/80 border-cyan-400 text-white shadow-[0_0_10px_rgba(0,229,255,0.3)]'
-                      : 'bg-black/40 border-cyan-500/20 text-gray-400 hover:text-cyan-300 hover:border-cyan-500/40'
+                      ? 'bg-white/5 border-white/40 text-white shadow-[0_0_10px_rgba(255, 255, 255, 0.3)]'
+                      : 'bg-black/40 border-white/10 text-gray-400 hover:text-white hover:border-white/10'
                   }`}
                 >
                   <Icon className="w-3.5 h-3.5" />
@@ -90,7 +90,7 @@ export const SearchPage: React.FC = () => {
 
           <NeonButton
             type="submit"
-            variant="cyan"
+            variant="solid"
             size="md"
             loading={loading}
             className="w-full"
@@ -104,12 +104,12 @@ export const SearchPage: React.FC = () => {
       {/* Results / Providers Matrix */}
       {results && (
         <div className="cyber-panel rounded-lg p-6 tech-corner-tl tech-corner-br space-y-4">
-          <div className="flex items-center justify-between pb-3 border-b border-cyan-500/20">
+          <div className="flex items-center justify-between pb-3 border-b border-white/10">
             <div>
-              <span className="text-xs font-hud font-bold text-cyan-300 uppercase">
+              <span className="text-xs font-hud font-bold text-white uppercase">
                 QUERY DISPATCH TARGETS: "{results.query}"
               </span>
-              <p className="text-[10px] font-mono text-cyan-500/70 mt-0.5">
+              <p className="text-[10px] font-mono text-gray-500 mt-0.5">
                 {results.instructions}
               </p>
             </div>
@@ -117,7 +117,7 @@ export const SearchPage: React.FC = () => {
               href={results.target_url}
               target="_blank"
               rel="noreferrer"
-              className="flex items-center gap-1.5 px-3 py-1 rounded bg-cyan-950/60 border border-cyan-400 text-xs font-hud text-cyan-200 hover:text-white"
+              className="flex items-center gap-1.5 px-3 py-1 rounded bg-white/5 border border-white/40 text-xs font-hud text-white hover:text-white"
             >
               <span>PRIMARY LAUNCH</span>
               <ExternalLink className="w-3 h-3" />
@@ -131,17 +131,17 @@ export const SearchPage: React.FC = () => {
                 href={p.url}
                 target="_blank"
                 rel="noreferrer"
-                className="p-3 rounded bg-black/40 border border-cyan-500/20 hover:border-cyan-400 hover:bg-cyan-950/30 flex items-center justify-between group transition-all"
+                className="p-3 rounded bg-black/40 border border-white/10 hover:border-white/40 hover:bg-white/5 flex items-center justify-between group transition-all"
               >
                 <div>
-                  <h4 className="text-xs font-hud font-bold text-cyan-200 group-hover:text-white">
+                  <h4 className="text-xs font-hud font-bold text-white group-hover:text-white">
                     {p.name}
                   </h4>
-                  <span className="text-[10px] font-mono text-cyan-500/70 uppercase">
+                  <span className="text-[10px] font-mono text-gray-500 uppercase">
                     TYPE: {p.type}
                   </span>
                 </div>
-                <ExternalLink className="w-4 h-4 text-cyan-500 group-hover:text-cyan-300 transition-colors" />
+                <ExternalLink className="w-4 h-4 text-gray-400 group-hover:text-white transition-colors" />
               </a>
             ))}
           </div>

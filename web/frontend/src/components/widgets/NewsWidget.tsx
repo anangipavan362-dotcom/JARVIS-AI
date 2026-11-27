@@ -30,14 +30,14 @@ export const NewsWidget: React.FC = () => {
       headerAction={
         <button
           onClick={() => navigate('/news')}
-          className="text-cyan-400 hover:text-white text-xs font-mono flex items-center gap-1"
+          className="text-gray-400 hover:text-white text-xs font-mono flex items-center gap-1 cursor-pointer"
         >
           <span>ALL DISPATCHES</span> <ArrowRight className="w-3 h-3" />
         </button>
       }
     >
       {loading ? (
-        <div className="py-6 text-center font-mono text-xs text-cyan-400/60 animate-pulse">
+        <div className="py-6 text-center font-mono text-xs text-gray-400 animate-pulse">
           INTERCEPTING RSS WIRE FEEDS...
         </div>
       ) : articles.length > 0 ? (
@@ -45,21 +45,21 @@ export const NewsWidget: React.FC = () => {
           {articles.map((item, idx) => (
             <div
               key={idx}
-              className="p-2.5 rounded bg-black/40 border border-cyan-500/15 hover:border-cyan-500/40 transition-all text-xs"
+              className="p-2.5 rounded-xl bg-white/[0.02] border border-white/5 hover:border-white/20 transition-all text-xs"
             >
               <div className="flex items-start justify-between gap-2">
                 <a
                   href={item.url}
                   target="_blank"
                   rel="noreferrer"
-                  className="font-hud font-bold text-cyan-200 hover:text-cyan-400 line-clamp-2 transition-colors"
+                  className="font-hud font-bold text-gray-200 hover:text-white line-clamp-2 transition-colors"
                 >
                   {item.headline}
                 </a>
-                <ExternalLink className="w-3.5 h-3.5 text-cyan-500/60 shrink-0 mt-0.5" />
+                <ExternalLink className="w-3.5 h-3.5 text-gray-400 shrink-0 mt-0.5" />
               </div>
               <div className="flex items-center gap-2 mt-1.5 text-[10px] font-mono text-gray-400">
-                <span className="text-cyan-400/80">{item.source}</span>
+                <span className="text-white">{item.source}</span>
                 <span>•</span>
                 <span>{item.time}</span>
               </div>
@@ -74,3 +74,4 @@ export const NewsWidget: React.FC = () => {
     </CyberCard>
   );
 };
+export default NewsWidget;

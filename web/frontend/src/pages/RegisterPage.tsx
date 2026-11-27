@@ -35,7 +35,7 @@ export const RegisterPage: React.FC = () => {
   let strengthColor = 'bg-red-500 text-red-400';
   if (passedCount >= 4) {
     strengthLabel = 'STRONG';
-    strengthColor = 'bg-green-400 text-green-400';
+    strengthColor = 'bg-green-400 text-white';
   } else if (passedCount >= 3) {
     strengthLabel = 'MEDIUM';
     strengthColor = 'bg-amber-400 text-amber-400';
@@ -82,12 +82,12 @@ export const RegisterPage: React.FC = () => {
   };
 
   return (
-    <div className="relative min-h-screen bg-[#030712] text-[#E8FFFF] flex items-center justify-center p-4 selection:bg-cyan-500 selection:text-black overflow-hidden">
+    <div className="relative min-h-screen bg-[#050505] text-[#E8FFFF] flex items-center justify-center p-4 selection:bg-white selection:text-black overflow-hidden">
       {/* 3D Holographic Particle Background */}
       <div className="absolute inset-0 z-0 pointer-events-none opacity-40">
         <Canvas camera={{ position: [0, 0, 5], fov: 60 }}>
           <ambientLight intensity={0.5} />
-          <ParticleField count={400} speed={0.4} color="#00e5ff" />
+          <ParticleField count={400} speed={0.4} color="#FFFFFF" />
         </Canvas>
       </div>
 
@@ -97,16 +97,16 @@ export const RegisterPage: React.FC = () => {
           <div className="flex justify-center mb-2">
             <ArcReactor state="IDLE" size={110} subtext="ENROLLMENT" />
           </div>
-          <h1 className="text-2xl font-hud font-black tracking-widest text-cyan-300 uppercase">
+          <h1 className="text-2xl font-hud font-black tracking-widest text-white uppercase">
             CREATE JARVIS ACCOUNT
           </h1>
-          <p className="text-xs font-mono text-cyan-400/80 tracking-widest uppercase mt-1">
+          <p className="text-xs font-mono text-gray-400 tracking-widest uppercase mt-1">
             INITIALIZE NEW OPERATIVE CLEARANCE
           </p>
         </div>
 
         {/* Panel */}
-        <HolographicCard glowColor="cyan" className="p-6">
+        <HolographicCard glowColor="white" className="p-6">
           {errorMsg && (
             <div className="mb-4 p-3 rounded bg-red-950/40 border border-red-500/50 flex items-center gap-2 text-xs font-mono text-red-400">
               <AlertTriangle className="w-4 h-4 text-red-400 shrink-0" />
@@ -115,19 +115,19 @@ export const RegisterPage: React.FC = () => {
           )}
 
           {successMsg && (
-            <div className="mb-4 p-3 rounded bg-green-950/60 border border-green-400/60 flex items-center gap-2 text-xs font-mono text-green-300">
-              <CheckCircle2 className="w-4 h-4 text-green-400 shrink-0" />
+            <div className="mb-4 p-3 rounded bg-white/5 border border-green-400/60 flex items-center gap-2 text-xs font-mono text-gray-200">
+              <CheckCircle2 className="w-4 h-4 text-white shrink-0" />
               <span>{successMsg}</span>
             </div>
           )}
 
           <form onSubmit={handleRegister} className="space-y-3">
             <div>
-              <label className="block text-[11px] font-hud tracking-wider text-cyan-300 uppercase mb-1">
+              <label className="block text-[11px] font-hud tracking-wider text-white uppercase mb-1">
                 FULL NAME
               </label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-cyan-500">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
                   <User className="w-4 h-4" />
                 </div>
                 <input
@@ -136,14 +136,14 @@ export const RegisterPage: React.FC = () => {
                   value={fullName}
                   onChange={(e) => setFullName(e.target.value)}
                   placeholder="Tony Stark"
-                  className="w-full pl-9 pr-3 py-2.5 sm:py-1.5 min-h-[44px] sm:min-h-0 bg-black/60 border border-cyan-500/30 rounded text-base sm:text-xs font-mono text-cyan-100 focus:border-cyan-400 focus:outline-none"
+                  className="w-full pl-9 pr-3 py-2.5 sm:py-1.5 min-h-[44px] sm:min-h-0 bg-black/60 border border-white/10 rounded text-base sm:text-xs font-mono text-white focus:border-white/40 focus:outline-none"
                 />
               </div>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div>
-                <label className="block text-[11px] font-hud tracking-wider text-cyan-300 uppercase mb-1">
+                <label className="block text-[11px] font-hud tracking-wider text-white uppercase mb-1">
                   USERNAME
                 </label>
                 <input
@@ -152,11 +152,11 @@ export const RegisterPage: React.FC = () => {
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
                   placeholder="ironman"
-                  className="w-full px-3 py-2.5 sm:py-1.5 min-h-[44px] sm:min-h-0 bg-black/60 border border-cyan-500/30 rounded text-base sm:text-xs font-mono text-cyan-100 focus:border-cyan-400 focus:outline-none"
+                  className="w-full px-3 py-2.5 sm:py-1.5 min-h-[44px] sm:min-h-0 bg-black/60 border border-white/10 rounded text-base sm:text-xs font-mono text-white focus:border-white/40 focus:outline-none"
                 />
               </div>
               <div>
-                <label className="block text-[11px] font-hud tracking-wider text-cyan-300 uppercase mb-1">
+                <label className="block text-[11px] font-hud tracking-wider text-white uppercase mb-1">
                   EMAIL
                 </label>
                 <div className="relative">
@@ -166,18 +166,18 @@ export const RegisterPage: React.FC = () => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="tony@stark.corp"
-                    className="w-full px-3 py-2.5 sm:py-1.5 min-h-[44px] sm:min-h-0 bg-black/60 border border-cyan-500/30 rounded text-base sm:text-xs font-mono text-cyan-100 focus:border-cyan-400 focus:outline-none"
+                    className="w-full px-3 py-2.5 sm:py-1.5 min-h-[44px] sm:min-h-0 bg-black/60 border border-white/10 rounded text-base sm:text-xs font-mono text-white focus:border-white/40 focus:outline-none"
                   />
                 </div>
               </div>
             </div>
 
             <div>
-              <label className="block text-[11px] font-hud tracking-wider text-cyan-300 uppercase mb-1">
+              <label className="block text-[11px] font-hud tracking-wider text-white uppercase mb-1">
                 PASSWORD
               </label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-cyan-500">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
                   <Lock className="w-4 h-4" />
                 </div>
                 <input
@@ -186,13 +186,13 @@ export const RegisterPage: React.FC = () => {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Minimum 8 characters"
-                  className="w-full pl-9 pr-3 py-2.5 sm:py-1.5 min-h-[44px] sm:min-h-0 bg-black/60 border border-cyan-500/30 rounded text-base sm:text-xs font-mono text-cyan-100 focus:border-cyan-400 focus:outline-none"
+                  className="w-full pl-9 pr-3 py-2.5 sm:py-1.5 min-h-[44px] sm:min-h-0 bg-black/60 border border-white/10 rounded text-base sm:text-xs font-mono text-white focus:border-white/40 focus:outline-none"
                 />
               </div>
 
               {/* Password Strength Meter */}
               {password && (
-                <div className="mt-2 p-2 rounded bg-black/40 border border-cyan-500/20 text-[10px] font-mono">
+                <div className="mt-2 p-2 rounded bg-black/40 border border-white/10 text-[10px] font-mono">
                   <div className="flex items-center justify-between mb-1">
                     <span className="text-gray-400">PASSWORD COMPLEXITY:</span>
                     <span className={`font-hud font-bold ${strengthColor.split(' ')[1]}`}>
@@ -206,16 +206,16 @@ export const RegisterPage: React.FC = () => {
                     />
                   </div>
                   <div className="grid grid-cols-2 gap-1 mt-2 text-[9px]">
-                    <span className={hasMinLen ? 'text-green-400' : 'text-gray-500'}>
+                    <span className={hasMinLen ? 'text-white' : 'text-gray-500'}>
                       {hasMinLen ? '✓' : '○'} 8+ Characters
                     </span>
-                    <span className={hasUpper ? 'text-green-400' : 'text-gray-500'}>
+                    <span className={hasUpper ? 'text-white' : 'text-gray-500'}>
                       {hasUpper ? '✓' : '○'} Uppercase Letter
                     </span>
-                    <span className={hasLower ? 'text-green-400' : 'text-gray-500'}>
+                    <span className={hasLower ? 'text-white' : 'text-gray-500'}>
                       {hasLower ? '✓' : '○'} Lowercase Letter
                     </span>
-                    <span className={hasNumber ? 'text-green-400' : 'text-gray-500'}>
+                    <span className={hasNumber ? 'text-white' : 'text-gray-500'}>
                       {hasNumber ? '✓' : '○'} Numeric Digit
                     </span>
                   </div>
@@ -224,7 +224,7 @@ export const RegisterPage: React.FC = () => {
             </div>
 
             <div>
-              <label className="block text-[11px] font-hud tracking-wider text-cyan-300 uppercase mb-1">
+              <label className="block text-[11px] font-hud tracking-wider text-white uppercase mb-1">
                 CONFIRM PASSWORD
               </label>
               <input
@@ -233,13 +233,13 @@ export const RegisterPage: React.FC = () => {
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 placeholder="Re-enter password"
-                className="w-full px-3 py-2.5 sm:py-1.5 min-h-[44px] sm:min-h-0 bg-black/60 border border-cyan-500/30 rounded text-base sm:text-xs font-mono text-cyan-100 focus:border-cyan-400 focus:outline-none"
+                className="w-full px-3 py-2.5 sm:py-1.5 min-h-[44px] sm:min-h-0 bg-black/60 border border-white/10 rounded text-base sm:text-xs font-mono text-white focus:border-white/40 focus:outline-none"
               />
             </div>
 
             <NeonButton
               type="submit"
-              variant="cyan"
+              variant="solid"
               size="md"
               loading={loading}
               className="w-full mt-3 min-h-[46px]"
@@ -249,9 +249,9 @@ export const RegisterPage: React.FC = () => {
             </NeonButton>
           </form>
 
-          <div className="mt-4 pt-3 border-t border-cyan-500/20 text-center text-xs font-mono text-gray-400">
+          <div className="mt-4 pt-3 border-t border-white/10 text-center text-xs font-mono text-gray-400">
             <span>ALREADY ENROLLED?</span>{' '}
-            <Link to="/login" className="text-cyan-300 font-hud font-bold hover:underline">
+            <Link to="/login" className="text-white font-hud font-bold hover:underline">
               AUTHENTICATE
             </Link>
           </div>

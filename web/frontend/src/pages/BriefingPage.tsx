@@ -99,16 +99,16 @@ export const BriefingPage: React.FC = () => {
     <div className="max-w-4xl mx-auto space-y-6 select-none pb-8">
       {/* Header */}
       <div className="text-center">
-        <h1 className="text-2xl sm:text-3xl font-hud font-black tracking-widest text-cyan-300 uppercase">
+        <h1 className="text-2xl sm:text-3xl font-hud font-black tracking-widest text-white uppercase">
           GOOD MORNING BRIEFING
         </h1>
-        <p className="text-xs font-mono text-cyan-400/70 tracking-widest uppercase mt-1">
+        <p className="text-xs font-mono text-gray-400 tracking-widest uppercase mt-1">
           DAILY SITUATION REPORT & TACTICAL OVERVIEW
         </p>
       </div>
 
       {/* Main Console */}
-      <HolographicCard glowColor="cyan" className="p-6 sm:p-8 flex flex-col items-center justify-center relative">
+      <HolographicCard glowColor="white" className="p-6 sm:p-8 flex flex-col items-center justify-center relative">
         <div className="w-48 h-48 sm:w-56 sm:h-56 my-2 relative">
           <AICore state={isPlaying ? 'SPEAKING' : 'IDLE'} />
         </div>
@@ -118,7 +118,7 @@ export const BriefingPage: React.FC = () => {
         </div>
 
         <NeonButton
-          variant={isPlaying ? 'alert' : 'cyan'}
+          variant={isPlaying ? 'alert' : 'solid'}
           size="lg"
           onClick={handleTogglePlay}
           icon={isPlaying ? <Square className="w-5 h-5" /> : <Play className="w-5 h-5" />}
@@ -127,8 +127,8 @@ export const BriefingPage: React.FC = () => {
         </NeonButton>
 
         {/* Script Preview Box */}
-        <div className="w-full mt-6 p-4 rounded bg-black/60 border border-cyan-500/30 font-mono text-xs text-cyan-200/90 leading-relaxed max-h-60 overflow-y-auto">
-          <div className="flex items-center gap-2 pb-2 mb-2 border-b border-cyan-500/20 text-cyan-400 font-bold uppercase text-[10px]">
+        <div className="w-full mt-6 p-4 rounded bg-black/60 border border-white/10 font-mono text-xs text-white/90 leading-relaxed max-h-60 overflow-y-auto">
+          <div className="flex items-center gap-2 pb-2 mb-2 border-b border-white/10 text-gray-200 font-bold uppercase text-[10px]">
             <Volume2 className="w-3.5 h-3.5" />
             <span>TRANSCRIBED BRIEFING DISPATCH</span>
           </div>
@@ -138,8 +138,8 @@ export const BriefingPage: React.FC = () => {
 
       {/* Briefing Data Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <HolographicCard glowColor="cyan" className="p-4">
-          <div className="flex items-center gap-2 text-cyan-300 font-hud font-bold text-xs uppercase mb-2">
+        <HolographicCard glowColor="white" className="p-4">
+          <div className="flex items-center gap-2 text-white font-hud font-bold text-xs uppercase mb-2">
             <CloudSun className="w-4 h-4" />
             <span>METEOROLOGY</span>
           </div>
@@ -148,8 +148,8 @@ export const BriefingPage: React.FC = () => {
           </p>
         </HolographicCard>
 
-        <HolographicCard glowColor="green" className="p-4">
-          <div className="flex items-center gap-2 text-cyan-300 font-hud font-bold text-xs uppercase mb-2">
+        <HolographicCard glowColor="white" className="p-4">
+          <div className="flex items-center gap-2 text-white font-hud font-bold text-xs uppercase mb-2">
             <CheckSquare className="w-4 h-4" />
             <span>DIRECTIVES</span>
           </div>
@@ -158,8 +158,8 @@ export const BriefingPage: React.FC = () => {
           </p>
         </HolographicCard>
 
-        <HolographicCard glowColor="purple" className="p-4">
-          <div className="flex items-center gap-2 text-cyan-300 font-hud font-bold text-xs uppercase mb-2">
+        <HolographicCard glowColor="white" className="p-4">
+          <div className="flex items-center gap-2 text-white font-hud font-bold text-xs uppercase mb-2">
             <Newspaper className="w-4 h-4" />
             <span>TOP HEADLINE</span>
           </div>

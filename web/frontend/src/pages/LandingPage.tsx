@@ -180,15 +180,15 @@ export const LandingPage: React.FC = () => {
   ];
 
   return (
-    <div className="relative min-h-screen bg-[#02040a] text-[#E8FFFF] overflow-x-hidden selection:bg-cyan-500 selection:text-black">
+    <div className="relative min-h-screen bg-[#050505] text-[#E8FFFF] overflow-x-hidden selection:bg-white selection:text-black">
       {showBoot && <BootSequence onComplete={() => setShowBoot(false)} />}
 
       {/* Atmospheric Background Glows (Fusion AI Gradient Lighting) */}
       <div className="fixed inset-0 pointer-events-none z-0">
         <div className="absolute top-[-10%] left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-[radial-gradient(ellipse_at_center,rgba(0,180,255,0.12)_0%,rgba(100,50,255,0.06)_40%,transparent_70%)] blur-3xl" />
-        <div className="absolute top-[40%] right-[-10%] w-[600px] h-[600px] bg-[radial-gradient(circle,rgba(0,229,255,0.07)_0%,transparent_60%)] blur-3xl" />
+        <div className="absolute top-[40%] right-[-10%] w-[600px] h-[600px] bg-[radial-gradient(circle,rgba(255, 255, 255, 0.07)_0%,transparent_60%)] blur-3xl" />
         <div className="absolute bottom-[10%] left-[-10%] w-[700px] h-[700px] bg-[radial-gradient(circle,rgba(80,50,220,0.08)_0%,transparent_60%)] blur-3xl" />
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#00e5ff04_1px,transparent_1px),linear-gradient(to_bottom,#00e5ff04_1px,transparent_1px)] bg-[size:48px_48px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#FFFFFF04_1px,transparent_1px),linear-gradient(to_bottom,#FFFFFF04_1px,transparent_1px)] bg-[size:48px_48px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
       </div>
 
       {/* FLOATING GLASS NAVIGATION BAR */}
@@ -198,26 +198,26 @@ export const LandingPage: React.FC = () => {
             onClick={() => navigate('/')}
             className="flex items-center gap-3 cursor-pointer group"
           >
-            <div className="w-8 h-8 rounded-full bg-cyan-950/80 border border-cyan-400/60 flex items-center justify-center shadow-[0_0_12px_rgba(0,229,255,0.35)] group-hover:scale-105 transition-transform">
-              <Zap className="w-4 h-4 text-cyan-300" />
+            <div className="w-8 h-8 rounded-full bg-white/5 border border-white/20 flex items-center justify-center shadow-[0_0_12px_rgba(255, 255, 255, 0.35)] group-hover:scale-105 transition-transform">
+              <Zap className="w-4 h-4 text-white" />
             </div>
             <div>
-              <span className="font-hud font-black text-sm tracking-wider text-white group-hover:text-cyan-300 transition-colors">
+              <span className="font-hud font-black text-sm tracking-wider text-white group-hover:text-white transition-colors">
                 JARVIS
               </span>
-              <span className="hidden sm:inline-block ml-2 text-[9px] font-mono text-cyan-400/80 tracking-widest px-1.5 py-0.5 rounded bg-cyan-950/40 border border-cyan-500/20">
+              <span className="hidden sm:inline-block ml-2 text-[9px] font-mono text-gray-400 tracking-widest px-1.5 py-0.5 rounded bg-white/5 border border-white/10">
                 AGENCY // V2.5
               </span>
             </div>
           </div>
 
           <div className="hidden lg:flex items-center gap-6 text-xs font-mono tracking-wider text-gray-300">
-            <a href="#services" className="hover:text-cyan-300 transition-colors">SERVICES</a>
-            <a href="#showcase" className="hover:text-cyan-300 transition-colors">SHOWCASE</a>
-            <a href="#process" className="hover:text-cyan-300 transition-colors">PROCESS</a>
-            <a href="#agents" className="hover:text-cyan-300 transition-colors">AGENTS</a>
-            <a href="#pricing" className="hover:text-cyan-300 transition-colors">PRICING</a>
-            <a href="#contact" className="hover:text-cyan-300 transition-colors">CONTACT</a>
+            <a href="#services" className="hover:text-white transition-colors">SERVICES</a>
+            <a href="#showcase" className="hover:text-white transition-colors">SHOWCASE</a>
+            <a href="#process" className="hover:text-white transition-colors">PROCESS</a>
+            <a href="#agents" className="hover:text-white transition-colors">AGENTS</a>
+            <a href="#pricing" className="hover:text-white transition-colors">PRICING</a>
+            <a href="#contact" className="hover:text-white transition-colors">CONTACT</a>
           </div>
 
           <div className="flex items-center gap-2 sm:gap-3">
@@ -226,14 +226,14 @@ export const LandingPage: React.FC = () => {
                 sound.playClick();
                 navigate('/login');
               }}
-              className="hidden sm:inline-block px-3.5 py-1.5 rounded-full text-xs font-hud font-bold tracking-wider text-gray-300 hover:text-white border border-white/10 hover:border-cyan-400/50 hover:bg-white/[0.04] transition-all cursor-pointer"
+              className="hidden sm:inline-block px-3.5 py-1.5 rounded-full text-xs font-hud font-bold tracking-wider text-gray-300 hover:text-white border border-white/10 hover:border-white/20 hover:bg-white/[0.04] transition-all cursor-pointer"
             >
               SIGN IN
             </button>
             <a
               href="#contact"
               onClick={() => sound.playClick()}
-              className="px-4 py-1.5 rounded-full text-xs font-hud font-black tracking-wider text-black bg-gradient-to-r from-cyan-400 to-cyan-300 hover:from-cyan-300 hover:to-cyan-200 shadow-[0_0_20px_rgba(0,229,255,0.4)] hover:shadow-[0_0_25px_rgba(0,229,255,0.6)] transition-all cursor-pointer flex items-center gap-1.5"
+              className="px-4 py-1.5 rounded-full text-xs font-hud font-black tracking-wider text-black bg-gradient-to-r from-white to-gray-300 hover:from-white-300 hover:to-white-200 shadow-[0_0_20px_rgba(255, 255, 255, 0.4)] hover:shadow-[0_0_25px_rgba(255, 255, 255, 0.6)] transition-all cursor-pointer flex items-center gap-1.5"
             >
               <span>LET'S TALK!</span>
               <ArrowRight className="w-3.5 h-3.5 stroke-[3]" />
@@ -245,9 +245,9 @@ export const LandingPage: React.FC = () => {
                 setMobileMenuOpen(!mobileMenuOpen);
               }}
               aria-label="Toggle Navigation Drawer"
-              className="lg:hidden p-2 rounded-full border border-white/10 hover:border-cyan-400/40 text-gray-300 hover:text-white transition-colors cursor-pointer"
+              className="lg:hidden p-2 rounded-full border border-white/10 hover:border-white/20 text-gray-300 hover:text-white transition-colors cursor-pointer"
             >
-              {mobileMenuOpen ? <X className="w-5 h-5 text-cyan-300" /> : <Menu className="w-5 h-5 text-cyan-300" />}
+              {mobileMenuOpen ? <X className="w-5 h-5 text-white" /> : <Menu className="w-5 h-5 text-white" />}
             </button>
           </div>
         </nav>
@@ -260,10 +260,10 @@ export const LandingPage: React.FC = () => {
             className="fixed inset-0 bg-black/80 backdrop-blur-md transition-opacity"
             onClick={() => setMobileMenuOpen(false)}
           />
-          <div className="fixed top-20 inset-x-4 max-w-lg mx-auto glass-fusion-cyan p-6 rounded-3xl border border-cyan-500/30 shadow-[0_20px_60px_rgba(0,0,0,0.8)] z-50 animate-fade-in space-y-4">
+          <div className="fixed top-20 inset-x-4 max-w-lg mx-auto glass-fusion p-6 rounded-3xl border border-white/10 shadow-[0_20px_60px_rgba(0,0,0,0.8)] z-50 animate-fade-in space-y-4">
             <div className="flex items-center justify-between pb-3 border-b border-white/10">
-              <span className="font-hud font-bold text-xs text-cyan-300 uppercase tracking-widest flex items-center gap-2">
-                <Zap className="w-4 h-4 text-cyan-400" />
+              <span className="font-hud font-bold text-xs text-white uppercase tracking-widest flex items-center gap-2">
+                <Zap className="w-4 h-4 text-gray-200" />
                 COMMAND NAVIGATION
               </span>
               <button
@@ -278,42 +278,42 @@ export const LandingPage: React.FC = () => {
               <a
                 href="#services"
                 onClick={() => setMobileMenuOpen(false)}
-                className="p-3 rounded-xl glass-pill hover:bg-cyan-500/10 text-gray-200 hover:text-cyan-300 transition-colors"
+                className="p-3 rounded-xl glass-pill hover:bg-white/10 text-gray-200 hover:text-white transition-colors"
               >
                 Services (/01)
               </a>
               <a
                 href="#showcase"
                 onClick={() => setMobileMenuOpen(false)}
-                className="p-3 rounded-xl glass-pill hover:bg-cyan-500/10 text-gray-200 hover:text-cyan-300 transition-colors"
+                className="p-3 rounded-xl glass-pill hover:bg-white/10 text-gray-200 hover:text-white transition-colors"
               >
                 Showcase (/02)
               </a>
               <a
                 href="#process"
                 onClick={() => setMobileMenuOpen(false)}
-                className="p-3 rounded-xl glass-pill hover:bg-cyan-500/10 text-gray-200 hover:text-cyan-300 transition-colors"
+                className="p-3 rounded-xl glass-pill hover:bg-white/10 text-gray-200 hover:text-white transition-colors"
               >
                 Process (/03)
               </a>
               <a
                 href="#agents"
                 onClick={() => setMobileMenuOpen(false)}
-                className="p-3 rounded-xl glass-pill hover:bg-cyan-500/10 text-gray-200 hover:text-cyan-300 transition-colors"
+                className="p-3 rounded-xl glass-pill hover:bg-white/10 text-gray-200 hover:text-white transition-colors"
               >
                 Core Agents (/04)
               </a>
               <a
                 href="#pricing"
                 onClick={() => setMobileMenuOpen(false)}
-                className="p-3 rounded-xl glass-pill hover:bg-cyan-500/10 text-gray-200 hover:text-cyan-300 transition-colors"
+                className="p-3 rounded-xl glass-pill hover:bg-white/10 text-gray-200 hover:text-white transition-colors"
               >
                 Pricing Plans
               </a>
               <a
                 href="#contact"
                 onClick={() => setMobileMenuOpen(false)}
-                className="p-3 rounded-xl glass-pill hover:bg-cyan-500/10 text-gray-200 hover:text-cyan-300 transition-colors"
+                className="p-3 rounded-xl glass-pill hover:bg-white/10 text-gray-200 hover:text-white transition-colors"
               >
                 Let's Talk!
               </a>
@@ -322,7 +322,7 @@ export const LandingPage: React.FC = () => {
                   setMobileMenuOpen(false);
                   navigate('/login');
                 }}
-                className="p-3 rounded-xl glass-pill hover:bg-cyan-500/10 text-gray-200 hover:text-cyan-300 transition-colors text-left cursor-pointer col-span-2"
+                className="p-3 rounded-xl glass-pill hover:bg-white/10 text-gray-200 hover:text-white transition-colors text-left cursor-pointer col-span-2"
               >
                 Sign In
               </button>
@@ -335,7 +335,7 @@ export const LandingPage: React.FC = () => {
                   sound.playClick();
                   navigate('/dashboard');
                 }}
-                className="w-full py-3.5 rounded-full bg-gradient-to-r from-cyan-400 to-cyan-300 text-black font-hud font-black text-xs tracking-widest uppercase flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(0,229,255,0.4)] cursor-pointer"
+                className="w-full py-3.5 rounded-full bg-gradient-to-r from-white to-gray-300 text-black font-hud font-black text-xs tracking-widest uppercase flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(255, 255, 255, 0.4)] cursor-pointer"
               >
                 <span>LAUNCH JARVIS</span>
                 <ChevronRight className="w-4 h-4" />
@@ -360,21 +360,21 @@ export const LandingPage: React.FC = () => {
         <div className="absolute inset-0 z-0 pointer-events-none opacity-30">
           <Canvas camera={{ position: [0, 0, 5], fov: 60 }}>
             <ambientLight intensity={0.4} />
-            <ParticleField count={isMobile ? 120 : 320} speed={0.25} color="#00e5ff" />
+            <ParticleField count={isMobile ? 120 : 320} speed={0.25} color="#FFFFFF" />
           </Canvas>
         </div>
 
         <div className="relative z-10 max-w-5xl mx-auto px-4 text-center mt-6">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-pill border border-cyan-500/30 text-cyan-300 text-xs font-mono tracking-widest uppercase mb-6 shadow-[0_0_20px_rgba(0,229,255,0.15)]">
-            <span className="w-2 h-2 rounded-full bg-cyan-400 animate-ping" />
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-pill border border-white/10 text-white text-xs font-mono tracking-widest uppercase mb-6 shadow-[0_0_20px_rgba(255, 255, 255, 0.15)]">
+            <span className="w-2 h-2 rounded-full bg-white animate-ping" />
             <span>© WE BUILD AUTONOMOUS INTELLIGENCE WITH INTENTION, CLARITY AND CARE</span>
           </div>
 
-          <h1 className="text-5xl sm:text-7xl lg:text-8xl font-hud font-black tracking-tight text-white uppercase drop-shadow-[0_0_40px_rgba(0,229,255,0.3)]">
-            Create, <span className="font-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-sky-200 to-indigo-300 lowercase text-6xl sm:text-8xl lg:text-9xl">Impactful</span> Intelligence.
+          <h1 className="text-5xl sm:text-7xl lg:text-8xl font-hud font-black tracking-tight text-white uppercase drop-shadow-[0_0_40px_rgba(255, 255, 255, 0.3)]">
+            Create, <span className="font-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-300 lowercase text-6xl sm:text-8xl lg:text-9xl">Impactful</span> Intelligence.
           </h1>
 
-          <p className="mt-4 text-base sm:text-xl font-hud tracking-wide text-cyan-200/90 font-medium">
+          <p className="mt-4 text-base sm:text-xl font-hud tracking-wide text-white/90 font-medium">
             "We craft autonomous digital systems that perform exceptionally."
           </p>
 
@@ -388,7 +388,7 @@ export const LandingPage: React.FC = () => {
                 sound.playClick();
                 navigate('/dashboard');
               }}
-              className="px-8 py-3.5 rounded-full bg-gradient-to-r from-cyan-400 via-cyan-300 to-blue-400 hover:from-cyan-300 hover:to-blue-300 text-black font-hud font-black text-sm tracking-widest uppercase flex items-center gap-2.5 shadow-[0_0_30px_rgba(0,229,255,0.4)] hover:shadow-[0_0_40px_rgba(0,229,255,0.65)] hover:scale-105 transition-all cursor-pointer"
+              className="px-8 py-3.5 rounded-full bg-gradient-to-r from-white to-gray-300 hover:from-white hover:to-gray-200 text-black font-hud font-black text-sm tracking-widest uppercase flex items-center gap-2.5 shadow-[0_0_30px_rgba(255, 255, 255, 0.4)] hover:shadow-[0_0_40px_rgba(255, 255, 255, 0.65)] hover:scale-105 transition-all cursor-pointer"
             >
               <span>Launch Cockpit</span>
               <ArrowRight className="w-4 h-4 stroke-[3]" />
@@ -399,19 +399,19 @@ export const LandingPage: React.FC = () => {
                 sound.playClick();
                 handlePlayVoicePreview();
               }}
-              className="px-7 py-3.5 rounded-full glass-fusion border border-emerald-400/40 hover:border-emerald-300 text-emerald-300 hover:text-white font-hud font-bold text-sm tracking-wider uppercase transition-all flex items-center gap-2 hover:bg-emerald-950/40 shadow-[0_0_20px_rgba(0,255,136,0.15)] cursor-pointer"
+              className="px-7 py-3.5 rounded-full glass-fusion border border-white/20 hover:border-white/50 text-white hover:text-white font-hud font-bold text-sm tracking-wider uppercase transition-all flex items-center gap-2 hover:bg-white/5 shadow-[0_0_20px_rgba(255, 255, 255, 0.15)] cursor-pointer"
             >
-              <Mic className="w-4 h-4 text-emerald-400" />
+              <Mic className="w-4 h-4 text-white" />
               <span>Talk to JARVIS</span>
             </button>
 
             <a
               href="#services"
               onClick={() => sound.playClick()}
-              className="px-6 py-3.5 rounded-full glass-fusion border border-white/10 hover:border-cyan-400/40 text-gray-300 hover:text-white font-hud font-bold text-sm tracking-wider uppercase transition-all flex items-center gap-2 hover:bg-white/[0.05]"
+              className="px-6 py-3.5 rounded-full glass-fusion border border-white/10 hover:border-white/20 text-gray-300 hover:text-white font-hud font-bold text-sm tracking-wider uppercase transition-all flex items-center gap-2 hover:bg-white/[0.05]"
             >
               <span>Explore Services</span>
-              <ChevronDown className="w-4 h-4 text-cyan-400" />
+              <ChevronDown className="w-4 h-4 text-gray-200" />
             </a>
           </div>
         </div>
@@ -419,41 +419,41 @@ export const LandingPage: React.FC = () => {
         {/* HERO 3D LAYERED COMPOSITION */}
         <div className="relative z-10 w-full max-w-6xl mx-auto px-4 mt-8 flex flex-col items-center">
           <div className="relative w-full h-[420px] sm:h-[480px] flex items-center justify-center">
-            <div className="absolute w-[360px] sm:w-[480px] h-[360px] sm:h-[480px] rounded-full bg-[radial-gradient(circle,rgba(0,229,255,0.18)_0%,rgba(120,50,255,0.08)_50%,transparent_75%)] pointer-events-none blur-xl" />
+            <div className="absolute w-[360px] sm:w-[480px] h-[360px] sm:h-[480px] rounded-full bg-[radial-gradient(circle,rgba(255, 255, 255, 0.18)_0%,rgba(120,50,255,0.08)_50%,transparent_75%)] pointer-events-none blur-xl" />
 
             <div className="w-[300px] sm:w-[380px] h-[300px] sm:h-[380px] z-10">
               <AICore state="IDLE" size="100%" interactive={true} subtext="CLICK TO STIMULATE NEURAL CORE" />
             </div>
 
             {/* FLOATING GLASS CARD 1: DATA MATRIX */}
-            <div className="hidden md:flex absolute left-4 lg:left-8 top-16 w-64 glass-fusion-cyan p-4 rounded-2xl animate-float-1 z-20">
+            <div className="hidden md:flex absolute left-4 lg:left-8 top-16 w-64 glass-fusion p-4 rounded-2xl animate-float-1 z-20">
               <div className="w-full">
                 <div className="flex items-center justify-between pb-2 border-b border-white/10 mb-2.5">
-                  <span className="text-[10px] font-hud font-bold text-cyan-300 uppercase flex items-center gap-1.5">
-                    <Activity className="w-3.5 h-3.5 text-cyan-400 animate-spin" />
+                  <span className="text-[10px] font-hud font-bold text-white uppercase flex items-center gap-1.5">
+                    <Activity className="w-3.5 h-3.5 text-gray-200 animate-spin" />
                     DATA MATRIX
                   </span>
-                  <span className="text-[9px] font-mono text-emerald-400 font-bold">LIVE // 100%</span>
+                  <span className="text-[9px] font-mono text-white font-bold">LIVE // 100%</span>
                 </div>
                 <div className="space-y-1.5 text-[11px] font-mono">
                   <div className="flex justify-between text-gray-300">
                     <span className="text-gray-400">Throughput:</span>
-                    <span className="text-cyan-200">1.48 TB/s</span>
+                    <span className="text-white">1.48 TB/s</span>
                   </div>
                   <div className="flex justify-between text-gray-300">
                     <span className="text-gray-400">Inference Latency:</span>
-                    <span className="text-emerald-300">11.8 ms</span>
+                    <span className="text-white">11.8 ms</span>
                   </div>
                   <div className="flex justify-between text-gray-300">
                     <span className="text-gray-400">Context Memory:</span>
-                    <span className="text-indigo-300">256K Tokens</span>
+                    <span className="text-white">256K Tokens</span>
                   </div>
                 </div>
                 <div className="mt-3 pt-2 border-t border-white/5 flex items-center gap-1.5">
                   <div className="h-1 flex-1 bg-white/10 rounded-full overflow-hidden">
-                    <div className="h-full w-4/5 bg-cyan-400 rounded-full animate-pulse" />
+                    <div className="h-full w-4/5 bg-white rounded-full animate-pulse" />
                   </div>
-                  <span className="text-[9px] font-mono text-cyan-400">SYNCED</span>
+                  <span className="text-[9px] font-mono text-gray-200">SYNCED</span>
                 </div>
               </div>
             </div>
@@ -462,60 +462,60 @@ export const LandingPage: React.FC = () => {
             <div className="hidden md:flex absolute right-4 lg:right-8 top-20 w-64 glass-fusion p-4 rounded-2xl animate-float-2 z-20">
               <div className="w-full">
                 <div className="flex items-center justify-between pb-2 border-b border-white/10 mb-2.5">
-                  <span className="text-[10px] font-hud font-bold text-emerald-300 uppercase flex items-center gap-1.5">
-                    <Shield className="w-3.5 h-3.5 text-emerald-400" />
+                  <span className="text-[10px] font-hud font-bold text-white uppercase flex items-center gap-1.5">
+                    <Shield className="w-3.5 h-3.5 text-white" />
                     CYBER DEFENSE
                   </span>
-                  <span className="text-[9px] font-mono text-cyan-400 font-bold">ACTIVE</span>
+                  <span className="text-[9px] font-mono text-gray-200 font-bold">ACTIVE</span>
                 </div>
                 <div className="space-y-1.5 text-[11px] font-mono">
                   <div className="flex justify-between text-gray-300">
                     <span className="text-gray-400">Authentication:</span>
-                    <span className="text-emerald-300">SHA-256 OTP</span>
+                    <span className="text-white">SHA-256 OTP</span>
                   </div>
                   <div className="flex justify-between text-gray-300">
                     <span className="text-gray-400">Isolation Layer:</span>
-                    <span className="text-cyan-300">Multi-Tenant</span>
+                    <span className="text-white">Multi-Tenant</span>
                   </div>
                   <div className="flex justify-between text-gray-300">
                     <span className="text-gray-400">Active Threats:</span>
-                    <span className="text-emerald-400 font-bold">0 Detected</span>
+                    <span className="text-white font-bold">0 Detected</span>
                   </div>
                 </div>
                 <div className="mt-3 pt-2 border-t border-white/5 flex items-center justify-between text-[9px] font-mono text-gray-400">
                   <span>JWT ENCRYPTED</span>
-                  <span className="text-emerald-400">RESILIENT</span>
+                  <span className="text-white">RESILIENT</span>
                 </div>
               </div>
             </div>
 
             {/* FLOATING GLASS PILL: AI STATUS */}
-            <div className="absolute top-0 glass-pill px-4 py-2 rounded-full border border-cyan-500/30 text-xs font-mono flex items-center gap-3 animate-float-3 z-20 shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+            <div className="absolute top-0 glass-pill px-4 py-2 rounded-full border border-white/10 text-xs font-mono flex items-center gap-3 animate-float-3 z-20 shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
+              <span className="w-2 h-2 rounded-full bg-white animate-ping" />
               <span className="text-gray-300">NEURAL CORE:</span>
-              <span className="text-cyan-300 font-bold font-hud">GOOGLE GEMINI 2.5 FLASH</span>
+              <span className="text-white font-bold font-hud">GOOGLE GEMINI 2.5 FLASH</span>
               <span className="text-gray-500">|</span>
-              <span className="text-purple-300 font-bold">DEMO RESILIENT</span>
+              <span className="text-white font-bold">DEMO RESILIENT</span>
             </div>
 
             {/* FLOATING GLASS CHIP: TASKS & SENSORS */}
             <div className="absolute bottom-2 glass-fusion px-5 py-2.5 rounded-full border border-white/10 flex items-center gap-4 text-xs font-mono z-20">
               <div className="flex items-center gap-2">
-                <CheckSquare className="w-3.5 h-3.5 text-cyan-400" />
+                <CheckSquare className="w-3.5 h-3.5 text-gray-200" />
                 <span className="text-gray-300">Directives:</span>
-                <span className="text-cyan-300 font-bold">8 Queued</span>
+                <span className="text-white font-bold">8 Queued</span>
               </div>
               <span className="text-white/20">|</span>
               <div className="flex items-center gap-2">
-                <Wifi className="w-3.5 h-3.5 text-emerald-400" />
+                <Wifi className="w-3.5 h-3.5 text-white" />
                 <span className="text-gray-300">Sensors:</span>
-                <span className="text-emerald-300 font-bold">Global RSS + Weather</span>
+                <span className="text-white font-bold">Global RSS + Weather</span>
               </div>
               <span className="text-white/20">|</span>
               <div className="flex items-center gap-2">
-                <Volume2 className="w-3.5 h-3.5 text-indigo-400" />
+                <Volume2 className="w-3.5 h-3.5 text-gray-300" />
                 <span className="text-gray-300">Voice Synthesis:</span>
-                <span className="text-indigo-300 font-bold">Armed</span>
+                <span className="text-white font-bold">Armed</span>
               </div>
             </div>
           </div>
@@ -525,16 +525,16 @@ export const LandingPage: React.FC = () => {
         <div className="relative z-10 w-full max-w-5xl mx-auto px-4 mt-8 sm:mt-10">
           <div className="glass-fusion rounded-3xl p-5 sm:p-7 border border-white/10 shadow-[0_20px_80px_rgba(0,0,0,0.8)] relative overflow-hidden backdrop-blur-2xl">
             {/* Ambient subtle glow background */}
-            <div className="absolute top-0 right-1/4 w-96 h-40 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
-            <div className="absolute bottom-0 left-1/4 w-96 h-40 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute top-0 right-1/4 w-96 h-40 bg-white/10 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute bottom-0 left-1/4 w-96 h-40 bg-white/5 rounded-full blur-3xl pointer-events-none" />
 
             {/* Top Toolbar */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-white/10">
               <div className="flex items-center gap-3">
-                <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-cyan-950/70 border border-cyan-400/50 shadow-[0_0_12px_rgba(0,229,255,0.2)]">
-                  <Zap className="w-3.5 h-3.5 text-cyan-300" />
-                  <span className="text-[11px] font-mono font-bold text-cyan-200">GEMINI 2.5 FLASH // QUANTUM CORE</span>
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping ml-0.5" />
+                <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/20 shadow-[0_0_12px_rgba(255, 255, 255, 0.2)]">
+                  <Zap className="w-3.5 h-3.5 text-white" />
+                  <span className="text-[11px] font-mono font-bold text-white">GEMINI 2.5 FLASH // QUANTUM CORE</span>
+                  <span className="w-2 h-2 rounded-full bg-white animate-ping ml-0.5" />
                 </div>
                 <span className="hidden sm:inline-block text-[10px] font-mono text-gray-400 uppercase tracking-widest">
                   Autonomous Agent Active
@@ -561,8 +561,8 @@ export const LandingPage: React.FC = () => {
                       }}
                       className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-mono tracking-wider transition-all whitespace-nowrap cursor-pointer ${
                         active
-                          ? 'bg-cyan-500 text-black font-bold shadow-[0_0_15px_rgba(0,229,255,0.35)]'
-                          : 'glass-pill text-gray-300 hover:text-white hover:border-cyan-400/30'
+                          ? 'bg-white text-black font-bold shadow-[0_0_15px_rgba(255, 255, 255, 0.35)]'
+                          : 'glass-pill text-gray-300 hover:text-white hover:border-white/20'
                       }`}
                     >
                       <Icon className="w-3 h-3" />
@@ -575,15 +575,15 @@ export const LandingPage: React.FC = () => {
 
             {/* Prompt Input & Execution Bar */}
             <div className="mt-5">
-              <form onSubmit={handleExecutePrompt} className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 p-2 rounded-2xl bg-black/60 border border-cyan-500/30 shadow-inner">
+              <form onSubmit={handleExecutePrompt} className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 p-2 rounded-2xl bg-black/60 border border-white/10 shadow-inner">
                 <div className="flex-1 flex items-center gap-3 px-3 py-1">
-                  <Bot className="w-5 h-5 text-cyan-400 shrink-0" />
+                  <Bot className="w-5 h-5 text-gray-200 shrink-0" />
                   <input
                     type="text"
                     value={promptInput}
                     onChange={(e) => setPromptInput(e.target.value)}
                     placeholder="Ask JARVIS to automate workflows, analyze telemetry, or query sensors..."
-                    className="w-full bg-transparent text-xs sm:text-sm font-mono text-cyan-100 placeholder-gray-500 focus:outline-none"
+                    className="w-full bg-transparent text-xs sm:text-sm font-mono text-white placeholder-gray-500 focus:outline-none"
                   />
                 </div>
 
@@ -591,7 +591,7 @@ export const LandingPage: React.FC = () => {
                   <button
                     type="button"
                     onClick={handlePlayVoicePreview}
-                    className="p-2.5 rounded-full glass-fusion border border-cyan-500/30 text-cyan-300 hover:text-white hover:border-cyan-400 transition-colors"
+                    className="p-2.5 rounded-full glass-fusion border border-white/10 text-white hover:text-white hover:border-white/40 transition-colors"
                     title="Voice Input Simulation"
                   >
                     <Mic className="w-4 h-4" />
@@ -599,7 +599,7 @@ export const LandingPage: React.FC = () => {
                   <button
                     type="submit"
                     disabled={isPromptExecuting}
-                    className="px-5 py-2.5 rounded-full bg-gradient-to-r from-cyan-400 to-cyan-300 hover:from-cyan-300 hover:to-cyan-200 text-black font-hud font-black text-xs tracking-wider uppercase flex items-center gap-2 shadow-[0_0_20px_rgba(0,229,255,0.4)] disabled:opacity-50 transition-all cursor-pointer"
+                    className="px-5 py-2.5 rounded-full bg-gradient-to-r from-white to-gray-300 hover:from-white-300 hover:to-white-200 text-black font-hud font-black text-xs tracking-wider uppercase flex items-center gap-2 shadow-[0_0_20px_rgba(255, 255, 255, 0.4)] disabled:opacity-50 transition-all cursor-pointer"
                   >
                     {isPromptExecuting ? (
                       <>
@@ -619,50 +619,50 @@ export const LandingPage: React.FC = () => {
 
             {/* Simulated Execution Response Output */}
             {promptExecuted && (
-              <div className="mt-5 p-4 sm:p-5 rounded-2xl bg-[#040916]/80 border border-cyan-500/20 space-y-4 animate-fade-in">
+              <div className="mt-5 p-4 sm:p-5 rounded-2xl bg-[#040916]/80 border border-white/10 space-y-4 animate-fade-in">
                 <div className="flex items-center justify-between pb-2 border-b border-white/5 text-xs font-mono">
                   <div className="flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-                    <span className="text-cyan-300 font-bold">SYNTHESIZED MISSION DIRECTIVE // RESULTS READY</span>
+                    <span className="w-2 h-2 rounded-full bg-white animate-ping" />
+                    <span className="text-white font-bold">SYNTHESIZED MISSION DIRECTIVE // RESULTS READY</span>
                   </div>
                   <span className="text-[10px] text-gray-500 font-mono">EXECUTION: 18ms // DUAL-ENGINE GEMINI</span>
                 </div>
 
                 {/* 3 Step Action Pill Results */}
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-xs font-mono">
-                  <div className="p-2.5 rounded-xl bg-cyan-950/40 border border-cyan-500/20 flex items-center gap-2">
-                    <div className="w-5 h-5 rounded-full bg-cyan-500/20 flex items-center justify-center text-[10px] text-cyan-300 font-bold">✓</div>
+                  <div className="p-2.5 rounded-xl bg-white/5 border border-white/10 flex items-center gap-2">
+                    <div className="w-5 h-5 rounded-full bg-white/10 flex items-center justify-center text-[10px] text-white font-bold">✓</div>
                     <div className="truncate">
                       <span className="text-gray-400 block text-[9px]">ATMOSPHERIC RADAR</span>
-                      <span className="text-cyan-200 text-[11px] font-bold">21°C // Nominal</span>
+                      <span className="text-white text-[11px] font-bold">21°C // Nominal</span>
                     </div>
                   </div>
-                  <div className="p-2.5 rounded-xl bg-cyan-950/40 border border-cyan-500/20 flex items-center gap-2">
-                    <div className="w-5 h-5 rounded-full bg-cyan-500/20 flex items-center justify-center text-[10px] text-cyan-300 font-bold">✓</div>
+                  <div className="p-2.5 rounded-xl bg-white/5 border border-white/10 flex items-center gap-2">
+                    <div className="w-5 h-5 rounded-full bg-white/10 flex items-center justify-center text-[10px] text-white font-bold">✓</div>
                     <div className="truncate">
                       <span className="text-gray-400 block text-[9px]">GLOBAL RSS NEWS</span>
-                      <span className="text-cyan-200 text-[11px] font-bold">6 Streams Indexed</span>
+                      <span className="text-white text-[11px] font-bold">6 Streams Indexed</span>
                     </div>
                   </div>
-                  <div className="p-2.5 rounded-xl bg-cyan-950/40 border border-cyan-500/20 flex items-center gap-2">
-                    <div className="w-5 h-5 rounded-full bg-cyan-500/20 flex items-center justify-center text-[10px] text-cyan-300 font-bold">✓</div>
+                  <div className="p-2.5 rounded-xl bg-white/5 border border-white/10 flex items-center gap-2">
+                    <div className="w-5 h-5 rounded-full bg-white/10 flex items-center justify-center text-[10px] text-white font-bold">✓</div>
                     <div className="truncate">
                       <span className="text-gray-400 block text-[9px]">RELATIONAL SECURITY</span>
-                      <span className="text-emerald-300 text-[11px] font-bold">14 Schemas Validated</span>
+                      <span className="text-white text-[11px] font-bold">14 Schemas Validated</span>
                     </div>
                   </div>
                 </div>
 
                 {/* Assistant Output Speech Bubble */}
-                <div className="p-3.5 rounded-xl bg-black/40 border border-cyan-500/25 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div className="p-3.5 rounded-xl bg-black/40 border border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                   <div className="text-xs font-mono text-gray-200 leading-relaxed">
-                    <span className="text-[10px] text-cyan-300 font-bold block mb-0.5">J.A.R.V.I.S. VOCAL RESPONSE:</span>
+                    <span className="text-[10px] text-white font-bold block mb-0.5">J.A.R.V.I.S. VOCAL RESPONSE:</span>
                     "Good afternoon, Operative. All orbital and terrestrial telemetry streams have been consolidated into your daily mission briefing. Subsystems are operating at peak fidelity. What directives shall we initiate?"
                   </div>
                   <button
                     type="button"
                     onClick={handlePlayVoicePreview}
-                    className="px-4 py-2 rounded-xl bg-cyan-950/80 border border-cyan-400 hover:border-cyan-300 text-xs font-hud text-cyan-300 hover:text-white flex items-center justify-center gap-1.5 transition-all shadow-[0_0_12px_rgba(0,229,255,0.25)] shrink-0 cursor-pointer"
+                    className="px-4 py-2 rounded-xl bg-white/5 border border-white/40 hover:border-white/60 text-xs font-hud text-white hover:text-white flex items-center justify-center gap-1.5 transition-all shadow-[0_0_12px_rgba(255, 255, 255, 0.25)] shrink-0 cursor-pointer"
                   >
                     <Volume2 className="w-3.5 h-3.5" />
                     <span>{isAudioPlaying ? 'STOP VOICE' : 'TAP TO HEAR JARVIS'}</span>
@@ -679,7 +679,7 @@ export const LandingPage: React.FC = () => {
               <div className="text-xs font-mono text-gray-400 mt-1 uppercase tracking-wider">Missions Launched</div>
             </div>
             <div>
-              <div className="text-3xl sm:text-5xl font-hud font-black text-cyan-300">5+</div>
+              <div className="text-3xl sm:text-5xl font-hud font-black text-white">5+</div>
               <div className="text-xs font-mono text-gray-400 mt-1 uppercase tracking-wider">Neural Clusters</div>
             </div>
             <div>
@@ -687,7 +687,7 @@ export const LandingPage: React.FC = () => {
               <div className="text-xs font-mono text-gray-400 mt-1 uppercase tracking-wider">Sensory Schemas</div>
             </div>
             <div>
-              <div className="text-3xl sm:text-5xl font-hud font-black text-emerald-400">99.98%</div>
+              <div className="text-3xl sm:text-5xl font-hud font-black text-white">99.98%</div>
               <div className="text-xs font-mono text-gray-400 mt-1 uppercase tracking-wider">Zero-Trust Uptime</div>
             </div>
           </div>
@@ -698,12 +698,12 @@ export const LandingPage: React.FC = () => {
               Trusted by 150,000+ operatives, engineers & teams worldwide
             </p>
             <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-10 opacity-60 text-xs font-hud font-bold text-gray-300 tracking-wider">
-              <span className="hover:text-cyan-300 hover:opacity-100 transition-colors">GOOGLE CLOUD RUN</span>
-              <span className="hover:text-cyan-300 hover:opacity-100 transition-colors">OPEN-METEO RADAR</span>
-              <span className="hover:text-cyan-300 hover:opacity-100 transition-colors">FASTAPI CORE</span>
-              <span className="hover:text-cyan-300 hover:opacity-100 transition-colors">FIREBASE HOSTING</span>
-              <span className="hover:text-cyan-300 hover:opacity-100 transition-colors">ARXIV INTELLIGENCE</span>
-              <span className="hover:text-cyan-300 hover:opacity-100 transition-colors">POSTGRESQL // SQLITE</span>
+              <span className="hover:text-white hover:opacity-100 transition-colors">GOOGLE CLOUD RUN</span>
+              <span className="hover:text-white hover:opacity-100 transition-colors">OPEN-METEO RADAR</span>
+              <span className="hover:text-white hover:opacity-100 transition-colors">FASTAPI CORE</span>
+              <span className="hover:text-white hover:opacity-100 transition-colors">FIREBASE HOSTING</span>
+              <span className="hover:text-white hover:opacity-100 transition-colors">ARXIV INTELLIGENCE</span>
+              <span className="hover:text-white hover:opacity-100 transition-colors">POSTGRESQL // SQLITE</span>
             </div>
           </div>
         </div>
@@ -714,11 +714,11 @@ export const LandingPage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
             <div>
-              <span className="text-xs font-mono font-bold text-cyan-400 tracking-widest uppercase px-3 py-1 rounded-full glass-pill border border-cyan-500/20">
+              <span className="text-xs font-mono font-bold text-gray-200 tracking-widest uppercase px-3 py-1 rounded-full glass-pill border border-white/10">
                 (01) // WHAT WE DO
               </span>
               <h2 className="text-3xl sm:text-5xl font-hud font-bold text-white mt-4 uppercase">
-                Our Core <span className="font-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-sky-200 to-indigo-300 lowercase text-4xl sm:text-6xl">Intelligence</span> Services
+                Our Core <span className="font-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-300 lowercase text-4xl sm:text-6xl">Intelligence</span> Services
               </h2>
             </div>
             <p className="max-w-md text-xs sm:text-sm font-mono text-gray-400 leading-relaxed">
@@ -765,21 +765,21 @@ export const LandingPage: React.FC = () => {
               return (
                 <div
                   key={idx}
-                  className="glass-fusion p-8 rounded-3xl border border-white/10 hover:border-cyan-500/40 transition-all flex flex-col justify-between group"
+                  className="glass-fusion p-8 rounded-3xl border border-white/10 hover:border-white/10 transition-all flex flex-col justify-between group"
                 >
                   <div>
                     <div className="flex items-center justify-between mb-6">
-                      <span className="font-hud font-black text-2xl text-cyan-500/40 group-hover:text-cyan-300 transition-colors">
+                      <span className="font-hud font-black text-2xl text-gray-500 group-hover:text-white transition-colors">
                         {srv.index}
                       </span>
-                      <div className="w-10 h-10 rounded-2xl bg-cyan-950/60 border border-cyan-400/40 flex items-center justify-center text-cyan-300 group-hover:scale-110 transition-transform">
+                      <div className="w-10 h-10 rounded-2xl bg-white/5 border border-white/20 flex items-center justify-center text-white group-hover:scale-110 transition-transform">
                         <Icon className="w-5 h-5" />
                       </div>
                     </div>
-                    <span className="text-[10px] font-mono text-cyan-400 tracking-widest uppercase block mb-1">
+                    <span className="text-[10px] font-mono text-gray-200 tracking-widest uppercase block mb-1">
                       {srv.tag}
                     </span>
-                    <h3 className="text-xl sm:text-2xl font-hud font-bold text-white group-hover:text-cyan-300 transition-colors">
+                    <h3 className="text-xl sm:text-2xl font-hud font-bold text-white group-hover:text-white transition-colors">
                       {srv.title}
                     </h3>
                     <p className="mt-3 text-xs sm:text-sm font-mono text-gray-400 leading-relaxed">
@@ -800,7 +800,7 @@ export const LandingPage: React.FC = () => {
                         sound.playClick();
                         navigate('/dashboard');
                       }}
-                      className="text-xs font-hud font-bold text-cyan-300 group-hover:translate-x-1 transition-transform flex items-center gap-1 cursor-pointer"
+                      className="text-xs font-hud font-bold text-white group-hover:translate-x-1 transition-transform flex items-center gap-1 cursor-pointer"
                     >
                       <span>DEPLOY</span>
                       <ChevronRight className="w-3.5 h-3.5" />
@@ -817,7 +817,7 @@ export const LandingPage: React.FC = () => {
       <section id="showcase" className="py-24 relative border-t border-white/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="text-xs font-mono font-bold text-cyan-400 tracking-widest uppercase px-3 py-1 rounded-full glass-pill border border-cyan-500/20">
+            <span className="text-xs font-mono font-bold text-gray-200 tracking-widest uppercase px-3 py-1 rounded-full glass-pill border border-white/10">
               (02) // FEATURED SHOWCASES
             </span>
             <h2 className="text-3xl sm:text-5xl font-hud font-bold text-white mt-4 uppercase">
@@ -830,18 +830,18 @@ export const LandingPage: React.FC = () => {
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
             {/* Card 1 (Span 7): Instant, One-Command Actions */}
-            <div className="lg:col-span-7 glass-fusion rounded-3xl p-6 sm:p-8 border border-white/10 hover:border-cyan-500/40 transition-all flex flex-col justify-between group">
+            <div className="lg:col-span-7 glass-fusion rounded-3xl p-6 sm:p-8 border border-white/10 hover:border-white/10 transition-all flex flex-col justify-between group">
               <div>
                 <div className="flex items-center justify-between mb-4">
-                  <div className="w-10 h-10 rounded-xl bg-cyan-950/60 border border-cyan-400/40 flex items-center justify-center text-cyan-300">
+                  <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/20 flex items-center justify-center text-white">
                     <Zap className="w-5 h-5" />
                   </div>
-                  <span className="text-[10px] font-mono px-2.5 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-300 flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
+                  <span className="text-[10px] font-mono px-2.5 py-1 rounded-full bg-white/10 border border-white/10 text-white flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />
                     INSTANT DISPATCH
                   </span>
                 </div>
-                <h3 className="text-xl sm:text-2xl font-hud font-bold text-white group-hover:text-cyan-300 transition-colors">
+                <h3 className="text-xl sm:text-2xl font-hud font-bold text-white group-hover:text-white transition-colors">
                   Instant, One-Command Actions
                 </h3>
                 <p className="mt-2 text-xs sm:text-sm font-mono text-gray-400 leading-relaxed">
@@ -850,7 +850,7 @@ export const LandingPage: React.FC = () => {
               </div>
 
               {/* Interactive Action Trigger Deck inside Card 1 */}
-              <div className="mt-6 p-4 rounded-2xl bg-[#030712]/80 border border-white/10 space-y-3">
+              <div className="mt-6 p-4 rounded-2xl bg-[#050505]/80 border border-white/10 space-y-3">
                 <div className="flex flex-wrap gap-2">
                   {[
                     { id: 'radar', label: '⚡ Atmospheric Radar', metric: '42ms' },
@@ -866,40 +866,40 @@ export const LandingPage: React.FC = () => {
                       }}
                       className={`px-3 py-1.5 rounded-xl text-xs font-mono transition-all cursor-pointer flex items-center gap-2 ${
                         bentoActiveAction === act.id
-                          ? 'bg-cyan-500 text-black font-bold shadow-[0_0_12px_rgba(0,229,255,0.4)]'
+                          ? 'bg-white text-black font-bold shadow-[0_0_12px_rgba(255, 255, 255, 0.4)]'
                           : 'bg-white/5 text-gray-300 hover:text-white border border-white/10'
                       }`}
                     >
                       <span>{act.label}</span>
-                      <span className={`text-[9px] px-1.5 py-0.5 rounded ${bentoActiveAction === act.id ? 'bg-black/20 text-black' : 'bg-black/40 text-cyan-400'}`}>
+                      <span className={`text-[9px] px-1.5 py-0.5 rounded ${bentoActiveAction === act.id ? 'bg-black/20 text-black' : 'bg-black/40 text-gray-200'}`}>
                         {act.metric}
                       </span>
                     </button>
                   ))}
                 </div>
 
-                <div className="p-3 rounded-xl bg-black/50 border border-cyan-500/20 text-xs font-mono">
+                <div className="p-3 rounded-xl bg-black/50 border border-white/10 text-xs font-mono">
                   {bentoActiveAction === 'radar' && (
                     <div className="text-gray-300 space-y-1">
-                      <div className="text-cyan-400 font-bold text-[11px] flex justify-between">
+                      <div className="text-gray-200 font-bold text-[11px] flex justify-between">
                         <span>OPEN-METEO // TELEMETRY PASS</span>
-                        <span className="text-emerald-400">STATUS: 200 OK</span>
+                        <span className="text-white">STATUS: 200 OK</span>
                       </div>
                       <p className="text-[11px] text-gray-300">Surface temp: 21°C | Atmospheric pressure: 1014 hPa | Wind: 12 km/h WNW | Precipitation probability: 0%.</p>
                     </div>
                   )}
                   {bentoActiveAction === 'arxiv' && (
                     <div className="text-gray-300 space-y-1">
-                      <div className="text-cyan-400 font-bold text-[11px] flex justify-between">
+                      <div className="text-gray-200 font-bold text-[11px] flex justify-between">
                         <span>ARXIV INTELLIGENCE // RECENT RELEASES</span>
-                        <span className="text-purple-400">PAPERS INDEXED: 14</span>
+                        <span className="text-gray-300">PAPERS INDEXED: 14</span>
                       </div>
                       <p className="text-[11px] text-gray-300">[cs.AI:2410.0194] "Autonomous Quantum Reasoning via Speculative Decoding In Sub-10ms Latencies"</p>
                     </div>
                   )}
                   {bentoActiveAction === 'vectors' && (
                     <div className="text-gray-300 space-y-1">
-                      <div className="text-cyan-400 font-bold text-[11px] flex justify-between">
+                      <div className="text-gray-200 font-bold text-[11px] flex justify-between">
                         <span>MULTI-VECTOR SEARCH // AGGREGATOR</span>
                         <span className="text-yellow-400">3 DESTINATIONS</span>
                       </div>
@@ -908,9 +908,9 @@ export const LandingPage: React.FC = () => {
                   )}
                   {bentoActiveAction === 'security' && (
                     <div className="text-gray-300 space-y-1">
-                      <div className="text-cyan-400 font-bold text-[11px] flex justify-between">
+                      <div className="text-gray-200 font-bold text-[11px] flex justify-between">
                         <span>ZERO-TRUST AUDIT // CRYPTO SHIELD</span>
-                        <span className="text-emerald-400">PASSED 100%</span>
+                        <span className="text-white">PASSED 100%</span>
                       </div>
                       <p className="text-[11px] text-gray-300">Bcrypt/Argon2 verification intact. 14 schema tables verified with tenant isolation active.</p>
                     </div>
@@ -920,17 +920,17 @@ export const LandingPage: React.FC = () => {
             </div>
 
             {/* Card 2 (Span 5): No-Code Workflow Builder */}
-            <div className="lg:col-span-5 glass-fusion rounded-3xl p-6 sm:p-8 border border-white/10 hover:border-cyan-500/40 transition-all flex flex-col justify-between group">
+            <div className="lg:col-span-5 glass-fusion rounded-3xl p-6 sm:p-8 border border-white/10 hover:border-white/10 transition-all flex flex-col justify-between group">
               <div>
                 <div className="flex items-center justify-between mb-4">
-                  <div className="w-10 h-10 rounded-xl bg-purple-950/60 border border-purple-400/40 flex items-center justify-center text-purple-300">
+                  <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/30/40 flex items-center justify-center text-white">
                     <GitBranch className="w-5 h-5" />
                   </div>
-                  <span className="text-[10px] font-mono px-2.5 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-300">
+                  <span className="text-[10px] font-mono px-2.5 py-1 rounded-full bg-white/10 border border-white/10 text-white">
                     VISUAL FLOW
                   </span>
                 </div>
-                <h3 className="text-xl sm:text-2xl font-hud font-bold text-white group-hover:text-cyan-300 transition-colors">
+                <h3 className="text-xl sm:text-2xl font-hud font-bold text-white group-hover:text-white transition-colors">
                   No-Code Workflow Builder
                 </h3>
                 <p className="mt-2 text-xs sm:text-sm font-mono text-gray-400 leading-relaxed">
@@ -939,21 +939,21 @@ export const LandingPage: React.FC = () => {
               </div>
 
               {/* Node diagram mockup */}
-              <div className="mt-6 p-4 rounded-2xl bg-[#030712]/80 border border-white/10 space-y-2.5 font-mono text-xs">
-                <div className="flex items-center gap-2 p-2 rounded-xl bg-cyan-950/40 border border-cyan-500/30 text-cyan-200">
-                  <div className="w-2 h-2 rounded-full bg-cyan-400" />
+              <div className="mt-6 p-4 rounded-2xl bg-[#050505]/80 border border-white/10 space-y-2.5 font-mono text-xs">
+                <div className="flex items-center gap-2 p-2 rounded-xl bg-white/5 border border-white/10 text-white">
+                  <div className="w-2 h-2 rounded-full bg-white" />
                   <span className="font-bold text-[11px]">TRIGGER:</span>
                   <span className="text-gray-300 truncate">Daily 07:00 UTC Chrono Sweeper</span>
                 </div>
-                <div className="flex justify-center -my-1 text-cyan-500/50">↓</div>
-                <div className="flex items-center gap-2 p-2 rounded-xl bg-purple-950/40 border border-purple-500/30 text-purple-200">
-                  <div className="w-2 h-2 rounded-full bg-purple-400" />
+                <div className="flex justify-center -my-1 text-gray-500">↓</div>
+                <div className="flex items-center gap-2 p-2 rounded-xl bg-white/5 border border-white/10 text-white-200">
+                  <div className="w-2 h-2 rounded-full bg-white" />
                   <span className="font-bold text-[11px]">FILTER:</span>
                   <span className="text-gray-300 truncate">Open-Meteo & RSS Priority Feeds</span>
                 </div>
-                <div className="flex justify-center -my-1 text-purple-500/50">↓</div>
-                <div className="flex items-center gap-2 p-2 rounded-xl bg-emerald-950/40 border border-emerald-500/30 text-emerald-200">
-                  <div className="w-2 h-2 rounded-full bg-emerald-400" />
+                <div className="flex justify-center -my-1 text-gray-400">↓</div>
+                <div className="flex items-center gap-2 p-2 rounded-xl bg-white/5 border border-white/10 text-white-200">
+                  <div className="w-2 h-2 rounded-full bg-white" />
                   <span className="font-bold text-[11px]">DISPATCH:</span>
                   <span className="text-gray-300 truncate">Vocal Briefing & Task Directives</span>
                 </div>
@@ -961,17 +961,17 @@ export const LandingPage: React.FC = () => {
             </div>
 
             {/* Card 3 (Span 5): Natural-Language Interaction */}
-            <div className="lg:col-span-5 glass-fusion rounded-3xl p-6 sm:p-8 border border-white/10 hover:border-cyan-500/40 transition-all flex flex-col justify-between group">
+            <div className="lg:col-span-5 glass-fusion rounded-3xl p-6 sm:p-8 border border-white/10 hover:border-white/10 transition-all flex flex-col justify-between group">
               <div>
                 <div className="flex items-center justify-between mb-4">
-                  <div className="w-10 h-10 rounded-xl bg-indigo-950/60 border border-indigo-400/40 flex items-center justify-center text-indigo-300">
+                  <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/20 flex items-center justify-center text-white">
                     <Bot className="w-5 h-5" />
                   </div>
-                  <span className="text-[10px] font-mono px-2.5 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-300">
+                  <span className="text-[10px] font-mono px-2.5 py-1 rounded-full bg-white/10 border border-white/10 text-white">
                     SPEECH & CHAT
                   </span>
                 </div>
-                <h3 className="text-xl sm:text-2xl font-hud font-bold text-white group-hover:text-cyan-300 transition-colors">
+                <h3 className="text-xl sm:text-2xl font-hud font-bold text-white group-hover:text-white transition-colors">
                   Natural-Language Interaction
                 </h3>
                 <p className="mt-2 text-xs sm:text-sm font-mono text-gray-400 leading-relaxed">
@@ -980,15 +980,15 @@ export const LandingPage: React.FC = () => {
               </div>
 
               {/* Voice waveform & audio controls */}
-              <div className="mt-6 p-4 rounded-2xl bg-[#030712]/80 border border-white/10 space-y-3">
+              <div className="mt-6 p-4 rounded-2xl bg-[#050505]/80 border border-white/10 space-y-3">
                 <div className="flex items-center justify-between">
-                  <span className="text-[11px] font-mono text-cyan-400 font-bold flex items-center gap-2">
-                    <Mic className="w-3.5 h-3.5 text-cyan-400" />
+                  <span className="text-[11px] font-mono text-gray-200 font-bold flex items-center gap-2">
+                    <Mic className="w-3.5 h-3.5 text-gray-200" />
                     ACOUSTIC VOCODER
                   </span>
                   <button
                     onClick={handlePlayVoicePreview}
-                    className="px-2.5 py-1 rounded-lg bg-cyan-950/80 border border-cyan-400/40 text-cyan-300 hover:bg-cyan-500/20 text-[10px] font-mono transition-colors"
+                    className="px-2.5 py-1 rounded-lg bg-white/5 border border-white/20 text-white hover:bg-white/10 text-[10px] font-mono transition-colors"
                   >
                     {isAudioPlaying ? 'STOP AUDIO' : 'PLAY AUDIO'}
                   </button>
@@ -998,7 +998,7 @@ export const LandingPage: React.FC = () => {
                     <div
                       key={i}
                       style={{ height: isAudioPlaying ? `${h}%` : '20%' }}
-                      className="w-1 bg-gradient-to-t from-cyan-500 to-indigo-400 rounded-full transition-all duration-300"
+                      className="w-1 bg-gradient-to-t from-white to-gray-300 rounded-full transition-all duration-300"
                     />
                   ))}
                 </div>
@@ -1009,17 +1009,17 @@ export const LandingPage: React.FC = () => {
             </div>
 
             {/* Card 4 (Span 7): Multi-Channel Sensory Automation */}
-            <div className="lg:col-span-7 glass-fusion rounded-3xl p-6 sm:p-8 border border-white/10 hover:border-cyan-500/40 transition-all flex flex-col justify-between group">
+            <div className="lg:col-span-7 glass-fusion rounded-3xl p-6 sm:p-8 border border-white/10 hover:border-white/10 transition-all flex flex-col justify-between group">
               <div>
                 <div className="flex items-center justify-between mb-4">
-                  <div className="w-10 h-10 rounded-xl bg-emerald-950/60 border border-emerald-400/40 flex items-center justify-center text-emerald-300">
+                  <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/20 flex items-center justify-center text-white">
                     <Layers className="w-5 h-5" />
                   </div>
-                  <span className="text-[10px] font-mono px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-300">
+                  <span className="text-[10px] font-mono px-2.5 py-1 rounded-full bg-white/10 border border-white/10 text-white">
                     4 LIVE FEEDS
                   </span>
                 </div>
-                <h3 className="text-xl sm:text-2xl font-hud font-bold text-white group-hover:text-cyan-300 transition-colors">
+                <h3 className="text-xl sm:text-2xl font-hud font-bold text-white group-hover:text-white transition-colors">
                   Multi-Channel Sensory Automation
                 </h3>
                 <p className="mt-2 text-xs sm:text-sm font-mono text-gray-400 leading-relaxed">
@@ -1029,31 +1029,31 @@ export const LandingPage: React.FC = () => {
 
               {/* 4 Mini Telemetry Panels */}
               <div className="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-2.5">
-                <div className="p-3 rounded-xl bg-[#030712]/80 border border-white/10">
-                  <div className="text-[10px] font-mono text-cyan-400 flex items-center gap-1 mb-1">
+                <div className="p-3 rounded-xl bg-[#050505]/80 border border-white/10">
+                  <div className="text-[10px] font-mono text-gray-200 flex items-center gap-1 mb-1">
                     <CloudSun className="w-3 h-3" /> WEATHER
                   </div>
                   <div className="text-lg font-hud font-bold text-white">21°C</div>
                   <div className="text-[10px] font-mono text-gray-400 truncate">Clear Skies</div>
                 </div>
 
-                <div className="p-3 rounded-xl bg-[#030712]/80 border border-white/10">
-                  <div className="text-[10px] font-mono text-purple-400 flex items-center gap-1 mb-1">
+                <div className="p-3 rounded-xl bg-[#050505]/80 border border-white/10">
+                  <div className="text-[10px] font-mono text-gray-300 flex items-center gap-1 mb-1">
                     <Newspaper className="w-3 h-3" /> NEWS WIRE
                   </div>
                   <div className="text-lg font-hud font-bold text-white">6 FEEDS</div>
                   <div className="text-[10px] font-mono text-gray-400 truncate">Tech, AI & World</div>
                 </div>
 
-                <div className="p-3 rounded-xl bg-[#030712]/80 border border-white/10">
-                  <div className="text-[10px] font-mono text-emerald-400 flex items-center gap-1 mb-1">
+                <div className="p-3 rounded-xl bg-[#050505]/80 border border-white/10">
+                  <div className="text-[10px] font-mono text-white flex items-center gap-1 mb-1">
                     <Trophy className="w-3 h-3" /> SPORTS
                   </div>
                   <div className="text-lg font-hud font-bold text-white">F1 & CL</div>
                   <div className="text-[10px] font-mono text-gray-400 truncate">Live Telemetry</div>
                 </div>
 
-                <div className="p-3 rounded-xl bg-[#030712]/80 border border-white/10">
+                <div className="p-3 rounded-xl bg-[#050505]/80 border border-white/10">
                   <div className="text-[10px] font-mono text-yellow-400 flex items-center gap-1 mb-1">
                     <CheckSquare className="w-3 h-3" /> TASKS
                   </div>
@@ -1070,7 +1070,7 @@ export const LandingPage: React.FC = () => {
       <section id="features-tabs" className="py-24 relative border-t border-white/5 bg-[#020512]/60">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-14">
-            <span className="text-xs font-mono font-bold text-cyan-400 tracking-widest uppercase px-3 py-1 rounded-full glass-pill border border-cyan-500/20">
+            <span className="text-xs font-mono font-bold text-gray-200 tracking-widest uppercase px-3 py-1 rounded-full glass-pill border border-white/10">
               DEEP DIVE PRODUCT SUITE
             </span>
             <h2 className="text-3xl sm:text-5xl font-hud font-bold text-white mt-4 uppercase">
@@ -1081,7 +1081,7 @@ export const LandingPage: React.FC = () => {
             </p>
 
             {/* 3 Tabs Switcher */}
-            <div className="mt-8 inline-flex p-1.5 rounded-2xl glass-pill border border-cyan-500/30 gap-2">
+            <div className="mt-8 inline-flex p-1.5 rounded-2xl glass-pill border border-white/10 gap-2">
               {[
                 { id: 'workflow', label: 'Autonomous Workflows', icon: RefreshCw },
                 { id: 'analytics', label: 'Real-Time Telemetry', icon: Activity },
@@ -1098,7 +1098,7 @@ export const LandingPage: React.FC = () => {
                     }}
                     className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-mono tracking-wider transition-all cursor-pointer ${
                       active
-                        ? 'bg-cyan-500 text-black font-bold shadow-[0_0_20px_rgba(0,229,255,0.4)]'
+                        ? 'bg-white text-black font-bold shadow-[0_0_20px_rgba(255, 255, 255, 0.4)]'
                         : 'text-gray-300 hover:text-white hover:bg-white/5'
                     }`}
                   >
@@ -1111,11 +1111,11 @@ export const LandingPage: React.FC = () => {
           </div>
 
           {/* Tab Content Display */}
-          <div className="glass-fusion rounded-3xl p-6 sm:p-10 border border-cyan-500/20 shadow-[0_20px_60px_rgba(0,0,0,0.6)]">
+          <div className="glass-fusion rounded-3xl p-6 sm:p-10 border border-white/10 shadow-[0_20px_60px_rgba(0,0,0,0.6)]">
             {featureTab === 'workflow' && (
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
                 <div className="lg:col-span-5 space-y-4">
-                  <span className="text-xs font-mono font-bold text-cyan-400 uppercase tracking-widest block">
+                  <span className="text-xs font-mono font-bold text-gray-200 uppercase tracking-widest block">
                     MODULE 01 // AUTONOMOUS WORKFLOWS
                   </span>
                   <h3 className="text-2xl sm:text-3xl font-hud font-bold text-white">
@@ -1126,58 +1126,58 @@ export const LandingPage: React.FC = () => {
                   </p>
                   <ul className="space-y-2.5 text-xs font-mono text-gray-300 pt-2">
                     <li className="flex items-center gap-2.5">
-                      <CheckCircle2 className="w-4 h-4 text-cyan-400 flex-shrink-0" />
+                      <CheckCircle2 className="w-4 h-4 text-gray-200 flex-shrink-0" />
                       <span>Natural language trigger configuration</span>
                     </li>
                     <li className="flex items-center gap-2.5">
-                      <CheckCircle2 className="w-4 h-4 text-cyan-400 flex-shrink-0" />
+                      <CheckCircle2 className="w-4 h-4 text-gray-200 flex-shrink-0" />
                       <span>Scheduled cron and atmospheric event triggers</span>
                     </li>
                     <li className="flex items-center gap-2.5">
-                      <CheckCircle2 className="w-4 h-4 text-cyan-400 flex-shrink-0" />
+                      <CheckCircle2 className="w-4 h-4 text-gray-200 flex-shrink-0" />
                       <span>Sub-50ms execution on Google Cloud Run</span>
                     </li>
                   </ul>
                   <button
                     onClick={() => navigate('/dashboard')}
-                    className="mt-4 px-6 py-2.5 rounded-xl bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-300 border border-cyan-400/40 text-xs font-hud font-bold uppercase transition-all flex items-center gap-2"
+                    className="mt-4 px-6 py-2.5 rounded-xl bg-white/10 hover:bg-white/10 text-white border border-white/20 text-xs font-hud font-bold uppercase transition-all flex items-center gap-2"
                   >
                     <span>CONFIGURE PIPELINE</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </button>
                 </div>
 
-                <div className="lg:col-span-7 bg-[#030712] rounded-2xl p-5 border border-white/10 space-y-4">
+                <div className="lg:col-span-7 bg-[#050505] rounded-2xl p-5 border border-white/10 space-y-4">
                   <div className="flex items-center justify-between pb-3 border-b border-white/10 text-xs font-mono">
-                    <span className="text-cyan-300 font-bold flex items-center gap-2">
-                      <Terminal className="w-4 h-4 text-cyan-400" />
+                    <span className="text-white font-bold flex items-center gap-2">
+                      <Terminal className="w-4 h-4 text-gray-200" />
                       PIPELINE RUNNER // "MORNING BRIEFING SWEEP"
                     </span>
-                    <span className="text-emerald-400 px-2 py-0.5 rounded bg-emerald-950/60 border border-emerald-500/30 text-[10px]">
+                    <span className="text-white px-2 py-0.5 rounded bg-white/5 border border-white/10 text-[10px]">
                       COMPLETED (380ms)
                     </span>
                   </div>
                   <div className="space-y-3 font-mono text-xs">
                     <div className="p-3 rounded-xl bg-white/[0.03] border border-white/5 flex items-center justify-between">
                       <div className="flex items-center gap-3">
-                        <span className="text-cyan-400 font-bold">STEP 1</span>
+                        <span className="text-gray-200 font-bold">STEP 1</span>
                         <span className="text-gray-300">Open-Meteo Radar Polling</span>
                       </div>
-                      <span className="text-emerald-400 font-bold text-[11px]">21°C CLEAR (42ms)</span>
+                      <span className="text-white font-bold text-[11px]">21°C CLEAR (42ms)</span>
                     </div>
                     <div className="p-3 rounded-xl bg-white/[0.03] border border-white/5 flex items-center justify-between">
                       <div className="flex items-center gap-3">
-                        <span className="text-cyan-400 font-bold">STEP 2</span>
+                        <span className="text-gray-200 font-bold">STEP 2</span>
                         <span className="text-gray-300">RSS Wire Synthesis (6 Feeds)</span>
                       </div>
-                      <span className="text-emerald-400 font-bold text-[11px]">18 STORIES (112ms)</span>
+                      <span className="text-white font-bold text-[11px]">18 STORIES (112ms)</span>
                     </div>
                     <div className="p-3 rounded-xl bg-white/[0.03] border border-white/5 flex items-center justify-between">
                       <div className="flex items-center gap-3">
-                        <span className="text-cyan-400 font-bold">STEP 3</span>
+                        <span className="text-gray-200 font-bold">STEP 3</span>
                         <span className="text-gray-300">Gemini 2.5 Flash Executive Briefing</span>
                       </div>
-                      <span className="text-emerald-400 font-bold text-[11px]">210 TOKENS (226ms)</span>
+                      <span className="text-white font-bold text-[11px]">210 TOKENS (226ms)</span>
                     </div>
                   </div>
                 </div>
@@ -1187,7 +1187,7 @@ export const LandingPage: React.FC = () => {
             {featureTab === 'analytics' && (
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
                 <div className="lg:col-span-5 space-y-4">
-                  <span className="text-xs font-mono font-bold text-cyan-400 uppercase tracking-widest block">
+                  <span className="text-xs font-mono font-bold text-gray-200 uppercase tracking-widest block">
                     MODULE 02 // REAL-TIME TELEMETRY
                   </span>
                   <h3 className="text-2xl sm:text-3xl font-hud font-bold text-white">
@@ -1198,54 +1198,54 @@ export const LandingPage: React.FC = () => {
                   </p>
                   <ul className="space-y-2.5 text-xs font-mono text-gray-300 pt-2">
                     <li className="flex items-center gap-2.5">
-                      <CheckCircle2 className="w-4 h-4 text-cyan-400 flex-shrink-0" />
+                      <CheckCircle2 className="w-4 h-4 text-gray-200 flex-shrink-0" />
                       <span>Live CPU, memory, and database query latency tracking</span>
                     </li>
                     <li className="flex items-center gap-2.5">
-                      <CheckCircle2 className="w-4 h-4 text-cyan-400 flex-shrink-0" />
+                      <CheckCircle2 className="w-4 h-4 text-gray-200 flex-shrink-0" />
                       <span>Zero-trust cryptographic audit logs</span>
                     </li>
                     <li className="flex items-center gap-2.5">
-                      <CheckCircle2 className="w-4 h-4 text-cyan-400 flex-shrink-0" />
+                      <CheckCircle2 className="w-4 h-4 text-gray-200 flex-shrink-0" />
                       <span>99.98% verifiable production uptime SLA</span>
                     </li>
                   </ul>
                   <button
                     onClick={() => navigate('/dashboard')}
-                    className="mt-4 px-6 py-2.5 rounded-xl bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-300 border border-cyan-400/40 text-xs font-hud font-bold uppercase transition-all flex items-center gap-2"
+                    className="mt-4 px-6 py-2.5 rounded-xl bg-white/10 hover:bg-white/10 text-white border border-white/20 text-xs font-hud font-bold uppercase transition-all flex items-center gap-2"
                   >
                     <span>VIEW LIVE TELEMETRY</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </button>
                 </div>
 
-                <div className="lg:col-span-7 bg-[#030712] rounded-2xl p-5 border border-white/10 space-y-4">
+                <div className="lg:col-span-7 bg-[#050505] rounded-2xl p-5 border border-white/10 space-y-4">
                   <div className="flex items-center justify-between pb-3 border-b border-white/10 text-xs font-mono">
-                    <span className="text-cyan-300 font-bold flex items-center gap-2">
-                      <Activity className="w-4 h-4 text-cyan-400" />
+                    <span className="text-white font-bold flex items-center gap-2">
+                      <Activity className="w-4 h-4 text-gray-200" />
                       LIVE HEALTH GAUGES
                     </span>
-                    <span className="text-cyan-400 font-bold">120 FPS STREAMING</span>
+                    <span className="text-gray-200 font-bold">120 FPS STREAMING</span>
                   </div>
                   <div className="grid grid-cols-2 gap-3 text-xs font-mono">
                     <div className="p-4 rounded-xl bg-black/60 border border-white/5 space-y-1">
                       <span className="text-[10px] text-gray-400">SERVER LATENCY</span>
-                      <div className="text-2xl font-hud font-bold text-emerald-300">8.2 ms</div>
+                      <div className="text-2xl font-hud font-bold text-white">8.2 ms</div>
                       <span className="text-[10px] text-gray-500">FastAPI ASGI Core</span>
                     </div>
                     <div className="p-4 rounded-xl bg-black/60 border border-white/5 space-y-1">
                       <span className="text-[10px] text-gray-400">MEMORY RESIDENCY</span>
-                      <div className="text-2xl font-hud font-bold text-cyan-300">412 MB</div>
+                      <div className="text-2xl font-hud font-bold text-white">412 MB</div>
                       <span className="text-[10px] text-gray-500">Peak Pool Active</span>
                     </div>
                     <div className="p-4 rounded-xl bg-black/60 border border-white/5 space-y-1">
                       <span className="text-[10px] text-gray-400">TOKEN THROUGHPUT</span>
-                      <div className="text-2xl font-hud font-bold text-purple-300">142 tps</div>
+                      <div className="text-2xl font-hud font-bold text-white">142 tps</div>
                       <span className="text-[10px] text-gray-500">Gemini 2.5 Flash</span>
                     </div>
                     <div className="p-4 rounded-xl bg-black/60 border border-white/5 space-y-1">
                       <span className="text-[10px] text-gray-400">SECURITY AUDIT</span>
-                      <div className="text-2xl font-hud font-bold text-emerald-300">0 ALERTS</div>
+                      <div className="text-2xl font-hud font-bold text-white">0 ALERTS</div>
                       <span className="text-[10px] text-gray-500">Argon2 / SHA-256</span>
                     </div>
                   </div>
@@ -1256,7 +1256,7 @@ export const LandingPage: React.FC = () => {
             {featureTab === 'integration' && (
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
                 <div className="lg:col-span-5 space-y-4">
-                  <span className="text-xs font-mono font-bold text-cyan-400 uppercase tracking-widest block">
+                  <span className="text-xs font-mono font-bold text-gray-200 uppercase tracking-widest block">
                     MODULE 03 // UNIVERSAL INTEGRATIONS
                   </span>
                   <h3 className="text-2xl sm:text-3xl font-hud font-bold text-white">
@@ -1267,34 +1267,34 @@ export const LandingPage: React.FC = () => {
                   </p>
                   <ul className="space-y-2.5 text-xs font-mono text-gray-300 pt-2">
                     <li className="flex items-center gap-2.5">
-                      <CheckCircle2 className="w-4 h-4 text-cyan-400 flex-shrink-0" />
+                      <CheckCircle2 className="w-4 h-4 text-gray-200 flex-shrink-0" />
                       <span>Google Gemini 2.5 Flash cognitive inference</span>
                     </li>
                     <li className="flex items-center gap-2.5">
-                      <CheckCircle2 className="w-4 h-4 text-cyan-400 flex-shrink-0" />
+                      <CheckCircle2 className="w-4 h-4 text-gray-200 flex-shrink-0" />
                       <span>Open-Meteo meteorological radar without API keys</span>
                     </li>
                     <li className="flex items-center gap-2.5">
-                      <CheckCircle2 className="w-4 h-4 text-cyan-400 flex-shrink-0" />
+                      <CheckCircle2 className="w-4 h-4 text-gray-200 flex-shrink-0" />
                       <span>arXiv paper extraction & YouTube search</span>
                     </li>
                   </ul>
                   <button
                     onClick={() => navigate('/dashboard')}
-                    className="mt-4 px-6 py-2.5 rounded-xl bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-300 border border-cyan-400/40 text-xs font-hud font-bold uppercase transition-all flex items-center gap-2"
+                    className="mt-4 px-6 py-2.5 rounded-xl bg-white/10 hover:bg-white/10 text-white border border-white/20 text-xs font-hud font-bold uppercase transition-all flex items-center gap-2"
                   >
                     <span>EXPLORE INTEGRATIONS</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </button>
                 </div>
 
-                <div className="lg:col-span-7 bg-[#030712] rounded-2xl p-5 border border-white/10 space-y-3">
+                <div className="lg:col-span-7 bg-[#050505] rounded-2xl p-5 border border-white/10 space-y-3">
                   <div className="flex items-center justify-between pb-3 border-b border-white/10 text-xs font-mono">
-                    <span className="text-cyan-300 font-bold flex items-center gap-2">
-                      <Share2 className="w-4 h-4 text-cyan-400" />
+                    <span className="text-white font-bold flex items-center gap-2">
+                      <Share2 className="w-4 h-4 text-gray-200" />
                       CONNECTOR MATRIX // 8 OF 8 ARMED
                     </span>
-                    <span className="text-emerald-400 font-bold text-[10px]">ALL HEALTHY</span>
+                    <span className="text-white font-bold text-[10px]">ALL HEALTHY</span>
                   </div>
                   <div className="grid grid-cols-2 gap-2 text-xs font-mono">
                     {[
@@ -1310,7 +1310,7 @@ export const LandingPage: React.FC = () => {
                           <div className="text-white font-bold text-[11px]">{conn.name}</div>
                           <div className="text-[10px] text-gray-500">{conn.type}</div>
                         </div>
-                        <span className="text-emerald-300 text-[10px] font-bold">{conn.status}</span>
+                        <span className="text-white text-[10px] font-bold">{conn.status}</span>
                       </div>
                     ))}
                   </div>
@@ -1325,7 +1325,7 @@ export const LandingPage: React.FC = () => {
       <section id="capabilities" className="py-24 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="text-xs font-mono font-bold text-cyan-400 tracking-widest uppercase px-3 py-1 rounded-full glass-pill border border-cyan-500/20">
+            <span className="text-xs font-mono font-bold text-gray-200 tracking-widest uppercase px-3 py-1 rounded-full glass-pill border border-white/10">
               TACTICAL CAPABILITIES MATRIX
             </span>
             <h2 className="text-3xl sm:text-5xl font-hud font-bold text-white mt-4 uppercase">
@@ -1415,23 +1415,23 @@ export const LandingPage: React.FC = () => {
               return (
                 <div
                   key={i}
-                  className="glass-fusion p-6 rounded-2xl border border-white/10 hover:border-cyan-500/40 transition-all hover:scale-[1.02] group"
+                  className="glass-fusion p-6 rounded-2xl border border-white/10 hover:border-white/10 transition-all hover:scale-[1.02] group"
                 >
                   <div className="flex items-center justify-between mb-4">
-                    <div className="w-10 h-10 rounded-xl bg-cyan-950/70 border border-cyan-400/40 flex items-center justify-center group-hover:scale-110 transition-transform">
-                      <Icon className="w-5 h-5 text-cyan-300" />
+                    <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/20 flex items-center justify-center group-hover:scale-110 transition-transform">
+                      <Icon className="w-5 h-5 text-white" />
                     </div>
                     <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-white/5 border border-white/10 text-gray-400">
                       {cap.metric}
                     </span>
                   </div>
-                  <h3 className="text-lg font-hud font-bold text-white group-hover:text-cyan-300 transition-colors">
+                  <h3 className="text-lg font-hud font-bold text-white group-hover:text-white transition-colors">
                     {cap.title}
                   </h3>
                   <p className="mt-2 text-xs font-mono text-gray-400 leading-relaxed">
                     {cap.desc}
                   </p>
-                  <div className="mt-4 pt-3 border-t border-white/5 flex items-center justify-between text-[11px] font-mono text-cyan-400">
+                  <div className="mt-4 pt-3 border-t border-white/5 flex items-center justify-between text-[11px] font-mono text-gray-200">
                     <span className="text-gray-500">SUBSYSTEM {String(i + 1).padStart(2, '0')}</span>
                     <span className="group-hover:translate-x-1 transition-transform">OPERATIONAL →</span>
                   </div>
@@ -1446,7 +1446,7 @@ export const LandingPage: React.FC = () => {
       <section id="integrations" className="py-24 relative border-t border-white/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="text-xs font-mono font-bold text-cyan-400 tracking-widest uppercase px-3 py-1 rounded-full glass-pill border border-cyan-500/20">
+            <span className="text-xs font-mono font-bold text-gray-200 tracking-widest uppercase px-3 py-1 rounded-full glass-pill border border-white/10">
               ECOSYSTEM INTEGRATIONS
             </span>
             <h2 className="text-3xl sm:text-5xl font-hud font-bold text-white mt-4 uppercase">
@@ -1520,18 +1520,18 @@ export const LandingPage: React.FC = () => {
               return (
                 <div
                   key={idx}
-                  className="glass-fusion p-5 rounded-2xl border border-white/10 hover:border-cyan-500/40 transition-all hover:scale-[1.02] flex flex-col justify-between group"
+                  className="glass-fusion p-5 rounded-2xl border border-white/10 hover:border-white/10 transition-all hover:scale-[1.02] flex flex-col justify-between group"
                 >
                   <div>
                     <div className="flex items-center justify-between mb-3">
-                      <div className="w-9 h-9 rounded-xl bg-cyan-950/60 border border-cyan-400/40 flex items-center justify-center text-cyan-300 group-hover:scale-110 transition-transform">
+                      <div className="w-9 h-9 rounded-xl bg-white/5 border border-white/20 flex items-center justify-center text-white group-hover:scale-110 transition-transform">
                         <Icon className="w-4 h-4" />
                       </div>
-                      <span className="text-[9px] font-mono px-2 py-0.5 rounded-full bg-white/5 border border-white/10 text-emerald-400 font-bold">
+                      <span className="text-[9px] font-mono px-2 py-0.5 rounded-full bg-white/5 border border-white/10 text-white font-bold">
                         {tool.latency}
                       </span>
                     </div>
-                    <h4 className="text-base font-hud font-bold text-white group-hover:text-cyan-300 transition-colors">
+                    <h4 className="text-base font-hud font-bold text-white group-hover:text-white transition-colors">
                       {tool.title}
                     </h4>
                     <p className="mt-2 text-xs font-mono text-gray-400 leading-relaxed">
@@ -1540,8 +1540,8 @@ export const LandingPage: React.FC = () => {
                   </div>
                   <div className="mt-4 pt-3 border-t border-white/5 flex items-center justify-between text-[10px] font-mono">
                     <span className="text-gray-500">{tool.badge}</span>
-                    <span className="text-emerald-400 flex items-center gap-1">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                    <span className="text-white flex items-center gap-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-white" />
                       CONNECTED
                     </span>
                   </div>
@@ -1557,11 +1557,11 @@ export const LandingPage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
             <div>
-              <span className="text-xs font-mono font-bold text-cyan-400 tracking-widest uppercase px-3 py-1 rounded-full glass-pill border border-cyan-500/20">
+              <span className="text-xs font-mono font-bold text-gray-200 tracking-widest uppercase px-3 py-1 rounded-full glass-pill border border-white/10">
                 (03) // OUR PROCESS
               </span>
               <h2 className="text-3xl sm:text-5xl font-hud font-bold text-white mt-4 uppercase">
-                The Journey to a <span className="font-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-sky-200 to-indigo-300 lowercase text-4xl sm:text-6xl">Flawless</span> Autonomous Directive
+                The Journey to a <span className="font-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-300 lowercase text-4xl sm:text-6xl">Flawless</span> Autonomous Directive
               </h2>
             </div>
             <p className="max-w-md text-xs sm:text-sm font-mono text-gray-400 leading-relaxed">
@@ -1576,42 +1576,42 @@ export const LandingPage: React.FC = () => {
                 title: 'Ingest & Parse',
                 desc: 'Captures voice speech, natural-language text prompts, scheduled cron timers, or inbound webhook events.',
                 tag: 'INPUT INGESTION',
-                color: 'from-cyan-500/10 to-transparent'
+                color: 'from-white/10 to-transparent'
               },
               {
                 step: '/02',
                 title: 'Synthesize & Route',
                 desc: 'FastAPI gateway sanitization, JWT authorization, and Google Gemini 2.5 Flash cognitive inference pass.',
                 tag: 'NEURAL ROUTING',
-                color: 'from-indigo-500/10 to-transparent'
+                color: 'from-white/10 to-transparent'
               },
               {
                 step: '/03',
                 title: 'Concur & Isolate',
                 desc: 'Multi-tenant schema validation, explicit memory persistence, and cryptographic verification via Argon2.',
                 tag: 'RELATIONAL ISOLATION',
-                color: 'from-purple-500/10 to-transparent'
+                color: 'from-white/10 to-transparent'
               },
               {
                 step: '/04',
                 title: 'Deliver & Brief',
                 desc: 'Real-time sensory HUD update, active task queuing, and neural speech synthesis voice debriefing.',
                 tag: 'AUTONOMOUS BRIEFING',
-                color: 'from-emerald-500/10 to-transparent'
+                color: 'from-white/10 to-transparent'
               }
             ].map((st, idx) => (
               <div
                 key={idx}
-                className={`glass-fusion p-8 rounded-3xl border border-white/10 hover:border-cyan-500/40 transition-all bg-gradient-to-b ${st.color} flex flex-col justify-between group`}
+                className={`glass-fusion p-8 rounded-3xl border border-white/10 hover:border-white/10 transition-all bg-gradient-to-b ${st.color} flex flex-col justify-between group`}
               >
                 <div>
-                  <div className="font-hud font-black text-4xl text-cyan-500/30 group-hover:text-cyan-300 transition-colors mb-4">
+                  <div className="font-hud font-black text-4xl text-gray-500 group-hover:text-white transition-colors mb-4">
                     {st.step}
                   </div>
                   <h3 className="text-xl font-hud font-bold text-white mb-2">{st.title}</h3>
                   <p className="text-xs sm:text-sm font-mono text-gray-400 leading-relaxed">{st.desc}</p>
                 </div>
-                <div className="mt-8 pt-4 border-t border-white/10 text-[10px] font-mono text-cyan-300 font-bold uppercase tracking-wider">
+                <div className="mt-8 pt-4 border-t border-white/10 text-[10px] font-mono text-white font-bold uppercase tracking-wider">
                   {st.tag}
                 </div>
               </div>
@@ -1623,17 +1623,17 @@ export const LandingPage: React.FC = () => {
             <div className="space-y-1">
               <span className="text-[10px] font-mono text-gray-400 uppercase tracking-widest block">CLOUD COMPLIANCE</span>
               <div className="text-sm sm:text-base font-hud font-bold text-white">Google Cloud Run</div>
-              <span className="text-[10px] font-mono text-cyan-300">Verified Architecture</span>
+              <span className="text-[10px] font-mono text-white">Verified Architecture</span>
             </div>
             <div className="space-y-1">
               <span className="text-[10px] font-mono text-gray-400 uppercase tracking-widest block">CYBER DEFENSE</span>
               <div className="text-sm sm:text-base font-hud font-bold text-white">OWASP Zero-Trust</div>
-              <span className="text-[10px] font-mono text-emerald-300">Cryptographic Standard</span>
+              <span className="text-[10px] font-mono text-white">Cryptographic Standard</span>
             </div>
             <div className="space-y-1">
               <span className="text-[10px] font-mono text-gray-400 uppercase tracking-widest block">STREAM PERFORMANCE</span>
               <div className="text-sm sm:text-base font-hud font-bold text-white">FastAPI Core</div>
-              <span className="text-[10px] font-mono text-purple-300">120 FPS Stream Pipeline</span>
+              <span className="text-[10px] font-mono text-white">120 FPS Stream Pipeline</span>
             </div>
             <div className="space-y-1">
               <span className="text-[10px] font-mono text-gray-400 uppercase tracking-widest block">GLOBAL DELIVERY</span>
@@ -1649,11 +1649,11 @@ export const LandingPage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
             <div>
-              <span className="text-xs font-mono font-bold text-cyan-400 tracking-widest uppercase px-3 py-1 rounded-full glass-pill border border-cyan-500/20">
+              <span className="text-xs font-mono font-bold text-gray-200 tracking-widest uppercase px-3 py-1 rounded-full glass-pill border border-white/10">
                 (04) // CORE AGENTS
               </span>
               <h2 className="text-3xl sm:text-5xl font-hud font-bold text-white mt-4 uppercase">
-                Meet the <span className="font-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-sky-200 to-indigo-300 lowercase text-4xl sm:text-6xl">Subsystem</span> Operatives
+                Meet the <span className="font-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-300 lowercase text-4xl sm:text-6xl">Subsystem</span> Operatives
               </h2>
             </div>
             <p className="max-w-md text-xs sm:text-sm font-mono text-gray-400 leading-relaxed">
@@ -1696,16 +1696,16 @@ export const LandingPage: React.FC = () => {
               return (
                 <div
                   key={idx}
-                  className="glass-fusion p-6 rounded-3xl border border-white/10 hover:border-cyan-500/40 transition-all flex flex-col justify-between group"
+                  className="glass-fusion p-6 rounded-3xl border border-white/10 hover:border-white/10 transition-all flex flex-col justify-between group"
                 >
                   <div>
-                    <div className="w-14 h-14 rounded-2xl bg-cyan-950/60 border border-cyan-400/40 flex items-center justify-center text-cyan-300 group-hover:scale-110 transition-transform mb-6">
+                    <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/20 flex items-center justify-center text-white group-hover:scale-110 transition-transform mb-6">
                       <Icon className="w-7 h-7" />
                     </div>
-                    <span className="text-[10px] font-mono text-cyan-400 uppercase tracking-widest block mb-1">
+                    <span className="text-[10px] font-mono text-gray-200 uppercase tracking-widest block mb-1">
                       {agent.badge}
                     </span>
-                    <h3 className="text-xl font-hud font-bold text-white group-hover:text-cyan-300 transition-colors">
+                    <h3 className="text-xl font-hud font-bold text-white group-hover:text-white transition-colors">
                       {agent.name}
                     </h3>
                     <div className="text-xs font-mono text-gray-400 mb-3">{agent.role}</div>
@@ -1713,8 +1713,8 @@ export const LandingPage: React.FC = () => {
                   </div>
                   <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-[11px] font-mono">
                     <span className="text-gray-500">OPERATIVE 0{idx + 1}</span>
-                    <span className="text-emerald-400 flex items-center gap-1.5 font-bold">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
+                    <span className="text-white flex items-center gap-1.5 font-bold">
+                      <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />
                       ACTIVE
                     </span>
                   </div>
@@ -1729,11 +1729,11 @@ export const LandingPage: React.FC = () => {
       <section id="testimonials" className="py-24 relative border-t border-white/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="text-xs font-mono font-bold text-cyan-400 tracking-widest uppercase px-3 py-1 rounded-full glass-pill border border-cyan-500/20">
+            <span className="text-xs font-mono font-bold text-gray-200 tracking-widest uppercase px-3 py-1 rounded-full glass-pill border border-white/10">
               (06) // ENDORSEMENTS
             </span>
             <h2 className="text-3xl sm:text-5xl font-hud font-bold text-white mt-4 uppercase">
-              Hear from the <span className="font-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-sky-200 to-indigo-300 lowercase text-4xl sm:text-6xl">Operatives</span> We've Empowered
+              Hear from the <span className="font-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-300 lowercase text-4xl sm:text-6xl">Operatives</span> We've Empowered
             </h2>
             <p className="mt-3 text-sm font-mono text-gray-400">
               Read how commanders and systems engineers use JARVIS to consolidate multi-channel intelligence, automate daily routines, and run secure operations.
@@ -1773,7 +1773,7 @@ export const LandingPage: React.FC = () => {
             ].map((t, idx) => (
               <div
                 key={idx}
-                className="glass-fusion p-6 rounded-2xl border border-white/10 hover:border-cyan-500/40 transition-all flex flex-col justify-between group"
+                className="glass-fusion p-6 rounded-2xl border border-white/10 hover:border-white/10 transition-all flex flex-col justify-between group"
               >
                 <div>
                   <div className="flex items-center justify-between mb-4">
@@ -1782,7 +1782,7 @@ export const LandingPage: React.FC = () => {
                         <Star key={i} className="w-3.5 h-3.5 fill-yellow-400" />
                       ))}
                     </div>
-                    <Quote className="w-5 h-5 text-cyan-400/40" />
+                    <Quote className="w-5 h-5 text-gray-400" />
                   </div>
                   <p className="text-xs font-mono text-gray-300 leading-relaxed italic">
                     "{t.quote}"
@@ -1791,9 +1791,9 @@ export const LandingPage: React.FC = () => {
 
                 <div className="mt-6 pt-4 border-t border-white/5">
                   <div className="font-hud font-bold text-sm text-white">{t.name}</div>
-                  <div className="text-[11px] font-mono text-cyan-400">{t.role}</div>
+                  <div className="text-[11px] font-mono text-gray-200">{t.role}</div>
                   <div className="text-[10px] font-mono text-gray-500">{t.org}</div>
-                  <div className="mt-2 inline-block px-2 py-0.5 rounded bg-cyan-950/60 border border-cyan-500/30 text-[9px] font-mono text-cyan-300 font-bold">
+                  <div className="mt-2 inline-block px-2 py-0.5 rounded bg-white/5 border border-white/10 text-[9px] font-mono text-white font-bold">
                     {t.stat}
                   </div>
                 </div>
@@ -1807,7 +1807,7 @@ export const LandingPage: React.FC = () => {
       <section id="security" className="py-24 relative border-t border-white/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="text-xs font-mono font-bold text-emerald-400 tracking-widest uppercase px-3 py-1 rounded-full glass-pill border border-emerald-500/30">
+            <span className="text-xs font-mono font-bold text-white tracking-widest uppercase px-3 py-1 rounded-full glass-pill border border-white/10">
               ZERO-TRUST ARCHITECTURE
             </span>
             <h2 className="text-3xl sm:text-5xl font-hud font-bold text-white mt-4 uppercase">
@@ -1851,12 +1851,12 @@ export const LandingPage: React.FC = () => {
                 badge: 'PYTEST VERIFIED'
               }
             ].map((sec, idx) => (
-              <div key={idx} className="glass-fusion p-6 rounded-2xl border border-white/10 hover:border-emerald-500/40 transition-all">
+              <div key={idx} className="glass-fusion p-6 rounded-2xl border border-white/10 hover:border-white/10 transition-all">
                 <div className="flex items-center justify-between mb-4">
-                  <div className="w-9 h-9 rounded-lg bg-emerald-950/60 border border-emerald-500/40 flex items-center justify-center">
-                    <Lock className="w-4 h-4 text-emerald-300" />
+                  <div className="w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center">
+                    <Lock className="w-4 h-4 text-white" />
                   </div>
-                  <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-950/50 border border-emerald-500/30 text-emerald-300">
+                  <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-white/5 border border-white/10 text-white">
                     {sec.badge}
                   </span>
                 </div>
@@ -1872,7 +1872,7 @@ export const LandingPage: React.FC = () => {
       <section id="dashboard-preview" className="py-24 relative border-t border-white/5 bg-[#030614]/70">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-12">
-            <span className="text-xs font-mono font-bold text-cyan-400 tracking-widest uppercase px-3 py-1 rounded-full glass-pill border border-cyan-500/20">
+            <span className="text-xs font-mono font-bold text-gray-200 tracking-widest uppercase px-3 py-1 rounded-full glass-pill border border-white/10">
               AUTHENTIC COCKPIT INTERFACE
             </span>
             <h2 className="text-3xl sm:text-5xl font-hud font-bold text-white mt-4 uppercase">
@@ -1883,8 +1883,8 @@ export const LandingPage: React.FC = () => {
             </p>
           </div>
 
-          <div className="glass-fusion rounded-3xl border border-cyan-500/30 overflow-hidden shadow-[0_25px_80px_rgba(0,0,0,0.7)]">
-            <div className="px-5 py-3 bg-[#030712] border-b border-white/10 flex items-center justify-between text-xs font-mono">
+          <div className="glass-fusion rounded-3xl border border-white/10 overflow-hidden shadow-[0_25px_80px_rgba(0,0,0,0.7)]">
+            <div className="px-5 py-3 bg-[#050505] border-b border-white/10 flex items-center justify-between text-xs font-mono">
               <div className="flex items-center gap-2">
                 <span className="w-3 h-3 rounded-full bg-red-500/80" />
                 <span className="w-3 h-3 rounded-full bg-yellow-500/80" />
@@ -1892,12 +1892,12 @@ export const LandingPage: React.FC = () => {
                 <span className="ml-3 text-gray-400 text-[11px]">JARVIS OS // OPERATIVE COCKPIT [ACTIVE CONSOLE]</span>
               </div>
               <div className="flex items-center gap-3">
-                <span className="text-emerald-400 font-bold">UTC: {currentTime || 'SYNCING...'}</span>
+                <span className="text-white font-bold">UTC: {currentTime || 'SYNCING...'}</span>
               </div>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-12 min-h-[500px]">
-              <div className="lg:col-span-2 p-4 border-r border-white/10 bg-[#02050f]/80 flex flex-col justify-between">
+              <div className="lg:col-span-2 p-4 border-r border-white/10 bg-[#050505]/80 flex flex-col justify-between">
                 <div className="space-y-1">
                   <span className="text-[9px] font-mono text-gray-500 px-3 uppercase tracking-widest block mb-2">NAVIGATION</span>
                   {[
@@ -1917,7 +1917,7 @@ export const LandingPage: React.FC = () => {
                         }}
                         className={`w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-mono transition-all text-left ${
                           active
-                            ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 font-bold'
+                            ? 'bg-white/10 text-white border border-white/10 font-bold'
                             : 'text-gray-400 hover:text-white hover:bg-white/[0.04]'
                         }`}
                       >
@@ -1929,8 +1929,8 @@ export const LandingPage: React.FC = () => {
                 </div>
 
                 <div className="pt-4 border-t border-white/10 text-[10px] font-mono text-gray-400 space-y-1">
-                  <div>USER: <span className="text-cyan-300 font-bold">OPERATIVE-01</span></div>
-                  <div>ROLE: <span className="text-purple-300">COMMANDER</span></div>
+                  <div>USER: <span className="text-white font-bold">OPERATIVE-01</span></div>
+                  <div>ROLE: <span className="text-white">COMMANDER</span></div>
                 </div>
               </div>
 
@@ -1938,20 +1938,20 @@ export const LandingPage: React.FC = () => {
                 {dashboardPreviewTab === 'chat' && (
                   <div className="flex flex-col h-full justify-between space-y-4">
                     <div className="flex items-center justify-between pb-3 border-b border-white/10 text-xs font-mono">
-                      <span className="text-cyan-300 font-bold flex items-center gap-2">
-                        <Terminal className="w-4 h-4 text-cyan-400" />
+                      <span className="text-white font-bold flex items-center gap-2">
+                        <Terminal className="w-4 h-4 text-gray-200" />
                         MISSION CHAT STREAM // GEMINI 2.5 FLASH
                       </span>
-                      <span className="text-[10px] text-emerald-400">ENCRYPTED</span>
+                      <span className="text-[10px] text-white">ENCRYPTED</span>
                     </div>
 
                     <div className="space-y-3 flex-1 overflow-y-auto">
                       <div className="glass-pill p-3 rounded-xl border border-white/10 text-xs font-mono">
-                        <span className="text-[10px] text-cyan-400 block font-bold">USER // 14:32</span>
+                        <span className="text-[10px] text-gray-200 block font-bold">USER // 14:32</span>
                         "Synthesize telemetry for today's mission briefing and report any security alerts."
                       </div>
-                      <div className="glass-fusion p-4 rounded-xl border border-cyan-500/30 text-xs font-mono text-gray-200">
-                        <span className="text-[10px] text-cyan-300 block font-bold mb-1">JARVIS // 14:32</span>
+                      <div className="glass-fusion p-4 rounded-xl border border-white/10 text-xs font-mono text-gray-200">
+                        <span className="text-[10px] text-white block font-bold mb-1">JARVIS // 14:32</span>
                         Telemetry synthesized. Zero anomalous intrusion signatures detected across all 14 multi-tenant models. 4 mission directives queued. Open-Meteo reports nominal atmospheric clarity. Ready for instruction.
                       </div>
                     </div>
@@ -1965,7 +1965,7 @@ export const LandingPage: React.FC = () => {
                       />
                       <button
                         onClick={() => navigate('/chat')}
-                        className="px-4 py-1.5 rounded-lg bg-cyan-500 text-black text-xs font-hud font-bold uppercase hover:bg-cyan-400 transition-colors"
+                        className="px-4 py-1.5 rounded-lg bg-white text-black text-xs font-hud font-bold uppercase hover:bg-white transition-colors"
                       >
                         OPEN CHAT
                       </button>
@@ -1975,7 +1975,7 @@ export const LandingPage: React.FC = () => {
 
                 {dashboardPreviewTab === 'telemetry' && (
                   <div className="space-y-4">
-                    <div className="text-xs font-hud font-bold text-cyan-300 pb-2 border-b border-white/10">
+                    <div className="text-xs font-hud font-bold text-white pb-2 border-b border-white/10">
                       LIVE SERVER & HARDWARE TELEMETRY
                     </div>
                     <div className="grid grid-cols-2 gap-3 text-xs font-mono">
@@ -1985,15 +1985,15 @@ export const LandingPage: React.FC = () => {
                       </div>
                       <div className="p-3 rounded-xl glass-pill">
                         <span className="text-[10px] text-gray-400 block">RAM ALLOCATION</span>
-                        <span className="text-xl font-hud font-bold text-cyan-300">412 MB</span>
+                        <span className="text-xl font-hud font-bold text-white">412 MB</span>
                       </div>
                       <div className="p-3 rounded-xl glass-pill">
                         <span className="text-[10px] text-gray-400 block">SQL QUERY LATENCY</span>
-                        <span className="text-xl font-hud font-bold text-emerald-300">8.2 ms</span>
+                        <span className="text-xl font-hud font-bold text-white">8.2 ms</span>
                       </div>
                       <div className="p-3 rounded-xl glass-pill">
                         <span className="text-[10px] text-gray-400 block">UPTIME METRIC</span>
-                        <span className="text-xl font-hud font-bold text-purple-300">99.98%</span>
+                        <span className="text-xl font-hud font-bold text-white">99.98%</span>
                       </div>
                     </div>
                   </div>
@@ -2001,7 +2001,7 @@ export const LandingPage: React.FC = () => {
 
                 {dashboardPreviewTab === 'tasks' && (
                   <div className="space-y-3">
-                    <div className="text-xs font-hud font-bold text-cyan-300 pb-2 border-b border-white/10">
+                    <div className="text-xs font-hud font-bold text-white pb-2 border-b border-white/10">
                       ACTIVE MISSION DIRECTIVES
                     </div>
                     {[
@@ -2012,7 +2012,7 @@ export const LandingPage: React.FC = () => {
                       <div key={i} className="glass-pill p-3 rounded-xl border border-white/10 flex items-center justify-between text-xs font-mono">
                         <span className="text-gray-200">{t.title}</span>
                         <span className={`text-[9px] px-2 py-0.5 rounded font-bold ${
-                          t.priority === 'URGENT' ? 'bg-red-950/80 text-red-300 border border-red-500/40' : 'bg-cyan-950/80 text-cyan-300 border border-cyan-500/40'
+                          t.priority === 'URGENT' ? 'bg-red-950/80 text-red-300 border border-red-500/40' : 'bg-white/5 text-white border border-white/10'
                         }`}>
                           {t.priority}
                         </span>
@@ -2023,7 +2023,7 @@ export const LandingPage: React.FC = () => {
 
                 {dashboardPreviewTab === 'security' && (
                   <div className="space-y-3">
-                    <div className="text-xs font-hud font-bold text-emerald-300 pb-2 border-b border-white/10">
+                    <div className="text-xs font-hud font-bold text-white pb-2 border-b border-white/10">
                       SECURITY & AUDIT LOGS
                     </div>
                     {[
@@ -2033,7 +2033,7 @@ export const LandingPage: React.FC = () => {
                     ].map((log, i) => (
                       <div key={i} className="p-2.5 rounded-lg bg-black/60 border border-white/5 text-[11px] font-mono flex items-center justify-between">
                         <span className="text-gray-400">{log.time}</span>
-                        <span className="text-emerald-300 font-bold">{log.event}</span>
+                        <span className="text-white font-bold">{log.event}</span>
                         <span className="text-gray-500">{log.ip}</span>
                       </div>
                     ))}
@@ -2041,9 +2041,9 @@ export const LandingPage: React.FC = () => {
                 )}
               </div>
 
-              <div className="lg:col-span-3 p-5 border-l border-white/10 bg-[#02050f]/80 flex flex-col justify-between">
+              <div className="lg:col-span-3 p-5 border-l border-white/10 bg-[#050505]/80 flex flex-col justify-between">
                 <div>
-                  <div className="text-[10px] font-hud font-bold text-cyan-300 mb-3 uppercase tracking-widest">
+                  <div className="text-[10px] font-hud font-bold text-white mb-3 uppercase tracking-widest">
                     SYSTEM STATUS HUD
                   </div>
                   <div className="w-full h-36 flex items-center justify-center">
@@ -2052,15 +2052,15 @@ export const LandingPage: React.FC = () => {
                   <div className="mt-4 space-y-2 text-[10px] font-mono">
                     <div className="flex justify-between text-gray-400">
                       <span>CORE MODE:</span>
-                      <span className="text-cyan-300">LIVE DUAL ENGINE</span>
+                      <span className="text-white">LIVE DUAL ENGINE</span>
                     </div>
                     <div className="flex justify-between text-gray-400">
                       <span>VOICE SYNTHESIS:</span>
-                      <span className="text-emerald-300">ARMED</span>
+                      <span className="text-white">ARMED</span>
                     </div>
                     <div className="flex justify-between text-gray-400">
                       <span>ACTIVE MODELS:</span>
-                      <span className="text-indigo-300">14 SCHEMAS</span>
+                      <span className="text-white">14 SCHEMAS</span>
                     </div>
                   </div>
                 </div>
@@ -2070,7 +2070,7 @@ export const LandingPage: React.FC = () => {
                     sound.playClick();
                     navigate('/dashboard');
                   }}
-                  className="w-full mt-6 py-2.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-black font-hud font-black text-xs tracking-wider uppercase transition-all shadow-[0_0_15px_rgba(0,229,255,0.3)] cursor-pointer"
+                  className="w-full mt-6 py-2.5 rounded-xl bg-white hover:bg-white text-black font-hud font-black text-xs tracking-wider uppercase transition-all shadow-[0_0_15px_rgba(255, 255, 255, 0.3)] cursor-pointer"
                 >
                   ENTER COCKPIT →
                 </button>
@@ -2084,11 +2084,11 @@ export const LandingPage: React.FC = () => {
       <section id="pricing" className="py-24 relative border-t border-white/5">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="text-xs font-mono font-bold text-cyan-400 tracking-widest uppercase px-3 py-1 rounded-full glass-pill border border-cyan-500/20">
+            <span className="text-xs font-mono font-bold text-gray-200 tracking-widest uppercase px-3 py-1 rounded-full glass-pill border border-white/10">
               (05) // PRICING PLANS
             </span>
             <h2 className="text-3xl sm:text-5xl font-hud font-bold text-white mt-4 uppercase">
-              Plans That <span className="font-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-sky-200 to-indigo-300 lowercase text-4xl sm:text-6xl">Scale</span> With Your Operations
+              Plans That <span className="font-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-300 lowercase text-4xl sm:text-6xl">Scale</span> With Your Operations
             </h2>
             <p className="mt-3 text-sm font-mono text-gray-400">
               Transparent, predictable operational tiers. Choose the intelligence capacity engineered for your mission.
@@ -2096,7 +2096,7 @@ export const LandingPage: React.FC = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="glass-fusion p-6 sm:p-8 rounded-3xl border border-white/10 flex flex-col justify-between group hover:border-cyan-500/30 transition-all">
+            <div className="glass-fusion p-6 sm:p-8 rounded-3xl border border-white/10 flex flex-col justify-between group hover:border-white/10 transition-all">
               <div>
                 <div className="flex items-center justify-between mb-4">
                   <span className="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center font-hud font-bold text-xs text-gray-300">
@@ -2114,19 +2114,19 @@ export const LandingPage: React.FC = () => {
                 </p>
                 <div className="mt-6 space-y-2.5 text-xs font-mono text-gray-300">
                   <div className="flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-cyan-400" />
+                    <CheckCircle2 className="w-4 h-4 text-gray-200" />
                     <span>Gemini AI Core Conversation</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-cyan-400" />
+                    <CheckCircle2 className="w-4 h-4 text-gray-200" />
                     <span>Real-Time Weather Radar</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-cyan-400" />
+                    <CheckCircle2 className="w-4 h-4 text-gray-200" />
                     <span>Global RSS News Telemetry</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-cyan-400" />
+                    <CheckCircle2 className="w-4 h-4 text-gray-200" />
                     <span>50 Directives & Basic Memory</span>
                   </div>
                 </div>
@@ -2137,26 +2137,26 @@ export const LandingPage: React.FC = () => {
                   sound.playClick();
                   navigate('/register');
                 }}
-                className="mt-8 w-full py-3 rounded-full glass-pill border border-white/10 hover:border-cyan-400/40 text-xs font-hud font-bold tracking-wider uppercase text-gray-200 hover:text-white transition-all cursor-pointer"
+                className="mt-8 w-full py-3 rounded-full glass-pill border border-white/10 hover:border-white/20 text-xs font-hud font-bold tracking-wider uppercase text-gray-200 hover:text-white transition-all cursor-pointer"
               >
                 START FREE
               </button>
             </div>
 
-            <div className="glass-fusion-cyan p-6 sm:p-8 rounded-3xl border border-cyan-400/40 flex flex-col justify-between relative shadow-[0_0_40px_rgba(0,229,255,0.2)]">
-              <div className="absolute -top-3.5 right-6 px-3 py-1 rounded-full bg-cyan-500 text-black text-[10px] font-hud font-black tracking-widest uppercase">
+            <div className="glass-fusion p-6 sm:p-8 rounded-3xl border border-white/20 flex flex-col justify-between relative shadow-[0_0_40px_rgba(255, 255, 255, 0.2)]">
+              <div className="absolute -top-3.5 right-6 px-3 py-1 rounded-full bg-white text-black text-[10px] font-hud font-black tracking-widest uppercase">
                 POPULAR
               </div>
               <div>
                 <div className="flex items-center justify-between mb-4">
-                  <span className="w-8 h-8 rounded-full bg-cyan-500/20 border border-cyan-400/50 flex items-center justify-center font-hud font-bold text-xs text-cyan-300">
+                  <span className="w-8 h-8 rounded-full bg-white/10 border border-white/20 flex items-center justify-center font-hud font-bold text-xs text-white">
                     2
                   </span>
-                  <span className="text-[10px] font-mono text-cyan-300 tracking-widest uppercase">GROWTH</span>
+                  <span className="text-[10px] font-mono text-white tracking-widest uppercase">GROWTH</span>
                 </div>
                 <h3 className="text-2xl font-hud font-bold text-white mt-1">Commander Pro</h3>
                 <div className="mt-4 flex items-baseline gap-1">
-                  <span className="text-4xl font-hud font-black text-cyan-300">$29</span>
+                  <span className="text-4xl font-hud font-black text-white">$29</span>
                   <span className="text-xs font-mono text-gray-400">/ month</span>
                 </div>
                 <p className="mt-3 text-xs font-mono text-gray-300">
@@ -2164,23 +2164,23 @@ export const LandingPage: React.FC = () => {
                 </p>
                 <div className="mt-6 space-y-2.5 text-xs font-mono text-gray-200">
                   <div className="flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-cyan-300" />
+                    <CheckCircle2 className="w-4 h-4 text-white" />
                     <span>Unlimited Gemini 2.5 Inference</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-cyan-300" />
+                    <CheckCircle2 className="w-4 h-4 text-white" />
                     <span>Neural Speech Synthesis & STT</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-cyan-300" />
+                    <CheckCircle2 className="w-4 h-4 text-white" />
                     <span>Unlimited Tasks & Neural Memory</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-cyan-300" />
+                    <CheckCircle2 className="w-4 h-4 text-white" />
                     <span>Sports Telemetry & Web Intelligence</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-cyan-300" />
+                    <CheckCircle2 className="w-4 h-4 text-white" />
                     <span>Priority Telemetry Gateway</span>
                   </div>
                 </div>
@@ -2191,19 +2191,19 @@ export const LandingPage: React.FC = () => {
                   sound.playClick();
                   navigate('/register');
                 }}
-                className="mt-8 w-full py-3 rounded-full bg-gradient-to-r from-cyan-400 to-cyan-300 text-black text-xs font-hud font-black tracking-wider uppercase shadow-[0_0_20px_rgba(0,229,255,0.4)] hover:shadow-[0_0_25px_rgba(0,229,255,0.6)] transition-all cursor-pointer"
+                className="mt-8 w-full py-3 rounded-full bg-gradient-to-r from-white to-gray-300 text-black text-xs font-hud font-black tracking-wider uppercase shadow-[0_0_20px_rgba(255, 255, 255, 0.4)] hover:shadow-[0_0_25px_rgba(255, 255, 255, 0.6)] transition-all cursor-pointer"
               >
                 ENROLL COMMANDER
               </button>
             </div>
 
-            <div className="glass-fusion p-6 sm:p-8 rounded-3xl border border-white/10 flex flex-col justify-between group hover:border-purple-500/30 transition-all">
+            <div className="glass-fusion p-6 sm:p-8 rounded-3xl border border-white/10 flex flex-col justify-between group hover:border-white/10 transition-all">
               <div>
                 <div className="flex items-center justify-between mb-4">
                   <span className="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center font-hud font-bold text-xs text-gray-300">
                     3
                   </span>
-                  <span className="text-[10px] font-mono text-purple-400 tracking-widest uppercase">SCALE</span>
+                  <span className="text-[10px] font-mono text-gray-300 tracking-widest uppercase">SCALE</span>
                 </div>
                 <h3 className="text-2xl font-hud font-bold text-white mt-1">Enterprise Nexus</h3>
                 <div className="mt-4 flex items-baseline gap-1">
@@ -2215,19 +2215,19 @@ export const LandingPage: React.FC = () => {
                 </p>
                 <div className="mt-6 space-y-2.5 text-xs font-mono text-gray-300">
                   <div className="flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-purple-400" />
+                    <CheckCircle2 className="w-4 h-4 text-gray-300" />
                     <span>Dedicated Cloud Run Instances</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-purple-400" />
+                    <CheckCircle2 className="w-4 h-4 text-gray-300" />
                     <span>Custom LLM Fine-Tuning</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-purple-400" />
+                    <CheckCircle2 className="w-4 h-4 text-gray-300" />
                     <span>Role-Based Multi-Admin RBAC</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-purple-400" />
+                    <CheckCircle2 className="w-4 h-4 text-gray-300" />
                     <span>Hardware Security Key Support</span>
                   </div>
                 </div>
@@ -2238,7 +2238,7 @@ export const LandingPage: React.FC = () => {
                   sound.playClick();
                   navigate('/register');
                 }}
-                className="mt-8 w-full py-3 rounded-full glass-pill border border-white/10 hover:border-purple-400/40 text-xs font-hud font-bold tracking-wider uppercase text-gray-200 hover:text-white transition-all cursor-pointer"
+                className="mt-8 w-full py-3 rounded-full glass-pill border border-white/10 hover:border-white/30/40 text-xs font-hud font-bold tracking-wider uppercase text-gray-200 hover:text-white transition-all cursor-pointer"
               >
                 CONTACT DEFENSE DESK
               </button>
@@ -2251,7 +2251,7 @@ export const LandingPage: React.FC = () => {
       <section id="faq" className="py-24 relative border-t border-white/5 bg-[#030612]/50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="text-xs font-mono font-bold text-cyan-400 tracking-widest uppercase px-3 py-1 rounded-full glass-pill border border-cyan-500/20">
+            <span className="text-xs font-mono font-bold text-gray-200 tracking-widest uppercase px-3 py-1 rounded-full glass-pill border border-white/10">
               FREQUENTLY ASKED QUESTIONS
             </span>
             <h2 className="text-3xl sm:text-5xl font-hud font-bold text-white mt-4 uppercase">
@@ -2281,7 +2281,7 @@ export const LandingPage: React.FC = () => {
                       {faq.q}
                     </span>
                     <ChevronDown
-                      className={`w-4 h-4 text-cyan-400 transition-transform duration-300 flex-shrink-0 ${
+                      className={`w-4 h-4 text-gray-200 transition-transform duration-300 flex-shrink-0 ${
                         isOpen ? 'rotate-180' : ''
                       }`}
                     />
@@ -2300,17 +2300,17 @@ export const LandingPage: React.FC = () => {
       </section>
 
       {/* 9. MISSION CONTACT DESK (AGENCY /07 CONTACT) */}
-      <section id="contact" className="py-24 relative border-t border-white/5 bg-[#02050f]/80">
+      <section id="contact" className="py-24 relative border-t border-white/5 bg-[#050505]/80">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
             {/* Left Info Column */}
             <div className="lg:col-span-5 space-y-8">
               <div>
-                <span className="text-xs font-mono font-bold text-cyan-400 tracking-widest uppercase px-3 py-1 rounded-full glass-pill border border-cyan-500/20">
+                <span className="text-xs font-mono font-bold text-gray-200 tracking-widest uppercase px-3 py-1 rounded-full glass-pill border border-white/10">
                   (07) // MISSION DESK
                 </span>
                 <h2 className="text-3xl sm:text-5xl font-hud font-bold text-white mt-4 uppercase">
-                  Let's Build Something <span className="font-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-sky-200 to-indigo-300 lowercase text-4xl sm:text-6xl">Extraordinary</span> Together
+                  Let's Build Something <span className="font-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-300 lowercase text-4xl sm:text-6xl">Extraordinary</span> Together
                 </h2>
                 <p className="mt-4 text-xs sm:text-sm font-mono text-gray-400 leading-relaxed">
                   Have an operational challenge, custom integration requirement, or seeking an enterprise-grade autonomous AI deployment? Transmit your directive below.
@@ -2320,8 +2320,8 @@ export const LandingPage: React.FC = () => {
               {/* Coordinates & Info Badges */}
               <div className="space-y-4 pt-2">
                 <div className="flex items-start gap-4 p-4 rounded-2xl glass-fusion border border-white/10">
-                  <div className="w-10 h-10 rounded-xl bg-cyan-950/80 border border-cyan-400/40 flex items-center justify-center shrink-0">
-                    <MapPin className="w-5 h-5 text-cyan-300" />
+                  <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/20 flex items-center justify-center shrink-0">
+                    <MapPin className="w-5 h-5 text-white" />
                   </div>
                   <div>
                     <span className="text-[10px] font-mono text-gray-400 uppercase tracking-widest block">HEADQUARTERS</span>
@@ -2331,8 +2331,8 @@ export const LandingPage: React.FC = () => {
                 </div>
 
                 <div className="flex items-start gap-4 p-4 rounded-2xl glass-fusion border border-white/10">
-                  <div className="w-10 h-10 rounded-xl bg-cyan-950/80 border border-cyan-400/40 flex items-center justify-center shrink-0">
-                    <Mail className="w-5 h-5 text-cyan-300" />
+                  <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/20 flex items-center justify-center shrink-0">
+                    <Mail className="w-5 h-5 text-white" />
                   </div>
                   <div>
                     <span className="text-[10px] font-mono text-gray-400 uppercase tracking-widest block">DIRECT TRANSMISSION</span>
@@ -2342,12 +2342,12 @@ export const LandingPage: React.FC = () => {
                 </div>
 
                 <div className="flex items-start gap-4 p-4 rounded-2xl glass-fusion border border-white/10">
-                  <div className="w-10 h-10 rounded-xl bg-cyan-950/80 border border-cyan-400/40 flex items-center justify-center shrink-0">
-                    <Shield className="w-5 h-5 text-emerald-400" />
+                  <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/20 flex items-center justify-center shrink-0">
+                    <Shield className="w-5 h-5 text-white" />
                   </div>
                   <div>
                     <span className="text-[10px] font-mono text-gray-400 uppercase tracking-widest block">OPERATIONAL SLA</span>
-                    <div className="text-sm font-hud font-bold text-emerald-300 mt-0.5">&lt; 15 Minute Triage</div>
+                    <div className="text-sm font-hud font-bold text-white mt-0.5">&lt; 15 Minute Triage</div>
                     <div className="text-xs font-mono text-gray-400">24/7/365 Continuous AI Health Monitoring</div>
                   </div>
                 </div>
@@ -2359,18 +2359,18 @@ export const LandingPage: React.FC = () => {
               <div className="glass-fusion p-6 sm:p-10 rounded-3xl border border-white/10 shadow-[0_20px_70px_rgba(0,0,0,0.6)]">
                 {contactSubmitted ? (
                   <div className="py-12 flex flex-col items-center text-center space-y-4">
-                    <div className="w-16 h-16 rounded-full bg-emerald-500/20 border border-emerald-400/60 flex items-center justify-center text-emerald-300 animate-pulse">
+                    <div className="w-16 h-16 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white animate-pulse">
                       <Check className="w-8 h-8 stroke-[3]" />
                     </div>
                     <div className="text-2xl font-hud font-bold text-white uppercase">
                       Transmission Confirmed
                     </div>
                     <p className="text-xs sm:text-sm font-mono text-gray-300 max-w-md">
-                      Thank you, Operative. Your mission dispatch has been routed to our tactical operations desk. A briefing response will arrive at <span className="text-cyan-300 font-bold">{contactEmail}</span> shortly.
+                      Thank you, Operative. Your mission dispatch has been routed to our tactical operations desk. A briefing response will arrive at <span className="text-white font-bold">{contactEmail}</span> shortly.
                     </p>
                     <button
                       onClick={() => setContactSubmitted(false)}
-                      className="mt-6 px-6 py-2.5 rounded-full glass-pill border border-cyan-500/30 text-xs font-mono text-cyan-300 hover:text-white transition-all cursor-pointer"
+                      className="mt-6 px-6 py-2.5 rounded-full glass-pill border border-white/10 text-xs font-mono text-white hover:text-white transition-all cursor-pointer"
                     >
                       Transmit Another Directive
                     </button>
@@ -2378,12 +2378,12 @@ export const LandingPage: React.FC = () => {
                 ) : (
                   <form onSubmit={handleContactSubmit} className="space-y-6">
                     <div className="flex items-center justify-between pb-4 border-b border-white/10">
-                      <span className="text-xs font-hud font-bold text-cyan-300 uppercase tracking-wider flex items-center gap-2">
-                        <Terminal className="w-4 h-4 text-cyan-400" />
+                      <span className="text-xs font-hud font-bold text-white uppercase tracking-wider flex items-center gap-2">
+                        <Terminal className="w-4 h-4 text-gray-200" />
                         SECURE MISSION TRANSMISSION PORTAL
                       </span>
-                      <span className="text-[10px] font-mono text-emerald-400 flex items-center gap-1.5 font-bold">
-                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
+                      <span className="text-[10px] font-mono text-white flex items-center gap-1.5 font-bold">
+                        <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />
                         READY
                       </span>
                     </div>
@@ -2399,7 +2399,7 @@ export const LandingPage: React.FC = () => {
                           value={contactName}
                           onChange={(e) => setContactName(e.target.value)}
                           placeholder="e.g. Commander Sarah Vance"
-                          className="w-full px-4 py-3 rounded-xl bg-black/50 border border-white/10 focus:border-cyan-400 text-xs sm:text-sm font-mono text-white placeholder-gray-600 focus:outline-none transition-colors"
+                          className="w-full px-4 py-3 rounded-xl bg-black/50 border border-white/10 focus:border-white/40 text-xs sm:text-sm font-mono text-white placeholder-gray-600 focus:outline-none transition-colors"
                         />
                       </div>
                       <div>
@@ -2412,7 +2412,7 @@ export const LandingPage: React.FC = () => {
                           value={contactEmail}
                           onChange={(e) => setContactEmail(e.target.value)}
                           placeholder="e.g. vance@orbital.io"
-                          className="w-full px-4 py-3 rounded-xl bg-black/50 border border-white/10 focus:border-cyan-400 text-xs sm:text-sm font-mono text-white placeholder-gray-600 focus:outline-none transition-colors"
+                          className="w-full px-4 py-3 rounded-xl bg-black/50 border border-white/10 focus:border-white/40 text-xs sm:text-sm font-mono text-white placeholder-gray-600 focus:outline-none transition-colors"
                         />
                       </div>
                     </div>
@@ -2439,7 +2439,7 @@ export const LandingPage: React.FC = () => {
                               }}
                               className={`p-2.5 rounded-xl text-[11px] font-mono transition-all text-center border cursor-pointer ${
                                 active
-                                  ? 'bg-cyan-500/20 text-cyan-300 border-cyan-400/60 font-bold shadow-[0_0_12px_rgba(0,229,255,0.2)]'
+                                  ? 'bg-white/10 text-white border-white/20 font-bold shadow-[0_0_12px_rgba(255, 255, 255, 0.2)]'
                                   : 'bg-black/30 border-white/5 text-gray-400 hover:text-white hover:border-white/20'
                               }`}
                             >
@@ -2460,13 +2460,13 @@ export const LandingPage: React.FC = () => {
                         value={contactMessage}
                         onChange={(e) => setContactMessage(e.target.value)}
                         placeholder="Detail your operational requirements, preferred latency targets, or custom integration needs..."
-                        className="w-full px-4 py-3 rounded-xl bg-black/50 border border-white/10 focus:border-cyan-400 text-xs sm:text-sm font-mono text-white placeholder-gray-600 focus:outline-none transition-colors resize-none"
+                        className="w-full px-4 py-3 rounded-xl bg-black/50 border border-white/10 focus:border-white/40 text-xs sm:text-sm font-mono text-white placeholder-gray-600 focus:outline-none transition-colors resize-none"
                       />
                     </div>
 
                     <button
                       type="submit"
-                      className="w-full py-4 rounded-xl bg-gradient-to-r from-cyan-400 via-cyan-300 to-blue-400 hover:from-cyan-300 hover:to-blue-300 text-black font-hud font-black text-xs sm:text-sm tracking-widest uppercase flex items-center justify-center gap-2 shadow-[0_0_25px_rgba(0,229,255,0.4)] hover:shadow-[0_0_35px_rgba(0,229,255,0.6)] transition-all cursor-pointer"
+                      className="w-full py-4 rounded-xl bg-gradient-to-r from-white to-gray-300 hover:from-white hover:to-gray-200 text-black font-hud font-black text-xs sm:text-sm tracking-widest uppercase flex items-center justify-center gap-2 shadow-[0_0_25px_rgba(255, 255, 255, 0.4)] hover:shadow-[0_0_35px_rgba(255, 255, 255, 0.6)] transition-all cursor-pointer"
                     >
                       <Send className="w-4 h-4" />
                       <span>Transmit Directive to Mission Control</span>
@@ -2481,15 +2481,15 @@ export const LandingPage: React.FC = () => {
 
       {/* 10. FINAL CALL TO ACTION */}
       <section className="py-28 relative border-t border-white/5 flex flex-col items-center justify-center overflow-hidden">
-        <div className="absolute w-[500px] h-[500px] rounded-full bg-[radial-gradient(circle,rgba(0,229,255,0.15)_0%,rgba(100,50,255,0.06)_50%,transparent_70%)] pointer-events-none blur-3xl" />
+        <div className="absolute w-[500px] h-[500px] rounded-full bg-[radial-gradient(circle,rgba(255, 255, 255, 0.15)_0%,rgba(100,50,255,0.06)_50%,transparent_70%)] pointer-events-none blur-3xl" />
 
         <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
           <div className="w-24 h-24 mx-auto mb-6">
             <AICore state="IDLE" size="100%" interactive={false} />
           </div>
 
-          <h2 className="text-4xl sm:text-6xl font-hud font-black text-white uppercase drop-shadow-[0_0_30px_rgba(0,229,255,0.3)]">
-            Your Autonomous <span className="font-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-sky-200 to-indigo-300 lowercase text-5xl sm:text-7xl">Intelligence</span> is Ready.
+          <h2 className="text-4xl sm:text-6xl font-hud font-black text-white uppercase drop-shadow-[0_0_30px_rgba(255, 255, 255, 0.3)]">
+            Your Autonomous <span className="font-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-300 lowercase text-5xl sm:text-7xl">Intelligence</span> is Ready.
           </h2>
 
           <p className="mt-4 max-w-xl mx-auto text-xs sm:text-sm font-mono text-gray-400">
@@ -2502,7 +2502,7 @@ export const LandingPage: React.FC = () => {
                 sound.playClick();
                 navigate('/dashboard');
               }}
-              className="px-10 py-4 rounded-full bg-gradient-to-r from-cyan-400 via-cyan-300 to-blue-400 hover:from-cyan-300 hover:to-blue-300 text-black font-hud font-black text-sm tracking-widest uppercase flex items-center gap-3 shadow-[0_0_35px_rgba(0,229,255,0.5)] hover:scale-105 transition-all cursor-pointer"
+              className="px-10 py-4 rounded-full bg-gradient-to-r from-white to-gray-300 hover:from-white hover:to-gray-200 text-black font-hud font-black text-sm tracking-widest uppercase flex items-center gap-3 shadow-[0_0_35px_rgba(255, 255, 255, 0.5)] hover:scale-105 transition-all cursor-pointer"
             >
               <span>Launch JARVIS</span>
               <ArrowRight className="w-4 h-4 stroke-[3]" />
@@ -2517,8 +2517,8 @@ export const LandingPage: React.FC = () => {
           <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12">
             <div className="col-span-2">
               <div className="flex items-center gap-3 mb-3">
-                <div className="w-7 h-7 rounded-full bg-cyan-950/80 border border-cyan-400/60 flex items-center justify-center">
-                  <Zap className="w-3.5 h-3.5 text-cyan-300" />
+                <div className="w-7 h-7 rounded-full bg-white/5 border border-white/20 flex items-center justify-center">
+                  <Zap className="w-3.5 h-3.5 text-white" />
                 </div>
                 <span className="font-hud font-black text-base text-white tracking-wider">JARVIS AI</span>
               </div>
@@ -2536,41 +2536,41 @@ export const LandingPage: React.FC = () => {
             <div>
               <span className="font-hud font-bold text-white uppercase tracking-wider block mb-3 text-xs">Architecture</span>
               <ul className="space-y-2">
-                <li><a href="#services" className="hover:text-cyan-300 transition-colors">Services (/01)</a></li>
-                <li><a href="#showcase" className="hover:text-cyan-300 transition-colors">Showcases (/02)</a></li>
-                <li><a href="#process" className="hover:text-cyan-300 transition-colors">Process Pipeline (/03)</a></li>
-                <li><a href="#agents" className="hover:text-cyan-300 transition-colors">Core Agents (/04)</a></li>
+                <li><a href="#services" className="hover:text-white transition-colors">Services (/01)</a></li>
+                <li><a href="#showcase" className="hover:text-white transition-colors">Showcases (/02)</a></li>
+                <li><a href="#process" className="hover:text-white transition-colors">Process Pipeline (/03)</a></li>
+                <li><a href="#agents" className="hover:text-white transition-colors">Core Agents (/04)</a></li>
               </ul>
             </div>
 
             <div>
               <span className="font-hud font-bold text-white uppercase tracking-wider block mb-3 text-xs">Security & Trust</span>
               <ul className="space-y-2">
-                <li><a href="#security" className="hover:text-cyan-300 transition-colors">Zero-Trust Matrix</a></li>
-                <li><a href="#security" className="hover:text-cyan-300 transition-colors">Data Confinement</a></li>
-                <li><a href="#security" className="hover:text-cyan-300 transition-colors">OTP Verification</a></li>
-                <li><a href="/login" className="hover:text-cyan-300 transition-colors">Operative Clearance</a></li>
+                <li><a href="#security" className="hover:text-white transition-colors">Zero-Trust Matrix</a></li>
+                <li><a href="#security" className="hover:text-white transition-colors">Data Confinement</a></li>
+                <li><a href="#security" className="hover:text-white transition-colors">OTP Verification</a></li>
+                <li><a href="/login" className="hover:text-white transition-colors">Operative Clearance</a></li>
               </ul>
             </div>
 
             <div>
               <span className="font-hud font-bold text-white uppercase tracking-wider block mb-3 text-xs">Engage & Deploy</span>
               <ul className="space-y-2">
-                <li><a href="#pricing" className="hover:text-cyan-300 transition-colors">Pricing Plans (/05)</a></li>
-                <li><a href="#testimonials" className="hover:text-cyan-300 transition-colors">Endorsements (/06)</a></li>
-                <li><a href="#contact" className="hover:text-cyan-300 transition-colors">Mission Desk (/07)</a></li>
-                <li><a href="https://github.com/anangipavan362-dotcom/JARVIS-AI" target="_blank" rel="noopener noreferrer" className="hover:text-cyan-300 transition-colors flex items-center gap-1">GitHub Repo <ExternalLink className="w-3 h-3" /></a></li>
+                <li><a href="#pricing" className="hover:text-white transition-colors">Pricing Plans (/05)</a></li>
+                <li><a href="#testimonials" className="hover:text-white transition-colors">Endorsements (/06)</a></li>
+                <li><a href="#contact" className="hover:text-white transition-colors">Mission Desk (/07)</a></li>
+                <li><a href="https://github.com/anangipavan362-dotcom/JARVIS-AI" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors flex items-center gap-1">GitHub Repo <ExternalLink className="w-3 h-3" /></a></li>
               </ul>
             </div>
           </div>
 
           <div className="pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-gray-500">
             <div>
-              CLOUD ENGINE: <span className="text-cyan-400">FASTAPI // GOOGLE CLOUD RUN</span> | FRONTEND: <span className="text-yellow-400">FIREBASE HOSTING</span>
+              CLOUD ENGINE: <span className="text-gray-200">FASTAPI // GOOGLE CLOUD RUN</span> | FRONTEND: <span className="text-yellow-400">FIREBASE HOSTING</span>
             </div>
             <div className="flex items-center gap-4">
-              <span className="text-emerald-400 flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
+              <span className="text-white flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />
                 ALL SYSTEMS OPERATIONAL
               </span>
             </div>

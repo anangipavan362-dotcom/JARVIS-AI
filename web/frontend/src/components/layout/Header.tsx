@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, Bell, Search, ShieldCheck, Cpu, Database, Check } from 'lucide-react';
+import { Menu, Bell, Search, ShieldCheck, Cpu, Check } from 'lucide-react';
 import { SoundToggle } from '../common/SoundToggle';
 import { ApiClient } from '../../services/api';
 import { Notification } from '../../types';
@@ -18,7 +18,7 @@ export const Header: React.FC<HeaderProps> = ({
   italicWord = 'Center',
   indexBadge = '/01',
   onOpenMobile,
-  onOpenCommandPalette
+  onOpenCommandPalette,
 }) => {
   const [timeStr, setTimeStr] = useState<string>('');
   const [dateStr, setDateStr] = useState<string>('');
@@ -30,7 +30,13 @@ export const Header: React.FC<HeaderProps> = ({
     const updateTime = () => {
       const now = new Date();
       setTimeStr(now.toLocaleTimeString('en-US', { hour12: false }));
-      setDateStr(now.toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' }));
+      setDateStr(
+        now.toLocaleDateString('en-US', {
+          month: 'short',
+          day: '2-digit',
+          year: 'numeric',
+        })
+      );
     };
     updateTime();
     const timer = setInterval(updateTime, 1000);
@@ -58,19 +64,19 @@ export const Header: React.FC<HeaderProps> = ({
   };
 
   return (
-    <header className="h-16 border-b border-white/10 bg-[#02050f]/80 backdrop-blur-2xl px-4 lg:px-6 flex items-center justify-between z-20 select-none shadow-[0_4px_30px_rgba(0,0,0,0.5)]">
+    <header className="h-16 border-b border-white/10 bg-[#050505]/95 backdrop-blur-2xl px-4 lg:px-6 flex items-center justify-between z-20 select-none shadow-[0_4px_30px_rgba(0,0,0,0.8)]">
       {/* Left Area: Mobile Toggle, View Title & Agenciy Numbered Index */}
       <div className="flex items-center gap-3">
         <button
           onClick={onOpenMobile}
-          className="lg:hidden p-2 rounded-xl border border-white/10 glass-fusion text-cyan-300 hover:text-white"
+          className="lg:hidden p-2 rounded-xl border border-white/10 bg-white/5 text-white hover:bg-white/10"
         >
           <Menu className="w-5 h-5" />
         </button>
 
         <div className="flex items-center gap-2.5">
           {indexBadge && (
-            <span className="hidden sm:inline-block text-[11px] font-mono px-2 py-0.5 rounded-full bg-cyan-950/60 border border-cyan-500/30 text-cyan-300 font-bold">
+            <span className="hidden sm:inline-block text-[11px] font-mono px-2 py-0.5 rounded-full bg-white/10 border border-white/20 text-white font-bold">
               {indexBadge}
             </span>
           )}
@@ -79,38 +85,38 @@ export const Header: React.FC<HeaderProps> = ({
             <h2 className="text-sm lg:text-base font-hud font-bold tracking-wider text-white uppercase flex items-baseline gap-1.5">
               <span>{title}</span>
               {italicWord && (
-                <span className="font-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-sky-200 to-indigo-300 lowercase text-base lg:text-lg">
+                <span className="font-serif italic font-normal text-[#C8C8C8] lowercase text-base lg:text-lg">
                   {italicWord}
                 </span>
               )}
             </h2>
             <div className="hidden sm:flex items-center gap-3 text-[10px] font-mono text-gray-400">
-              <span className="flex items-center gap-1 text-emerald-400">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
+              <span className="flex items-center gap-1 text-white">
+                <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />
                 ONLINE
               </span>
               <span>•</span>
-              <span className="flex items-center gap-1 text-cyan-300">
-                <ShieldCheck className="w-3 h-3 text-cyan-400" /> ZERO-TRUST TLS 1.3
+              <span className="flex items-center gap-1 text-gray-300">
+                <ShieldCheck className="w-3 h-3 text-white" /> ZERO-TRUST TLS 1.3
               </span>
               <span>•</span>
-              <span className="flex items-center gap-1 text-indigo-300">
-                <Cpu className="w-3 h-3 text-indigo-400" /> GEMINI 2.5 FLASH
+              <span className="flex items-center gap-1 text-gray-300">
+                <Cpu className="w-3 h-3 text-white" /> DIGITAL HUMAN CORE
               </span>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Middle: Command Palette Quick Search Trigger (Agenciy Pill) */}
+      {/* Middle: Command Palette Quick Search Trigger */}
       <div className="hidden md:flex items-center">
         <button
           onClick={onOpenCommandPalette}
-          className="flex items-center gap-3 px-4 py-1.5 rounded-full glass-fusion border border-white/10 text-xs font-mono text-gray-400 hover:border-cyan-400/50 hover:text-white transition-all shadow-[0_0_15px_rgba(0,0,0,0.4)] cursor-pointer"
+          className="flex items-center gap-3 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-gray-400 hover:border-white/30 hover:text-white transition-all shadow-[0_0_15px_rgba(0,0,0,0.6)] cursor-pointer"
         >
-          <Search className="w-3.5 h-3.5 text-cyan-400" />
+          <Search className="w-3.5 h-3.5 text-white" />
           <span>Execute Command or Directive...</span>
-          <kbd className="px-2 py-0.5 rounded-full bg-white/5 border border-white/10 text-[10px] text-cyan-300 font-mono">
+          <kbd className="px-2 py-0.5 rounded-full bg-white/10 border border-white/15 text-[10px] text-white font-mono">
             Ctrl + K
           </kbd>
         </button>
@@ -120,7 +126,7 @@ export const Header: React.FC<HeaderProps> = ({
       <div className="flex items-center gap-3">
         {/* HUD Clock */}
         <div className="hidden sm:flex flex-col text-right">
-          <span className="text-sm font-mono font-bold tracking-widest text-cyan-300">
+          <span className="text-sm font-mono font-bold tracking-widest text-white">
             {timeStr}
           </span>
           <span className="text-[9px] font-mono text-gray-400 -mt-1 tracking-wider uppercase">
@@ -137,26 +143,26 @@ export const Header: React.FC<HeaderProps> = ({
               sound.playClick();
               setShowNotifMenu(!showNotifMenu);
             }}
-            className="relative p-2 rounded-full border border-white/10 glass-fusion text-cyan-300 hover:text-white hover:border-cyan-400/50 transition-all cursor-pointer"
+            className="relative p-2 rounded-full border border-white/10 bg-white/5 text-gray-200 hover:text-white hover:border-white/30 transition-all cursor-pointer"
           >
-            <Bell className="w-4 h-4 text-cyan-400" />
+            <Bell className="w-4 h-4 text-white" />
             {unreadCount > 0 && (
-              <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-cyan-400 text-[9px] font-mono font-bold text-black flex items-center justify-center animate-pulse">
+              <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-white text-[9px] font-mono font-bold text-black flex items-center justify-center animate-pulse">
                 {unreadCount}
               </span>
             )}
           </button>
 
           {showNotifMenu && (
-            <div className="absolute right-0 mt-2 w-80 glass-fusion bg-[#030612]/95 border border-white/10 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.8)] p-3.5 z-50 backdrop-blur-2xl">
+            <div className="absolute right-0 mt-2 w-80 bg-[#0A0A0A]/95 border border-white/15 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.9)] p-3.5 z-50 backdrop-blur-2xl">
               <div className="flex items-center justify-between pb-2 border-b border-white/10 mb-2">
-                <span className="text-xs font-hud font-bold text-cyan-200 uppercase tracking-wider">
+                <span className="text-xs font-hud font-bold text-white uppercase tracking-wider">
                   SYSTEM LOGS & ALERTS
                 </span>
                 {unreadCount > 0 && (
                   <button
                     onClick={handleMarkAllRead}
-                    className="text-[10px] font-mono text-cyan-400 hover:text-white flex items-center gap-1 cursor-pointer"
+                    className="text-[10px] font-mono text-gray-400 hover:text-white flex items-center gap-1 cursor-pointer"
                   >
                     <Check className="w-3 h-3" /> Mark read
                   </button>
@@ -175,17 +181,20 @@ export const Header: React.FC<HeaderProps> = ({
                       className={`p-2.5 rounded-xl border text-xs ${
                         n.read
                           ? 'border-white/5 bg-black/40 text-gray-400'
-                          : 'border-cyan-500/30 bg-cyan-950/40 text-cyan-100 shadow-[0_0_10px_rgba(0,229,255,0.1)]'
+                          : 'border-white/20 bg-white/5 text-white shadow-[0_0_10px_rgba(255,255,255,0.05)]'
                       }`}
                     >
-                      <div className="font-hud font-bold tracking-wide text-cyan-300">
+                      <div className="font-hud font-bold tracking-wide text-white">
                         {n.title}
                       </div>
                       <div className="text-[11px] font-mono mt-0.5 text-gray-300 leading-relaxed">
                         {n.message}
                       </div>
                       <div className="text-[9px] font-mono text-gray-500 mt-1">
-                        {new Date(n.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                        {new Date(n.created_at).toLocaleTimeString([], {
+                          hour: '2-digit',
+                          minute: '2-digit',
+                        })}
                       </div>
                     </div>
                   ))
@@ -198,3 +207,4 @@ export const Header: React.FC<HeaderProps> = ({
     </header>
   );
 };
+export default Header;
