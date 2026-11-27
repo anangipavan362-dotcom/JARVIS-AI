@@ -48,6 +48,9 @@ coverage.xml
 
 # Node / Frontend
 node_modules/
+
+# Local Google Drive Backup Output
+google_drive_backup/
 .firebase/
 npm-debug.log*
 yarn-debug.log*

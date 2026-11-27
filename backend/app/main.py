@@ -58,10 +58,11 @@ app = FastAPI(
     lifespan=lifespan
 )
 
-# CORS Middleware configuration
+# CORS Middleware configuration - production origin hardening
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # For flexible local dev and staging access
+    allow_origins=settings.cors_origins_list,
+    allow_origin_regex=r"^https?:\/\/.*(web\.app|firebaseapp\.com|trycloudflare\.com|vercel\.app|localhost|127\.0\.0\.1)(:\d+)?$",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

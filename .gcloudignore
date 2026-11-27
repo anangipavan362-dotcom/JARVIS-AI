@@ -1,0 +1,9 @@
+.git/
+.gitignore
+.env
+.env.*
+node_modules/
+desktop/
+*.db
+__pycache__/
+.pytest_cache/
